@@ -1182,6 +1182,8 @@ pre .javascript .function {
   font-size: 20px;
   font-weight: normal;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  border-bottom: 1px solid #fff;
+  padding: 0 10px;
 }
 .site-subtitle {
   margin-top: 10px;
@@ -1270,6 +1272,57 @@ pre .javascript .function {
 }
 .use-motion .menu-item {
   opacity: 0;
+}
+.my_post_copyright {
+  width: 85%;
+  max-width: 45em;
+  margin: 2.8em auto 0;
+  padding: 0.5em 1em;
+  border: 1px solid #d3d3d3;
+  font-size: 0.93rem;
+  line-height: 1.6em;
+  word-break: break-all;
+  background: rgba(255,255,255,0.4);
+}
+.my_post_copyright p {
+  margin: 0;
+}
+.my_post_copyright span {
+  display: inline-block;
+  width: 5.2em;
+  color: #b5b5b5;
+  font-weight: bold;
+}
+.my_post_copyright .raw {
+  margin-left: 1em;
+  width: 5em;
+}
+.my_post_copyright a {
+  color: #808080;
+  border-bottom: 0;
+}
+.my_post_copyright a:hover {
+  color: #a3d2a3;
+  text-decoration: underline;
+}
+.my_post_copyright:hover .fa-clipboard {
+  color: #000;
+}
+.my_post_copyright .post-url:hover {
+  font-weight: normal;
+}
+.my_post_copyright .copy-path {
+  margin-left: 1em;
+  width: 1em;
+}
+@media (max-width: 767px) {
+  .my_post_copyright .copy-path {
+    display: none;
+  }
+}
+.my_post_copyright .copy-path:hover {
+  color: #808080;
+  cursor: pointer;
 }
 .post-body {
   overflow-wrap: break-word;
@@ -1909,7 +1962,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d22aff;
+  background: #0f2a32;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2041,12 +2094,19 @@ pre .javascript .function {
 }
 .with-love {
   display: inline-block;
-  margin: 0 5px;
+  margin-left: 10px;
   color: #808080;
 }
 .powered-by,
 .theme-info {
   display: inline-block;
+}
+#animate > i {
+  animation: heartAnimate 0.7s ease-in-out infinite;
+}
+.with-love {
+  min-width: 14px;
+  color: #fa6431;
 }
 @-moz-keyframes iconAnimate {
   0%, 100% {
@@ -2166,6 +2226,38 @@ pre .javascript .function {
     -ms-transform: scale(1.1);
     -o-transform: scale(1.1);
     transform: scale(1.1);
+  }
+}
+@-moz-keyframes heartAnimate {
+  from {
+    font-size: 14px;
+  }
+  to {
+    font-size: 12px;
+  }
+}
+@-webkit-keyframes heartAnimate {
+  from {
+    font-size: 14px;
+  }
+  to {
+    font-size: 12px;
+  }
+}
+@-o-keyframes heartAnimate {
+  from {
+    font-size: 14px;
+  }
+  to {
+    font-size: 12px;
+  }
+}
+@keyframes heartAnimate {
+  from {
+    font-size: 14px;
+  }
+  to {
+    font-size: 12px;
   }
 }
 .local-search-pop-overlay {
