@@ -121,20 +121,27 @@
   </script>
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Mr.Zhu">
-<meta property="og:url" content="http://yoursite.com/tags/jQuery/index.html">
+  <meta name="description" content="一、自定义鼠标右键的实现原理 自定义右键菜单功能，需清楚，所有浏览器都自带了右键功能，那么自定义右键菜单，需要先屏蔽系统自带的右键功能，如何实现呢？ $selector.on(&amp;apos;contextmenu&amp;apos;, &amp;apos;.box&amp;apos;, function () {     return false; }) 注：$selector为选择器，.box为禁用鼠标右键的class完">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义鼠标右键">
+<meta property="og:url" content="http://yoursite.com/2018/09/11/jQuery/jQuery-自定义鼠标右键/index.html">
 <meta property="og:site_name" content="Mr.Zhu">
+<meta property="og:description" content="一、自定义鼠标右键的实现原理 自定义右键菜单功能，需清楚，所有浏览器都自带了右键功能，那么自定义右键菜单，需要先屏蔽系统自带的右键功能，如何实现呢？ $selector.on(&amp;apos;contextmenu&amp;apos;, &amp;apos;.box&amp;apos;, function () {     return false; }) 注：$selector为选择器，.box为禁用鼠标右键的class完">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/12926544-0fba8e14b4e89680.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-02-21T07:42:04.492Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mr.Zhu">
+<meta name="twitter:title" content="自定义鼠标右键">
+<meta name="twitter:description" content="一、自定义鼠标右键的实现原理 自定义右键菜单功能，需清楚，所有浏览器都自带了右键功能，那么自定义右键菜单，需要先屏蔽系统自带的右键功能，如何实现呢？ $selector.on(&amp;apos;contextmenu&amp;apos;, &amp;apos;.box&amp;apos;, function () {     return false; }) 注：$selector为选择器，.box为禁用鼠标右键的class完">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/12926544-0fba8e14b4e89680.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/jQuery/">
+  <link rel="canonical" href="http://yoursite.com/2018/09/11/jQuery/jQuery-自定义鼠标右键/">
 
 
 
@@ -144,7 +151,7 @@
   };
 </script>
 
-  <title>标签: jQuery | Mr.Zhu</title>
+  <title>自定义鼠标右键 | Mr.Zhu</title>
   
 
 
@@ -192,7 +199,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -285,7 +292,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -407,88 +414,573 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>jQuery<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/11/jQuery/jQuery-自定义鼠标右键/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Zhu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.Zhu">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2018/09/11/jQuery/jQuery-自定义鼠标右键/" itemprop="url">
-            
-              <span itemprop="name">自定义鼠标右键</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">自定义鼠标右键
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-09-11T16:44:00+08:00" content="2018-09-11">
-          09-11
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-11 16:44:00" itemprop="dateCreated datePublished" datetime="2018-09-11T16:44:00+08:00">2018-09-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-21 15:42:04" itemprop="dateModified" datetime="2019-02-21T15:42:04+08:00">2019-02-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/jQuery自定义功能/" itemprop="url" rel="index"><span itemprop="name">jQuery自定义功能</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、自定义鼠标右键的实现原理"><a href="#一、自定义鼠标右键的实现原理" class="headerlink" title="一、自定义鼠标右键的实现原理"></a>一、自定义鼠标右键的实现原理</h1><p><img src="https://upload-images.jianshu.io/upload_images/12926544-0fba8e14b4e89680.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="TIM图片20180911164755.png"></p>
+<p>自定义右键菜单功能，需清楚，所有浏览器都自带了右键功能，那么自定义右键菜单，需要先屏蔽系统自带的右键功能，如何实现呢？</p>
+<pre><code>$selector.on(&apos;contextmenu&apos;, &apos;.box&apos;, function () {
+    return false;
+})
+</code></pre><p>注：$selector为选择器，.box为禁用鼠标右键的class<br>完成系统自带鼠标右键的禁用后，开始自定义鼠标右键。</p>
+<hr>
+<p>获取鼠标事件的方法，使用mousedown,获取后需区分是鼠标左键还是右键，事件返回的参数event中，event.which为3表示右键，为1表示左键，为2表示中键。如下：</p>
+<pre><code>$(&quot;#box&quot;).mousedown(function(e){
+      if(3 === e.which){
+           alert(&quot;这 是右键单击事件&quot;);
+        }else if(1 === e.which){
+               alert(&quot;这 是左键单击事件&quot;);
+         }  else if (2  ===  e.which)  {
+            alert(&quot;这是鼠标中键&quot;);
+        }
+
+    })
+</code></pre><hr>
+<h1 id="二、自定义鼠标右键实例（表格行右键自定菜单）"><a href="#二、自定义鼠标右键实例（表格行右键自定菜单）" class="headerlink" title="二、自定义鼠标右键实例（表格行右键自定菜单）"></a>二、自定义鼠标右键实例（表格行右键自定菜单）</h1><h4 id="html"><a href="#html" class="headerlink" title="html:"></a>html:</h4><pre><code>&lt;div class=&quot;box&quot;&gt;
+&lt;div class=&quot;table-list&quot;&gt;
+    &lt;div class=&quot;table-thead &quot;&gt;
+        &lt;ul class=&quot;table-col&quot;&gt;
+            &lt;li class=&quot;save-item&quot; title=&quot;名称&quot;&gt;
+                &lt;span&gt;名称&lt;/span&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;save-item&quot; title=&quot;类型&quot;&gt;
+                &lt;span&gt;类型&lt;/span&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;save-item&quot; title=&quot;数据&quot;&gt;
+                &lt;span&gt;数据&lt;/span&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;save-item&quot;&gt;
+               &lt;span&gt;操作&lt;/span&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;table-tbody&quot;&gt;
+        &lt;ul class=&quot;table-col saveCol&quot;&gt;
+            &lt;li class=&quot;save-item&quot; title=&quot;test1&quot;&gt;
+                &lt;span&gt;test1&lt;/span&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;save-item&quot; title=&quot;test2&quot;&gt;
+                &lt;span&gt;test2&lt;/span&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;save-item&quot; title=&quot;test3&quot;&gt;
+                &lt;span&gt;test3&lt;/span&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;save-item&quot;&gt;
+                &lt;i class=&quot;point-icon opratePointDrop&quot; data-toggle=&quot;close&quot;&gt;&lt;/i&gt;
+                &lt;ul class=&quot;oprate-dropdown opDropDown none&quot;&gt;
+                    &lt;li class=&quot;op-item btn-mySaveRun&quot;&gt;
+                        &lt;a href=&quot;javascript:;&quot;&gt;
+                            &lt;span&gt;运行&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class=&quot;op-item btn-mySaveRename&quot;&gt;
+                        &lt;a href=&quot;javascript:;&quot;&gt;
+                            &lt;span&gt;编辑&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class=&quot;op-item btn-mySaveEdit&quot;&gt;
+                        &lt;a href=&quot;javascript:;&quot;&gt;
+                            &lt;span&gt;刷新&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class=&quot;op-item btn-mySaveDelete&quot;&gt;
+                        &lt;a href=&quot;javascript:;&quot;&gt;
+                            &lt;span&gt;导出&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;ul class=&quot;table-col saveCol&quot;&gt;
+            &lt;li class=&quot;save-item&quot; title=&quot;test1&quot;&gt;
+                &lt;span&gt;test1&lt;/span&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;save-item&quot; title=&quot;test2&quot;&gt;
+                &lt;span&gt;test2&lt;/span&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;save-item&quot; title=&quot;test3&quot;&gt;
+                &lt;span&gt;test3&lt;/span&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;save-item&quot;&gt;
+                &lt;i class=&quot;point-icon opratePointDrop&quot; data-toggle=&quot;close&quot;&gt;&lt;/i&gt;
+                &lt;ul class=&quot;oprate-dropdown opDropDown none&quot;&gt;
+                    &lt;li class=&quot;op-item btn-mySaveRun&quot;&gt;
+                        &lt;a href=&quot;javascript:;&quot;&gt;
+                            &lt;span&gt;运行&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class=&quot;op-item btn-mySaveRename&quot;&gt;
+                        &lt;a href=&quot;javascript:;&quot;&gt;
+                            &lt;span&gt;编辑&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class=&quot;op-item btn-mySaveEdit&quot;&gt;
+                        &lt;a href=&quot;javascript:;&quot;&gt;
+                            &lt;span&gt;刷新&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class=&quot;op-item btn-mySaveDelete&quot;&gt;
+                        &lt;a href=&quot;javascript:;&quot;&gt;
+                            &lt;span&gt;导出&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;ul class=&quot;table-col saveCol&quot;&gt;
+            &lt;li class=&quot;save-item&quot; title=&quot;test1&quot;&gt;
+                &lt;span&gt;test1&lt;/span&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;save-item&quot; title=&quot;test2&quot;&gt;
+                &lt;span&gt;test2&lt;/span&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;save-item&quot; title=&quot;test3&quot;&gt;
+                &lt;span&gt;test3&lt;/span&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;save-item&quot;&gt;
+                &lt;i class=&quot;point-icon opratePointDrop&quot; data-toggle=&quot;close&quot;&gt;&lt;/i&gt;
+                &lt;ul class=&quot;oprate-dropdown opDropDown none&quot;&gt;
+                    &lt;li class=&quot;op-item btn-mySaveRun&quot;&gt;
+                        &lt;a href=&quot;javascript:;&quot;&gt;
+                            &lt;span&gt;运行&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class=&quot;op-item btn-mySaveRename&quot;&gt;
+                        &lt;a href=&quot;javascript:;&quot;&gt;
+                            &lt;span&gt;编辑&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class=&quot;op-item btn-mySaveEdit&quot;&gt;
+                        &lt;a href=&quot;javascript:;&quot;&gt;
+                            &lt;span&gt;刷新&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li class=&quot;op-item btn-mySaveDelete&quot;&gt;
+                        &lt;a href=&quot;javascript:;&quot;&gt;
+                            &lt;span&gt;导出&lt;/span&gt;
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>   </p>
+<hr>
+<h4 id="css"><a href="#css" class="headerlink" title="css:"></a>css:</h4><pre><code>* {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul, ul li, ol li, li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+.none {
+    display: none;
+}
+
+.box {
+    width: 1000px;
+    margin: 20px 50px;
+}
+
+/* 自定义table */
+.table-list {
+    width: 100%;
+}
+.table-list .table-tbody {
+    position: relative;
+    max-height: 350px;
+    min-height: 225px;
+}
+.table-list .table-thead ul {
+    background-color: #f5f5f5;
+}
+.table-thead &gt; ul li {
+    font-weight: bold !important;
+}
+.table-tbody &gt; ul {
+    margin-top: -1px;
+    position: relative;
+    cursor: pointer;
+}
+.table-tbody &gt; ul:hover {
+    background-color: #f5f5f5;
+}
+.table-thead, .table-tbody {
+    width: 100%;
+}
+.table-thead &gt; ul, .table-tbody &gt; ul{
+    display: flex;
+}
+.table-thead &gt; ul &gt; li, .table-tbody &gt; ul &gt; li {
+    flex: 1;
+    height: 36px;
+    font: normal 12px/36px &apos;Microsoft YaHei&apos;, &apos;Arial&apos;;
+    border: 1px solid #d9d9d9;
+    border-left: none;
+}
+.table-thead &gt; ul &gt; li:first-child, .table-tbody &gt; ul &gt; li:first-child {
+    border-left: 1px solid #d9d9d9;
+}
+.table-thead &gt; ul &gt; li &gt; span, .table-tbody &gt; ul &gt; li &gt; span {
+    width: 90%;
+    display: inline-block;
+    margin: 0 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* 下拉 */
+.oprate-dropdown {
+    position: absolute;
+    top: 28px;
+    right: 3px;
+    width: 90px;
+    border: 1px solid #d9d9d9;
+    box-shadow: 0 0 5px #ccc;
+    z-index: 100;
+    /* 禁用选择字体 */
+    -moz-user-select: none; /*火狐*/
+    -webkit-user-select: none; /*webkit浏览器*/
+    -ms-user-select: none; /*IE10*/
+    user-select: none;
+}
+.oprate-dropdown li.op-item {
+    width: 100%;
+    height: 32px;
+    background-color: #fff;
+}
+.oprate-dropdown li.op-item:hover {
+     background-color: #f2f3f6;
+}
+.oprate-dropdown li.op-item a {
+    display: inline-block;
+    width: 70px;
+    line-height: 32px;
+    border-bottom: 1px solid #d9d9d9;
+    color: #2a313f;
+    margin: 0 10px;
+    overflow: hidden;
+}
+.oprate-dropdown li.op-item .op-icon {
+    position: relative;
+    left: 0;
+    top: 5px;
+    display: inline-block;
+    width: 15px;
+    height: 20px;
+}
+.point-icon {
+    display: inline-block;
+    width: 20px;
+    height: 15px;
+    background: url(../image/point-icon.png) no-repeat;
+    background-position: 0 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+</code></pre><hr>
+<h4 id="js"><a href="#js" class="headerlink" title="js:"></a>js:</h4><pre><code>var _rightMenu = {
+    init: function () {
+        var _this = this;
+        _this.rightMenuOprate();
+    },
+    rightMenuOprate: function () {
+        var $searchPart = $(&apos;.box&apos;);
+
+        //操作点击下拉
+        $searchPart.on(&apos;click&apos;, &apos;.opratePointDrop&apos;, function (e) {
+            e.stopPropagation();
+            var $this = $(this),
+                _isOpen = $this.attr(&apos;data-toggle&apos;),
+                $dropDown = $this.next();
+
+            //清空所有显示下拉
+            $searchPart.find(&apos;.opDropDown&apos;).each(function () {
+                var $this = $(this);
+                $this.hide();
+                $this.prev().attr(&apos;data-toggle&apos;, &apos;close&apos;);
+            });
+            if (_isOpen === &apos;close&apos;) {
+                $dropDown.show().css(&apos;left&apos;, &apos;&apos;);
+                $this.attr(&apos;data-toggle&apos;, &apos;open&apos;)
+            } else if (_isOpen === &apos;open&apos;) {
+                $dropDown.hide();
+                $this.attr(&apos;data-toggle&apos;, &apos;close&apos;)
+            }
+        });
+
+        //禁止鼠标右键事件
+        $searchPart.on(&apos;contextmenu&apos;, &apos;.saveCol&apos;, function () {
+            return false;
+        });
+        //鼠标右键
+        $searchPart.on(&apos;mousedown&apos;, &apos;.saveCol&apos;, function (e) {
+            e.stopPropagation();
+            var $this = $(this);
+
+            if (3 === e.which) {
+                //隐藏其他展开的下拉
+                $searchPart.find(&apos;.opDropDown&apos;).each(function () {
+                    var $this = $(this);
+                    $this.hide();
+                    $this.prev().attr(&apos;data-toggle&apos;, &apos;close&apos;);
+                });
+
+                $this.find(&apos;.opDropDown&apos;).show().css({
+                    &apos;left&apos;: e.pageX - 50  + &apos;px&apos;
+                });
+            }
+        });
+        //点击清除
+        $(document).click(function (e) {
+            //兼容火狐
+            if (1 === e.which) {
+                $searchPart.find(&apos;.opratePointDrop&apos;).attr(&apos;data-toggle&apos;, &apos;close&apos;);
+                $searchPart.find(&apos;.opDropDown&apos;).hide();
+            }
+        });
+    }
+};
+
+$(function () {
+    _rightMenu.init();
+});
+</code></pre><hr>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    <div>
+          
+            
+
+          
+    </div>
+
+    
+
+    
+      
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jQuery/" rel="tag"># jQuery</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/12/css/IE下input框后面默认带有X，去除方法/" rel="prev" title="IE下input框后面默认带有X，去除方法">
+                IE下input框后面默认带有X，去除方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80Mjc2My8xOTMxMA"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -509,8 +1001,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -648,6 +1149,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、自定义鼠标右键的实现原理"><span class="nav-number">1.</span> <span class="nav-text">一、自定义鼠标右键的实现原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、自定义鼠标右键实例（表格行右键自定菜单）"><span class="nav-number">2.</span> <span class="nav-text">二、自定义鼠标右键实例（表格行右键自定菜单）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#html"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">html:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#css"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">css:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#js"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">js:</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -813,6 +1331,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
 
   
 
@@ -823,6 +1345,23 @@
 
   
 
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2018/09/11/jQuery/jQuery-自定义鼠标右键/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
 
 
   
