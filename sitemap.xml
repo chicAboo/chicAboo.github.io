@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhulni.github.io/about/index.html</loc>
+    
+    <lastmod>2019-02-21T10:51:59.717Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhulni.github.io/2018/11/22/css/css-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%BB%9A%E5%8A%A8%E6%9D%A1/</loc>
     
     <lastmod>2019-02-21T10:11:42.690Z</lastmod>
@@ -75,13 +82,6 @@
     <loc>https://zhulni.github.io/tags/index.html</loc>
     
     <lastmod>2019-02-21T06:40:24.022Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhulni.github.io/about/index.html</loc>
-    
-    <lastmod>2019-02-21T06:40:24.018Z</lastmod>
     
   </url>
   
