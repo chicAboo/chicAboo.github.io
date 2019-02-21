@@ -2,16 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2019/02/21/test2/</loc>
+    <loc>http://yoursite.com/2019/02/21/IE%E4%B8%8Binput%E6%A1%86%E5%90%8E%E9%9D%A2%E9%BB%98%E8%AE%A4%E5%B8%A6%E6%9C%89X%EF%BC%8C%E5%8E%BB%E9%99%A4%E6%96%B9%E6%B3%95/</loc>
     
-    <lastmod>2019-02-20T16:43:06.316Z</lastmod>
+    <lastmod>2019-02-21T07:30:37.955Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2019/02/20/test1/</loc>
+    <loc>http://yoursite.com/2019/02/21/jQuery-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%BC%A0%E6%A0%87%E5%8F%B3%E9%94%AE/</loc>
     
-    <lastmod>2019-02-20T09:41:13.478Z</lastmod>
+    <lastmod>2019-02-21T07:10:20.703Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2019/02/21/css-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%BB%9A%E5%8A%A8%E6%9D%A1/</loc>
+    
+    <lastmod>2019-02-21T07:01:10.304Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/index.html</loc>
+    
+    <lastmod>2019-02-21T06:40:24.022Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2019-02-21T06:40:24.018Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/schedule/index.html</loc>
+    
+    <lastmod>2019-02-21T06:40:24.015Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/archives/index.html</loc>
+    
+    <lastmod>2019-02-21T06:40:24.012Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/categories/index.html</loc>
+    
+    <lastmod>2019-02-21T06:24:28.243Z</lastmod>
     
   </url>
   
