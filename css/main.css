@@ -1962,7 +1962,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #827071;
+  background: #ffe2ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3115,4 +3115,7 @@ ul.breadcrumb li+li:last-child {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+}
+.posts-expand .post-eof {
+  margin: 40px auto 20px !important;
 }
