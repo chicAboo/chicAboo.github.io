@@ -1962,7 +1962,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffd0ff;
+  background: #7e46ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3113,9 +3113,9 @@ ul.breadcrumb li+li:last-child {
 }
 .archive .post,
 .category .post {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
   padding: 5px 25px !important;
 }
 .posts-expand .post-eof {
