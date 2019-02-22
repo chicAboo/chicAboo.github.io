@@ -113,19 +113,19 @@
 
 
 
-  <meta name="description" content="一、自定义鼠标右键的实现原理 自定义右键菜单功能，需清楚，所有浏览器都自带了右键功能，那么自定义右键菜单，需要先屏蔽系统自带的右键功能，如何实现呢？ $selector.on(&amp;apos;contextmenu&amp;apos;, &amp;apos;.box&amp;apos;, function () {     return false; }) 注：$selector为选择器，.box为禁用鼠标右键的class完">
+  <meta name="description" content="一、自定义鼠标右键的实现原理 自定义右键菜单功能，需清楚，所有浏览器都自带了右键功能，那么自定义右键菜单，需要先屏蔽系统自带的右键功能，如何实现呢？123$selector.on(&apos;contextmenu&apos;, &apos;.box&apos;, function () &amp;#123;    return false;&amp;#125;) 注：$selector为选择器，.box为禁用鼠标右键的class完成系统自带鼠标右键的">
 <meta name="keywords" content="jQuery">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自定义鼠标右键">
 <meta property="og:url" content="https://zhulni.github.io/2018/09/11/jQuery/jQuery-自定义鼠标右键/index.html">
 <meta property="og:site_name" content="Mr.Zhu">
-<meta property="og:description" content="一、自定义鼠标右键的实现原理 自定义右键菜单功能，需清楚，所有浏览器都自带了右键功能，那么自定义右键菜单，需要先屏蔽系统自带的右键功能，如何实现呢？ $selector.on(&amp;apos;contextmenu&amp;apos;, &amp;apos;.box&amp;apos;, function () {     return false; }) 注：$selector为选择器，.box为禁用鼠标右键的class完">
+<meta property="og:description" content="一、自定义鼠标右键的实现原理 自定义右键菜单功能，需清楚，所有浏览器都自带了右键功能，那么自定义右键菜单，需要先屏蔽系统自带的右键功能，如何实现呢？123$selector.on(&apos;contextmenu&apos;, &apos;.box&apos;, function () &amp;#123;    return false;&amp;#125;) 注：$selector为选择器，.box为禁用鼠标右键的class完成系统自带鼠标右键的">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/12926544-0fba8e14b4e89680.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-02-21T07:42:04.492Z">
+<meta property="og:updated_time" content="2019-02-22T05:46:54.318Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自定义鼠标右键">
-<meta name="twitter:description" content="一、自定义鼠标右键的实现原理 自定义右键菜单功能，需清楚，所有浏览器都自带了右键功能，那么自定义右键菜单，需要先屏蔽系统自带的右键功能，如何实现呢？ $selector.on(&amp;apos;contextmenu&amp;apos;, &amp;apos;.box&amp;apos;, function () {     return false; }) 注：$selector为选择器，.box为禁用鼠标右键的class完">
+<meta name="twitter:description" content="一、自定义鼠标右键的实现原理 自定义右键菜单功能，需清楚，所有浏览器都自带了右键功能，那么自定义右键菜单，需要先屏蔽系统自带的右键功能，如何实现呢？123$selector.on(&apos;contextmenu&apos;, &apos;.box&apos;, function () &amp;#123;    return false;&amp;#125;) 注：$selector为选择器，.box为禁用鼠标右键的class完成系统自带鼠标右键的">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/12926544-0fba8e14b4e89680.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -452,7 +452,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-21 15:42:04" itemprop="dateModified" datetime="2019-02-21T15:42:04+08:00">2019-02-21</time>
+                <time title="修改时间：2019-02-22 13:46:54" itemprop="dateModified" datetime="2019-02-22T13:46:54+08:00">2019-02-22</time>
               
             
           </span>
@@ -512,341 +512,15 @@
 
       
         <h1 id="一、自定义鼠标右键的实现原理"><a href="#一、自定义鼠标右键的实现原理" class="headerlink" title="一、自定义鼠标右键的实现原理"></a>一、自定义鼠标右键的实现原理</h1><p><img src="https://upload-images.jianshu.io/upload_images/12926544-0fba8e14b4e89680.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="TIM图片20180911164755.png"></p>
-<p>自定义右键菜单功能，需清楚，所有浏览器都自带了右键功能，那么自定义右键菜单，需要先屏蔽系统自带的右键功能，如何实现呢？</p>
-<pre><code>$selector.on(&apos;contextmenu&apos;, &apos;.box&apos;, function () {
-    return false;
-})
-</code></pre><p>注：$selector为选择器，.box为禁用鼠标右键的class<br>完成系统自带鼠标右键的禁用后，开始自定义鼠标右键。</p>
+<p>自定义右键菜单功能，需清楚，所有浏览器都自带了右键功能，那么自定义右键菜单，需要先屏蔽系统自带的右键功能，如何实现呢？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$selector.on(<span class="string">'contextmenu'</span>, <span class="string">'.box'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>注：$selector为选择器，.box为禁用鼠标右键的class<br>完成系统自带鼠标右键的禁用后，开始自定义鼠标右键。</p>
 <hr>
-<p>获取鼠标事件的方法，使用mousedown,获取后需区分是鼠标左键还是右键，事件返回的参数event中，event.which为3表示右键，为1表示左键，为2表示中键。如下：</p>
-<pre><code>$(&quot;#box&quot;).mousedown(function(e){
-      if(3 === e.which){
-           alert(&quot;这 是右键单击事件&quot;);
-        }else if(1 === e.which){
-               alert(&quot;这 是左键单击事件&quot;);
-         }  else if (2  ===  e.which)  {
-            alert(&quot;这是鼠标中键&quot;);
-        }
-
-    })
-</code></pre><hr>
-<h1 id="二、自定义鼠标右键实例（表格行右键自定菜单）"><a href="#二、自定义鼠标右键实例（表格行右键自定菜单）" class="headerlink" title="二、自定义鼠标右键实例（表格行右键自定菜单）"></a>二、自定义鼠标右键实例（表格行右键自定菜单）</h1><h4 id="html"><a href="#html" class="headerlink" title="html:"></a>html:</h4><pre><code>&lt;div class=&quot;box&quot;&gt;
-&lt;div class=&quot;table-list&quot;&gt;
-    &lt;div class=&quot;table-thead &quot;&gt;
-        &lt;ul class=&quot;table-col&quot;&gt;
-            &lt;li class=&quot;save-item&quot; title=&quot;名称&quot;&gt;
-                &lt;span&gt;名称&lt;/span&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;save-item&quot; title=&quot;类型&quot;&gt;
-                &lt;span&gt;类型&lt;/span&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;save-item&quot; title=&quot;数据&quot;&gt;
-                &lt;span&gt;数据&lt;/span&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;save-item&quot;&gt;
-               &lt;span&gt;操作&lt;/span&gt;
-            &lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;table-tbody&quot;&gt;
-        &lt;ul class=&quot;table-col saveCol&quot;&gt;
-            &lt;li class=&quot;save-item&quot; title=&quot;test1&quot;&gt;
-                &lt;span&gt;test1&lt;/span&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;save-item&quot; title=&quot;test2&quot;&gt;
-                &lt;span&gt;test2&lt;/span&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;save-item&quot; title=&quot;test3&quot;&gt;
-                &lt;span&gt;test3&lt;/span&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;save-item&quot;&gt;
-                &lt;i class=&quot;point-icon opratePointDrop&quot; data-toggle=&quot;close&quot;&gt;&lt;/i&gt;
-                &lt;ul class=&quot;oprate-dropdown opDropDown none&quot;&gt;
-                    &lt;li class=&quot;op-item btn-mySaveRun&quot;&gt;
-                        &lt;a href=&quot;javascript:;&quot;&gt;
-                            &lt;span&gt;运行&lt;/span&gt;
-                        &lt;/a&gt;
-                    &lt;/li&gt;
-                    &lt;li class=&quot;op-item btn-mySaveRename&quot;&gt;
-                        &lt;a href=&quot;javascript:;&quot;&gt;
-                            &lt;span&gt;编辑&lt;/span&gt;
-                        &lt;/a&gt;
-                    &lt;/li&gt;
-                    &lt;li class=&quot;op-item btn-mySaveEdit&quot;&gt;
-                        &lt;a href=&quot;javascript:;&quot;&gt;
-                            &lt;span&gt;刷新&lt;/span&gt;
-                        &lt;/a&gt;
-                    &lt;/li&gt;
-                    &lt;li class=&quot;op-item btn-mySaveDelete&quot;&gt;
-                        &lt;a href=&quot;javascript:;&quot;&gt;
-                            &lt;span&gt;导出&lt;/span&gt;
-                        &lt;/a&gt;
-                    &lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/li&gt;
-        &lt;/ul&gt;
-        &lt;ul class=&quot;table-col saveCol&quot;&gt;
-            &lt;li class=&quot;save-item&quot; title=&quot;test1&quot;&gt;
-                &lt;span&gt;test1&lt;/span&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;save-item&quot; title=&quot;test2&quot;&gt;
-                &lt;span&gt;test2&lt;/span&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;save-item&quot; title=&quot;test3&quot;&gt;
-                &lt;span&gt;test3&lt;/span&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;save-item&quot;&gt;
-                &lt;i class=&quot;point-icon opratePointDrop&quot; data-toggle=&quot;close&quot;&gt;&lt;/i&gt;
-                &lt;ul class=&quot;oprate-dropdown opDropDown none&quot;&gt;
-                    &lt;li class=&quot;op-item btn-mySaveRun&quot;&gt;
-                        &lt;a href=&quot;javascript:;&quot;&gt;
-                            &lt;span&gt;运行&lt;/span&gt;
-                        &lt;/a&gt;
-                    &lt;/li&gt;
-                    &lt;li class=&quot;op-item btn-mySaveRename&quot;&gt;
-                        &lt;a href=&quot;javascript:;&quot;&gt;
-                            &lt;span&gt;编辑&lt;/span&gt;
-                        &lt;/a&gt;
-                    &lt;/li&gt;
-                    &lt;li class=&quot;op-item btn-mySaveEdit&quot;&gt;
-                        &lt;a href=&quot;javascript:;&quot;&gt;
-                            &lt;span&gt;刷新&lt;/span&gt;
-                        &lt;/a&gt;
-                    &lt;/li&gt;
-                    &lt;li class=&quot;op-item btn-mySaveDelete&quot;&gt;
-                        &lt;a href=&quot;javascript:;&quot;&gt;
-                            &lt;span&gt;导出&lt;/span&gt;
-                        &lt;/a&gt;
-                    &lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/li&gt;
-        &lt;/ul&gt;
-        &lt;ul class=&quot;table-col saveCol&quot;&gt;
-            &lt;li class=&quot;save-item&quot; title=&quot;test1&quot;&gt;
-                &lt;span&gt;test1&lt;/span&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;save-item&quot; title=&quot;test2&quot;&gt;
-                &lt;span&gt;test2&lt;/span&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;save-item&quot; title=&quot;test3&quot;&gt;
-                &lt;span&gt;test3&lt;/span&gt;
-            &lt;/li&gt;
-            &lt;li class=&quot;save-item&quot;&gt;
-                &lt;i class=&quot;point-icon opratePointDrop&quot; data-toggle=&quot;close&quot;&gt;&lt;/i&gt;
-                &lt;ul class=&quot;oprate-dropdown opDropDown none&quot;&gt;
-                    &lt;li class=&quot;op-item btn-mySaveRun&quot;&gt;
-                        &lt;a href=&quot;javascript:;&quot;&gt;
-                            &lt;span&gt;运行&lt;/span&gt;
-                        &lt;/a&gt;
-                    &lt;/li&gt;
-                    &lt;li class=&quot;op-item btn-mySaveRename&quot;&gt;
-                        &lt;a href=&quot;javascript:;&quot;&gt;
-                            &lt;span&gt;编辑&lt;/span&gt;
-                        &lt;/a&gt;
-                    &lt;/li&gt;
-                    &lt;li class=&quot;op-item btn-mySaveEdit&quot;&gt;
-                        &lt;a href=&quot;javascript:;&quot;&gt;
-                            &lt;span&gt;刷新&lt;/span&gt;
-                        &lt;/a&gt;
-                    &lt;/li&gt;
-                    &lt;li class=&quot;op-item btn-mySaveDelete&quot;&gt;
-                        &lt;a href=&quot;javascript:;&quot;&gt;
-                            &lt;span&gt;导出&lt;/span&gt;
-                        &lt;/a&gt;
-                    &lt;/li&gt;
-                &lt;/ul&gt;
-            &lt;/li&gt;
-        &lt;/ul&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-</code></pre><p>   </p>
+<p>获取鼠标事件的方法，使用mousedown,获取后需区分是鼠标左键还是右键，事件返回的参数event中，event.which为3表示右键，为1表示左键，为2表示中键。如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br></pre></td><td class="code"><pre><span class="line">    $(<span class="string">"#box"</span>).mousedown(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">          <span class="keyword">if</span>(<span class="number">3</span> === e.which)&#123;</span><br><span class="line">               alert(<span class="string">"这 是右键单击事件"</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="number">1</span> === e.which)&#123;</span><br><span class="line">                   alert(<span class="string">"这 是左键单击事件"</span>);</span><br><span class="line">             &#125;  <span class="keyword">else</span> <span class="keyword">if</span> (<span class="number">2</span>  ===  e.which)  &#123;</span><br><span class="line">                alert(<span class="string">"这是鼠标中键"</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line"><span class="string">``</span><span class="string">`JavaScript</span></span><br><span class="line"><span class="string">* * *</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 二、自定义鼠标右键实例（表格行右键自定菜单）</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">#### html: </span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>html</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"box"</span>&gt;</span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"table-list"</span>&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"table-thead "</span>&gt;</span><br><span class="line">            &lt;ul <span class="class"><span class="keyword">class</span></span>=<span class="string">"table-col"</span>&gt;</span><br><span class="line">                &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"save-item"</span> title=<span class="string">"名称"</span>&gt;</span><br><span class="line">                    &lt;span&gt;名称&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>li&gt;</span><br><span class="line">                &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"save-item"</span> title=<span class="string">"类型"</span>&gt;</span><br><span class="line">                    &lt;span&gt;类型&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>li&gt;</span><br><span class="line">                &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"save-item"</span> title=<span class="string">"数据"</span>&gt;</span><br><span class="line">                    &lt;span&gt;数据&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>li&gt;</span><br><span class="line">                &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"save-item"</span>&gt;</span><br><span class="line">                   &lt;span&gt;操作&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>li&gt;</span><br><span class="line">            &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">        &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"table-tbody"</span>&gt;</span><br><span class="line">            &lt;ul <span class="class"><span class="keyword">class</span></span>=<span class="string">"table-col saveCol"</span>&gt;</span><br><span class="line">                &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"save-item"</span> title=<span class="string">"test1"</span>&gt;</span><br><span class="line">                    &lt;span&gt;test1&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>li&gt;</span><br><span class="line">                &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"save-item"</span> title=<span class="string">"test2"</span>&gt;</span><br><span class="line">                    &lt;span&gt;test2&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>li&gt;</span><br><span class="line">                &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"save-item"</span> title=<span class="string">"test3"</span>&gt;</span><br><span class="line">                    &lt;span&gt;test3&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>li&gt;</span><br><span class="line">                &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"save-item"</span>&gt;</span><br><span class="line">                    &lt;i <span class="class"><span class="keyword">class</span></span>=<span class="string">"point-icon opratePointDrop"</span> data-toggle=<span class="string">"close"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></span><br><span class="line">                    &lt;ul <span class="class"><span class="keyword">class</span></span>=<span class="string">"oprate-dropdown opDropDown none"</span>&gt;</span><br><span class="line">                        &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"op-item btn-mySaveRun"</span>&gt;</span><br><span class="line">                            &lt;a href=<span class="string">"javascript:;"</span>&gt;</span><br><span class="line">                                &lt;span&gt;运行&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">                            &lt;/</span>a&gt;</span><br><span class="line">                        &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">                        &lt;li class="op-item btn-mySaveRename"&gt;</span></span><br><span class="line"><span class="regexp">                            &lt;a href="javascript:;"&gt;</span></span><br><span class="line"><span class="regexp">                                &lt;span&gt;编辑&lt;/</span>span&gt;</span><br><span class="line">                            &lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">                        &lt;/</span>li&gt;</span><br><span class="line">                        &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"op-item btn-mySaveEdit"</span>&gt;</span><br><span class="line">                            &lt;a href=<span class="string">"javascript:;"</span>&gt;</span><br><span class="line">                                &lt;span&gt;刷新&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">                            &lt;/</span>a&gt;</span><br><span class="line">                        &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">                        &lt;li class="op-item btn-mySaveDelete"&gt;</span></span><br><span class="line"><span class="regexp">                            &lt;a href="javascript:;"&gt;</span></span><br><span class="line"><span class="regexp">                                &lt;span&gt;导出&lt;/</span>span&gt;</span><br><span class="line">                            &lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">                        &lt;/</span>li&gt;</span><br><span class="line">                    &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>li&gt;</span><br><span class="line">            &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">            &lt;ul class="table-col saveCol"&gt;</span></span><br><span class="line"><span class="regexp">                &lt;li class="save-item" title="test1"&gt;</span></span><br><span class="line"><span class="regexp">                    &lt;span&gt;test1&lt;/</span>span&gt;</span><br><span class="line">                &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">                &lt;li class="save-item" title="test2"&gt;</span></span><br><span class="line"><span class="regexp">                    &lt;span&gt;test2&lt;/</span>span&gt;</span><br><span class="line">                &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">                &lt;li class="save-item" title="test3"&gt;</span></span><br><span class="line"><span class="regexp">                    &lt;span&gt;test3&lt;/</span>span&gt;</span><br><span class="line">                &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">                &lt;li class="save-item"&gt;</span></span><br><span class="line"><span class="regexp">                    &lt;i class="point-icon opratePointDrop" data-toggle="close"&gt;&lt;/i</span>&gt;</span><br><span class="line">                    &lt;ul <span class="class"><span class="keyword">class</span></span>=<span class="string">"oprate-dropdown opDropDown none"</span>&gt;</span><br><span class="line">                        &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"op-item btn-mySaveRun"</span>&gt;</span><br><span class="line">                            &lt;a href=<span class="string">"javascript:;"</span>&gt;</span><br><span class="line">                                &lt;span&gt;运行&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">                            &lt;/</span>a&gt;</span><br><span class="line">                        &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">                        &lt;li class="op-item btn-mySaveRename"&gt;</span></span><br><span class="line"><span class="regexp">                            &lt;a href="javascript:;"&gt;</span></span><br><span class="line"><span class="regexp">                                &lt;span&gt;编辑&lt;/</span>span&gt;</span><br><span class="line">                            &lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">                        &lt;/</span>li&gt;</span><br><span class="line">                        &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"op-item btn-mySaveEdit"</span>&gt;</span><br><span class="line">                            &lt;a href=<span class="string">"javascript:;"</span>&gt;</span><br><span class="line">                                &lt;span&gt;刷新&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">                            &lt;/</span>a&gt;</span><br><span class="line">                        &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">                        &lt;li class="op-item btn-mySaveDelete"&gt;</span></span><br><span class="line"><span class="regexp">                            &lt;a href="javascript:;"&gt;</span></span><br><span class="line"><span class="regexp">                                &lt;span&gt;导出&lt;/</span>span&gt;</span><br><span class="line">                            &lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">                        &lt;/</span>li&gt;</span><br><span class="line">                    &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>li&gt;</span><br><span class="line">            &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">            &lt;ul class="table-col saveCol"&gt;</span></span><br><span class="line"><span class="regexp">                &lt;li class="save-item" title="test1"&gt;</span></span><br><span class="line"><span class="regexp">                    &lt;span&gt;test1&lt;/</span>span&gt;</span><br><span class="line">                &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">                &lt;li class="save-item" title="test2"&gt;</span></span><br><span class="line"><span class="regexp">                    &lt;span&gt;test2&lt;/</span>span&gt;</span><br><span class="line">                &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">                &lt;li class="save-item" title="test3"&gt;</span></span><br><span class="line"><span class="regexp">                    &lt;span&gt;test3&lt;/</span>span&gt;</span><br><span class="line">                &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">                &lt;li class="save-item"&gt;</span></span><br><span class="line"><span class="regexp">                    &lt;i class="point-icon opratePointDrop" data-toggle="close"&gt;&lt;/i</span>&gt;</span><br><span class="line">                    &lt;ul <span class="class"><span class="keyword">class</span></span>=<span class="string">"oprate-dropdown opDropDown none"</span>&gt;</span><br><span class="line">                        &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"op-item btn-mySaveRun"</span>&gt;</span><br><span class="line">                            &lt;a href=<span class="string">"javascript:;"</span>&gt;</span><br><span class="line">                                &lt;span&gt;运行&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">                            &lt;/</span>a&gt;</span><br><span class="line">                        &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">                        &lt;li class="op-item btn-mySaveRename"&gt;</span></span><br><span class="line"><span class="regexp">                            &lt;a href="javascript:;"&gt;</span></span><br><span class="line"><span class="regexp">                                &lt;span&gt;编辑&lt;/</span>span&gt;</span><br><span class="line">                            &lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">                        &lt;/</span>li&gt;</span><br><span class="line">                        &lt;li <span class="class"><span class="keyword">class</span></span>=<span class="string">"op-item btn-mySaveEdit"</span>&gt;</span><br><span class="line">                            &lt;a href=<span class="string">"javascript:;"</span>&gt;</span><br><span class="line">                                &lt;span&gt;刷新&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">                            &lt;/</span>a&gt;</span><br><span class="line">                        &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">                        &lt;li class="op-item btn-mySaveDelete"&gt;</span></span><br><span class="line"><span class="regexp">                            &lt;a href="javascript:;"&gt;</span></span><br><span class="line"><span class="regexp">                                &lt;span&gt;导出&lt;/</span>span&gt;</span><br><span class="line">                            &lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">                        &lt;/</span>li&gt;</span><br><span class="line">                    &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>li&gt;</span><br><span class="line">            &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">   &lt;/</span>div&gt;</span><br></pre></td></tr></table></figure></p>
 <hr>
-<h4 id="css"><a href="#css" class="headerlink" title="css:"></a>css:</h4><pre><code>* {
-    border: none;
-    margin: 0;
-    padding: 0;
-}
-
-ul, ul li, ol li, li {
-    list-style: none;
-}
-a {
-    text-decoration: none;
-}
-.none {
-    display: none;
-}
-
-.box {
-    width: 1000px;
-    margin: 20px 50px;
-}
-
-/* 自定义table */
-.table-list {
-    width: 100%;
-}
-.table-list .table-tbody {
-    position: relative;
-    max-height: 350px;
-    min-height: 225px;
-}
-.table-list .table-thead ul {
-    background-color: #f5f5f5;
-}
-.table-thead &gt; ul li {
-    font-weight: bold !important;
-}
-.table-tbody &gt; ul {
-    margin-top: -1px;
-    position: relative;
-    cursor: pointer;
-}
-.table-tbody &gt; ul:hover {
-    background-color: #f5f5f5;
-}
-.table-thead, .table-tbody {
-    width: 100%;
-}
-.table-thead &gt; ul, .table-tbody &gt; ul{
-    display: flex;
-}
-.table-thead &gt; ul &gt; li, .table-tbody &gt; ul &gt; li {
-    flex: 1;
-    height: 36px;
-    font: normal 12px/36px &apos;Microsoft YaHei&apos;, &apos;Arial&apos;;
-    border: 1px solid #d9d9d9;
-    border-left: none;
-}
-.table-thead &gt; ul &gt; li:first-child, .table-tbody &gt; ul &gt; li:first-child {
-    border-left: 1px solid #d9d9d9;
-}
-.table-thead &gt; ul &gt; li &gt; span, .table-tbody &gt; ul &gt; li &gt; span {
-    width: 90%;
-    display: inline-block;
-    margin: 0 10px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-/* 下拉 */
-.oprate-dropdown {
-    position: absolute;
-    top: 28px;
-    right: 3px;
-    width: 90px;
-    border: 1px solid #d9d9d9;
-    box-shadow: 0 0 5px #ccc;
-    z-index: 100;
-    /* 禁用选择字体 */
-    -moz-user-select: none; /*火狐*/
-    -webkit-user-select: none; /*webkit浏览器*/
-    -ms-user-select: none; /*IE10*/
-    user-select: none;
-}
-.oprate-dropdown li.op-item {
-    width: 100%;
-    height: 32px;
-    background-color: #fff;
-}
-.oprate-dropdown li.op-item:hover {
-     background-color: #f2f3f6;
-}
-.oprate-dropdown li.op-item a {
-    display: inline-block;
-    width: 70px;
-    line-height: 32px;
-    border-bottom: 1px solid #d9d9d9;
-    color: #2a313f;
-    margin: 0 10px;
-    overflow: hidden;
-}
-.oprate-dropdown li.op-item .op-icon {
-    position: relative;
-    left: 0;
-    top: 5px;
-    display: inline-block;
-    width: 15px;
-    height: 20px;
-}
-.point-icon {
-    display: inline-block;
-    width: 20px;
-    height: 15px;
-    background: url(../image/point-icon.png) no-repeat;
-    background-position: 0 10px;
-    cursor: pointer;
-    margin-left: 10px;
-}
-</code></pre><hr>
-<h4 id="js"><a href="#js" class="headerlink" title="js:"></a>js:</h4><pre><code>var _rightMenu = {
-    init: function () {
-        var _this = this;
-        _this.rightMenuOprate();
-    },
-    rightMenuOprate: function () {
-        var $searchPart = $(&apos;.box&apos;);
-
-        //操作点击下拉
-        $searchPart.on(&apos;click&apos;, &apos;.opratePointDrop&apos;, function (e) {
-            e.stopPropagation();
-            var $this = $(this),
-                _isOpen = $this.attr(&apos;data-toggle&apos;),
-                $dropDown = $this.next();
-
-            //清空所有显示下拉
-            $searchPart.find(&apos;.opDropDown&apos;).each(function () {
-                var $this = $(this);
-                $this.hide();
-                $this.prev().attr(&apos;data-toggle&apos;, &apos;close&apos;);
-            });
-            if (_isOpen === &apos;close&apos;) {
-                $dropDown.show().css(&apos;left&apos;, &apos;&apos;);
-                $this.attr(&apos;data-toggle&apos;, &apos;open&apos;)
-            } else if (_isOpen === &apos;open&apos;) {
-                $dropDown.hide();
-                $this.attr(&apos;data-toggle&apos;, &apos;close&apos;)
-            }
-        });
-
-        //禁止鼠标右键事件
-        $searchPart.on(&apos;contextmenu&apos;, &apos;.saveCol&apos;, function () {
-            return false;
-        });
-        //鼠标右键
-        $searchPart.on(&apos;mousedown&apos;, &apos;.saveCol&apos;, function (e) {
-            e.stopPropagation();
-            var $this = $(this);
-
-            if (3 === e.which) {
-                //隐藏其他展开的下拉
-                $searchPart.find(&apos;.opDropDown&apos;).each(function () {
-                    var $this = $(this);
-                    $this.hide();
-                    $this.prev().attr(&apos;data-toggle&apos;, &apos;close&apos;);
-                });
-
-                $this.find(&apos;.opDropDown&apos;).show().css({
-                    &apos;left&apos;: e.pageX - 50  + &apos;px&apos;
-                });
-            }
-        });
-        //点击清除
-        $(document).click(function (e) {
-            //兼容火狐
-            if (1 === e.which) {
-                $searchPart.find(&apos;.opratePointDrop&apos;).attr(&apos;data-toggle&apos;, &apos;close&apos;);
-                $searchPart.find(&apos;.opDropDown&apos;).hide();
-            }
-        });
-    }
-};
-
-$(function () {
-    _rightMenu.init();
-});
-</code></pre><hr>
+<h4 id="css"><a href="#css" class="headerlink" title="css:"></a>css:</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">    <span class="attribute">border</span>: none;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">ul</span>, <span class="selector-tag">ul</span> <span class="selector-tag">li</span>, <span class="selector-tag">ol</span> <span class="selector-tag">li</span>, <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">list-style</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">text-decoration</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.none</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">1000px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">20px</span> <span class="number">50px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 自定义table */</span></span><br><span class="line"><span class="selector-class">.table-list</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.table-list</span> <span class="selector-class">.table-tbody</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">max-height</span>: <span class="number">350px</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">225px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.table-list</span> <span class="selector-class">.table-thead</span> <span class="selector-tag">ul</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#f5f5f5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.table-thead</span> &gt; <span class="selector-tag">ul</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.table-tbody</span> &gt; <span class="selector-tag">ul</span> &#123;</span><br><span class="line">    <span class="attribute">margin-top</span>: -<span class="number">1px</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">cursor</span>: pointer;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.table-tbody</span> &gt; <span class="selector-tag">ul</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#f5f5f5</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.table-thead</span>, <span class="selector-class">.table-tbody</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.table-thead</span> &gt; <span class="selector-tag">ul</span>, <span class="selector-class">.table-tbody</span> &gt; <span class="selector-tag">ul</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.table-thead</span> &gt; <span class="selector-tag">ul</span> &gt; <span class="selector-tag">li</span>, <span class="selector-class">.table-tbody</span> &gt; <span class="selector-tag">ul</span> &gt; <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">36px</span>;</span><br><span class="line">    <span class="attribute">font</span>: normal <span class="number">12px</span>/<span class="number">36px</span> <span class="string">'Microsoft YaHei'</span>, <span class="string">'Arial'</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#d9d9d9</span>;</span><br><span class="line">    <span class="attribute">border-left</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.table-thead</span> &gt; <span class="selector-tag">ul</span> &gt; <span class="selector-tag">li</span><span class="selector-pseudo">:first-child</span>, <span class="selector-class">.table-tbody</span> &gt; <span class="selector-tag">ul</span> &gt; <span class="selector-tag">li</span><span class="selector-pseudo">:first-child</span> &#123;</span><br><span class="line">    <span class="attribute">border-left</span>: <span class="number">1px</span> solid <span class="number">#d9d9d9</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.table-thead</span> &gt; <span class="selector-tag">ul</span> &gt; <span class="selector-tag">li</span> &gt; <span class="selector-tag">span</span>, <span class="selector-class">.table-tbody</span> &gt; <span class="selector-tag">ul</span> &gt; <span class="selector-tag">li</span> &gt; <span class="selector-tag">span</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">90%</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">    <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 下拉 */</span></span><br><span class="line"><span class="selector-class">.oprate-dropdown</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">28px</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">90px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#d9d9d9</span>;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="number">#ccc</span>;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">100</span>;</span><br><span class="line">    <span class="comment">/* 禁用选择字体 */</span></span><br><span class="line">    <span class="attribute">-moz-user-select</span>: none; <span class="comment">/*火狐*/</span></span><br><span class="line">    <span class="attribute">-webkit-user-select</span>: none; <span class="comment">/*webkit浏览器*/</span></span><br><span class="line">    <span class="attribute">-ms-user-select</span>: none; <span class="comment">/*IE10*/</span></span><br><span class="line">    <span class="attribute">user-select</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.oprate-dropdown</span> <span class="selector-tag">li</span><span class="selector-class">.op-item</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">32px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.oprate-dropdown</span> <span class="selector-tag">li</span><span class="selector-class">.op-item</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">     <span class="attribute">background-color</span>: <span class="number">#f2f3f6</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.oprate-dropdown</span> <span class="selector-tag">li</span><span class="selector-class">.op-item</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">70px</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">32px</span>;</span><br><span class="line">    <span class="attribute">border-bottom</span>: <span class="number">1px</span> solid <span class="number">#d9d9d9</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#2a313f</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.oprate-dropdown</span> <span class="selector-tag">li</span><span class="selector-class">.op-item</span> <span class="selector-class">.op-icon</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.point-icon</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">url</span>(../image/point-icon.png) no-repeat;</span><br><span class="line">    <span class="attribute">background-position</span>: <span class="number">0</span> <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">cursor</span>: pointer;</span><br><span class="line">    <span class="attribute">margin-left</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="js"><a href="#js" class="headerlink" title="js:"></a>js:</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _rightMenu = &#123;</span><br><span class="line">    init: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> _this = <span class="keyword">this</span>;</span><br><span class="line">        _this.rightMenuOprate();</span><br><span class="line">    &#125;,</span><br><span class="line">    rightMenuOprate: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> $searchPart = $(<span class="string">'.box'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//操作点击下拉</span></span><br><span class="line">        $searchPart.on(<span class="string">'click'</span>, <span class="string">'.opratePointDrop'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">            e.stopPropagation();</span><br><span class="line">            <span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>),</span><br><span class="line">                _isOpen = $<span class="keyword">this</span>.attr(<span class="string">'data-toggle'</span>),</span><br><span class="line">                $dropDown = $<span class="keyword">this</span>.next();</span><br><span class="line"></span><br><span class="line">            <span class="comment">//清空所有显示下拉</span></span><br><span class="line">            $searchPart.find(<span class="string">'.opDropDown'</span>).each(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>);</span><br><span class="line">                $<span class="keyword">this</span>.hide();</span><br><span class="line">                $<span class="keyword">this</span>.prev().attr(<span class="string">'data-toggle'</span>, <span class="string">'close'</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">if</span> (_isOpen === <span class="string">'close'</span>) &#123;</span><br><span class="line">                $dropDown.show().css(<span class="string">'left'</span>, <span class="string">''</span>);</span><br><span class="line">                $<span class="keyword">this</span>.attr(<span class="string">'data-toggle'</span>, <span class="string">'open'</span>)</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (_isOpen === <span class="string">'open'</span>) &#123;</span><br><span class="line">                $dropDown.hide();</span><br><span class="line">                $<span class="keyword">this</span>.attr(<span class="string">'data-toggle'</span>, <span class="string">'close'</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//禁止鼠标右键事件</span></span><br><span class="line">        $searchPart.on(<span class="string">'contextmenu'</span>, <span class="string">'.saveCol'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//鼠标右键</span></span><br><span class="line">        $searchPart.on(<span class="string">'mousedown'</span>, <span class="string">'.saveCol'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">            e.stopPropagation();</span><br><span class="line">            <span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (<span class="number">3</span> === e.which) &#123;</span><br><span class="line">                <span class="comment">//隐藏其他展开的下拉</span></span><br><span class="line">                $searchPart.find(<span class="string">'.opDropDown'</span>).each(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                    <span class="keyword">var</span> $<span class="keyword">this</span> = $(<span class="keyword">this</span>);</span><br><span class="line">                    $<span class="keyword">this</span>.hide();</span><br><span class="line">                    $<span class="keyword">this</span>.prev().attr(<span class="string">'data-toggle'</span>, <span class="string">'close'</span>);</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">                $<span class="keyword">this</span>.find(<span class="string">'.opDropDown'</span>).show().css(&#123;</span><br><span class="line">                    <span class="string">'left'</span>: e.pageX - <span class="number">50</span>  + <span class="string">'px'</span></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//点击清除</span></span><br><span class="line">        $(<span class="built_in">document</span>).click(<span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">            <span class="comment">//兼容火狐</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="number">1</span> === e.which) &#123;</span><br><span class="line">                $searchPart.find(<span class="string">'.opratePointDrop'</span>).attr(<span class="string">'data-toggle'</span>, <span class="string">'close'</span>);</span><br><span class="line">                $searchPart.find(<span class="string">'.opDropDown'</span>).hide();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">$(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    _rightMenu.init();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<hr>
 
       
     </div>
@@ -1120,7 +794,7 @@ $(function () {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、自定义鼠标右键的实现原理"><span class="nav-number">1.</span> <span class="nav-text">一、自定义鼠标右键的实现原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、自定义鼠标右键实例（表格行右键自定菜单）"><span class="nav-number">2.</span> <span class="nav-text">二、自定义鼠标右键实例（表格行右键自定菜单）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#html"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">html:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#css"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">css:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#js"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">js:</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、自定义鼠标右键的实现原理"><span class="nav-number">1.</span> <span class="nav-text">一、自定义鼠标右键的实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#css"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">css:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#js"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">js:</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1170,7 +844,7 @@ $(function () {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共 14.6k 字</span>
+  <span class="post-count">博客全站共 14.5k 字</span>
 </div>
 
 

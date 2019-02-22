@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/12926544-f5dd600e4ca7a183.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/12926544-7254682ee119f345.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/12926544-2e90bfc309a207a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-02-21T12:51:35.175Z">
+<meta property="og:updated_time" content="2019-02-22T04:18:12.063Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css-自定义滚动条">
 <meta name="twitter:description" content="1. 初衷   做了几年的前端了，做笔记都是在自己的网盘里面记录，每次翻原来的笔记，总感觉差了点什么，突然有一天，一声惊雷闪过，文字依旧是那点文字，读者只有唯一，为什么不能分享出来，分享踩过的坑，希望能帮助到正在看的你。 2.为什么要自定义滚动条？一直觉得，滚动条用默认的就好了，没特殊需求为啥要自定义呢？之前做过一个自定义表格，功能有：超出一定的高度滚动起来，表头固定，没列有自定义右键菜单，如下：">
@@ -454,7 +454,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-21 20:51:35" itemprop="dateModified" datetime="2019-02-21T20:51:35+08:00">2019-02-21</time>
+                <time title="修改时间：2019-02-22 12:18:12" itemprop="dateModified" datetime="2019-02-22T12:18:12+08:00">2019-02-22</time>
               
             
           </span>
@@ -516,20 +516,8 @@
         <h3 id="1-初衷"><a href="#1-初衷" class="headerlink" title="1. 初衷"></a>1. 初衷</h3><p>   做了几年的前端了，做笔记都是在自己的网盘里面记录，每次翻原来的笔记，总感觉差了点什么，突然有一天，一声惊雷闪过，文字依旧是那点文字，读者只有唯一，为什么不能分享出来，分享踩过的坑，希望能帮助到正在看的你。</p>
 <h3 id="2-为什么要自定义滚动条？"><a href="#2-为什么要自定义滚动条？" class="headerlink" title="2.为什么要自定义滚动条？"></a>2.为什么要自定义滚动条？</h3><p>一直觉得，滚动条用默认的就好了，没特殊需求为啥要自定义呢？之前做过一个自定义表格，功能有：超出一定的高度滚动起来，表头固定，没列有自定义右键菜单，如下：<br><img src="https://upload-images.jianshu.io/upload_images/12926544-f5dd600e4ca7a183.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="windows端自定义表格"><br>最近入手一台Mac，再看原来的代码，Mac竟然如此神奇，滚动条不占位置，还会显示隐藏，而我自定义的表格在Mac端出问题，因为表格自定义，使用的ul、li模拟的表格，滚动条在windows端占位，到Mac端不占位了，故出现表头和内容不对齐情况，如下：<br><img src="https://upload-images.jianshu.io/upload_images/12926544-7254682ee119f345.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Mac端自定义表格"><br>图中是有滚动条的，因Mac默认隐藏，故滚动条的<code>17px</code>导致错行。</p>
 <h3 id="3-实现Mac端滚动条兼容"><a href="#3-实现Mac端滚动条兼容" class="headerlink" title="3. 实现Mac端滚动条兼容"></a>3. 实现Mac端滚动条兼容</h3><p>   要做到同时兼容windows和Mac，那么可以自定义滚动条，做法很简单，在全局的css样式中加入下面代码即可：</p>
-<pre><code>//自动移滚动条样式
-::-webkit-scrollbar{
-  width: 5px;
-  height: 5px;
-}
-::-webkit-scrollbar-thumb{
-  border-radius: 1em;
-  background-color: rgba(50,50,50,.3);
-}
-::-webkit-scrollbar-track{
-  border-radius: 1em;
-  background-color: rgba(50,50,50,.1);
-}
-</code></pre><p>1、::-webkit-scrollbar   定义了滚动条整体的样式；<br>2、::-webkit-scrollbar-thumb  滑块部分；<br>3、::-webkit-scrollbar-thumb  轨道部分；</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//自动移滚动条样式</span><br><span class="line"><span class="selector-pseudo">::-webkit-scrollbar</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">5px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-pseudo">::-webkit-scrollbar-thumb</span>&#123;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">1em</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(50,50,50,.3);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-pseudo">::-webkit-scrollbar-track</span>&#123;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">1em</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(50,50,50,.1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1、::-webkit-scrollbar   定义了滚动条整体的样式；<br>2、::-webkit-scrollbar-thumb  滑块部分；<br>3、::-webkit-scrollbar-thumb  轨道部分；</p>
 <p>加上这个代码，在看下效果，自定义表格完美兼容Mac。<br><img src="https://upload-images.jianshu.io/upload_images/12926544-2e90bfc309a207a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
 <p>自定义滚动条有很多方式，这里只是展示了个人觉得比较简单的，还有很多插件可以实现，有兴趣的朋友可以自己玩一下。</p>
 
@@ -859,7 +847,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共 14.6k 字</span>
+  <span class="post-count">博客全站共 14.5k 字</span>
 </div>
 
 

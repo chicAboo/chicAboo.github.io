@@ -125,7 +125,7 @@
 <meta property="og:image" content="https://zhulni.github.io/images/dataStructure/insert.jpg">
 <meta property="og:image" content="https://zhulni.github.io/images/dataStructure/remove.jpg">
 <meta property="og:image" content="https://zhulni.github.io/images/dataStructure/insert_or_remove_test.png">
-<meta property="og:updated_time" content="2019-02-22T03:32:49.624Z">
+<meta property="og:updated_time" content="2019-02-22T05:42:52.525Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js-数据结构-链表">
 <meta name="twitter:description" content="什么是链表？&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;链表是由一组节点组成的集合。每个节点都使用一个对象的引用指向它的后继。指向另一 个节点的引用叫做链表。其中链表分为基本链表、双向链表及循环链表，如下图： 基本链表&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前面讲过，栈和队列使用数组模拟，在JavaScript中数组被模拟成对象，相比于其">
@@ -438,7 +438,7 @@
                 
               
 
-              <time title="创建时间：2019-02-22 09:57:43 / 修改时间：11:32:49" itemprop="dateCreated datePublished" datetime="2019-02-22T09:57:43+08:00">2019-02-22</time>
+              <time title="创建时间：2019-02-22 09:57:43 / 修改时间：13:42:52" itemprop="dateCreated datePublished" datetime="2019-02-22T09:57:43+08:00">2019-02-22</time>
             
 
             
@@ -504,57 +504,15 @@
       
         <h3 id="什么是链表？"><a href="#什么是链表？" class="headerlink" title="什么是链表？"></a>什么是链表？</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;链表是由一组节点组成的集合。每个节点都使用一个对象的引用指向它的后继。指向另一 个节点的引用叫做链表。其中链表分为<strong>基本链表、双向链表及循环链表</strong>，如下图：<br><img src="/images/dataStructure/linkedList.jpg" alt="LinkedList"></p>
 <h3 id="基本链表"><a href="#基本链表" class="headerlink" title="基本链表"></a>基本链表</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前面讲过，栈和队列使用数组模拟，在JavaScript中数组被模拟成对象，相比于其他语言（如java或C++），效率明显低了很多，如果使用数组比较慢的情况，那么就应该使用链表。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先定义一个链表，链表中包含两个节点，Node类表示头节点，LinkedList类提供链表的插入、删除、查找、显示等辅助方法。</p>
-<h5 id="Node类"><a href="#Node类" class="headerlink" title="Node类"></a>Node类</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Node类包含两个属性：element属性用来保存节点上的元素，next属性指向下一个节点，Node的构造函数实现，代码如下：</p>
-<pre><code>/**
- *  节点构造函数
- * */
-function Node (element) {
-    this.element = element;
-    this.next = null;
-}
-</code></pre><h5 id="LinkedList类"><a href="#LinkedList类" class="headerlink" title="LinkedList类"></a>LinkedList类</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LinkedList类提供了链表的<strong>插入、删除、查找、显示</strong>等操作，LinkedList类的构造函数实现如下：</p>
-<pre><code>/**
- *  链表构造函数
- * */
-function LList () {
-    this.head = new Node(&apos;head&apos;);
-    this.find = find;
-    this.insert = insert;
-    this.findPrev = findPrev;
-    this.remove = remove;
-    this.display = display;
-}
-</code></pre><p>默认head节点指向为空，当有节点插入时指向下一个节点，find方法为查找链表指定元素，insert方法指在链表指定节点后插入元素，findPrev方法指查找链表上一个元素，remove方法指删除指定元素，display方法指遍历链表，显示链表元素。</p>
-<h5 id="find方法"><a href="#find方法" class="headerlink" title="find方法"></a>find方法</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;find方法用于遍历链表，查找指定元素，并返回指定元素节点，实现如下：</p>
-<pre><code>/**
- *  遍历链表，查找链表指定节点
- * */
-function find (item) {
-    var currNode = this.head;
-
-    //从头节点开始遍历，查找到给定元素，结束循环
-    while (currNode.element !== item) {
-        currNode = currNode.next;
-    }
-
-    return currNode;
-}
-</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>find()</strong>演示了遍历链表的过程。</p>
+<h5 id="Node类"><a href="#Node类" class="headerlink" title="Node类"></a>Node类</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Node类包含两个属性：element属性用来保存节点上的元素，next属性指向下一个节点，Node的构造函数实现，代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  节点构造函数</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Node</span> (<span class="params">element</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.element = element;</span><br><span class="line">    <span class="keyword">this</span>.next = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="LinkedList类"><a href="#LinkedList类" class="headerlink" title="LinkedList类"></a>LinkedList类</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LinkedList类提供了链表的<strong>插入、删除、查找、显示</strong>等操作，LinkedList类的构造函数实现如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  链表构造函数</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">LList</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.head = <span class="keyword">new</span> Node(<span class="string">'head'</span>);</span><br><span class="line">    <span class="keyword">this</span>.find = find;</span><br><span class="line">    <span class="keyword">this</span>.insert = insert;</span><br><span class="line">    <span class="keyword">this</span>.findPrev = findPrev;</span><br><span class="line">    <span class="keyword">this</span>.remove = remove;</span><br><span class="line">    <span class="keyword">this</span>.display = display;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>默认head节点指向为空，当有节点插入时指向下一个节点，find方法为查找链表指定元素，insert方法指在链表指定节点后插入元素，findPrev方法指查找链表上一个元素，remove方法指删除指定元素，display方法指遍历链表，显示链表元素。</p>
+<h5 id="find方法"><a href="#find方法" class="headerlink" title="find方法"></a>find方法</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;find方法用于遍历链表，查找指定元素，并返回指定元素节点，实现如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  遍历链表，查找链表指定节点</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> currNode = <span class="keyword">this</span>.head;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//从头节点开始遍历，查找到给定元素，结束循环</span></span><br><span class="line">    <span class="keyword">while</span> (currNode.element !== item) &#123;</span><br><span class="line">        currNode = currNode.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> currNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>find()</strong>演示了遍历链表的过程。</p>
 <h5 id="insert方法"><a href="#insert方法" class="headerlink" title="insert方法"></a>insert方法</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;插入节点前，首先需要创建一个新节点，将链表头节点复值给新创建节点，并查找指定元素(<strong>find()</strong>)，在指定元素后插入新节点。插入方法，将新节点的next指向当前元素的next，当前元素的next指向新节点。如图：</p>
-<p><img src="/images/dataStructure/insert.jpg" alt="链表的插入"><br>代码如下：</p>
-<pre><code>/**
- *  在链表指定节点中插入元素
- * */
-function insert (newElement, item) {
-    var newNode = new Node(newElement);
-    var currentNode = this.find(item);
-    newNode.next = currentNode.next;
-    newNode.previous = currentNode;
-    currentNode.next = newNode;
-}
-</code></pre><h5 id="display方法"><a href="#display方法" class="headerlink" title="display方法"></a>display方法</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display方法用于显示链表上的节点，故需要遍历链表，每次循环打印出当前节点，并将当前节点的next指向下一个节点，直到null时结束。代码如下：</p>
-<pre><code>/**
- *  展示链表的所有元素
+<p><img src="/images/dataStructure/insert.jpg" alt="链表的插入"><br>代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  在链表指定节点中插入元素</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insert</span> (<span class="params">newElement, item</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> newNode = <span class="keyword">new</span> Node(newElement);</span><br><span class="line">    <span class="keyword">var</span> currentNode = <span class="keyword">this</span>.find(item);</span><br><span class="line">    newNode.next = currentNode.next;</span><br><span class="line">    newNode.previous = currentNode;</span><br><span class="line">    currentNode.next = newNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="display方法"><a href="#display方法" class="headerlink" title="display方法"></a>display方法</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display方法用于显示链表上的节点，故需要遍历链表，每次循环打印出当前节点，并将当前节点的next指向下一个节点，直到null时结束。代码如下：<br><code>`</code>JavaScript<br>    /**</p>
+<pre><code> *  展示链表的所有元素
  * */
 function display () {
     var currNode = this.head;
@@ -564,9 +522,9 @@ function display () {
         currNode = currNode.next;
     }
 }
-</code></pre><h5 id="findPrev方法"><a href="#findPrev方法" class="headerlink" title="findPrev方法"></a>findPrev方法</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;findPrev方法查找链表指定节点的前一个元素，并返回该节点。遍历链表，如果当前节点的下一个元素的element等于指定元素，择找到指定元素的前一个元素，返回。代码如下：</p>
-<pre><code>/**
- *  查找指定元素上一个元素
+</code></pre><p><code>`</code>JavaScript</p>
+<h5 id="findPrev方法"><a href="#findPrev方法" class="headerlink" title="findPrev方法"></a>findPrev方法</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;findPrev方法查找链表指定节点的前一个元素，并返回该节点。遍历链表，如果当前节点的下一个元素的element等于指定元素，择找到指定元素的前一个元素，返回。代码如下：<br><code>`</code>JavaScript<br>    /**</p>
+<pre><code> *  查找指定元素上一个元素
  * */
 function findPrev (item) {
     var currNode = this.head;
@@ -577,10 +535,10 @@ function findPrev (item) {
 
     return currNode;
 }
-</code></pre><h5 id="remove方法"><a href="#remove方法" class="headerlink" title="remove方法"></a>remove方法</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove方法删除指定元素，在删除指定元素前需要找到指定元素的前一个元素，并改变前一个元素的指针，将前一个元素的next指向前一个元素的next的next，如图：</p>
-<p><img src="/images/dataStructure/remove.jpg" alt="链表删除"><br>代码如下：</p>
-<pre><code>/**
- *  删除链表指定元素
+</code></pre><p><code>`</code>JavaScript</p>
+<h5 id="remove方法"><a href="#remove方法" class="headerlink" title="remove方法"></a>remove方法</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove方法删除指定元素，在删除指定元素前需要找到指定元素的前一个元素，并改变前一个元素的指针，将前一个元素的next指向前一个元素的next的next，如图：</p>
+<p><img src="/images/dataStructure/remove.jpg" alt="链表删除"><br>代码如下：<br><code>`</code>JavaScript<br>    /**</p>
+<pre><code> *  删除链表指定元素
  * */
 function remove (item) {
     var prevNode = this.findPrev(item);
@@ -588,25 +546,15 @@ function remove (item) {
         prevNode.next = prevNode.next.next;
     }
 }
-</code></pre><p>到这里基本链表的常用方法已经完成，该是测试代码的时候了，做点简单的增删功能试试。</p>
-<h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设需要向链表中依此插入A、B、C、D，然后在A的后面插入H，删除B和C。</p>
-<pre><code>var city = new LList();
-//插入
-console.log(&apos;插入&apos;);
-city.insert(&apos;A&apos;, &apos;head&apos;);
-city.insert(&apos;B&apos;, &apos;A&apos;);
-city.insert(&apos;C&apos;, &apos;B&apos;);
-city.insert(&apos;D&apos;, &apos;C&apos;);
-city.insert(&apos;H&apos;, &apos;A&apos;);
-city.display();
-
-//删除
+</code></pre><p><code>`</code>JavaScript<br>到这里基本链表的常用方法已经完成，该是测试代码的时候了，做点简单的增删功能试试。</p>
+<h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设需要向链表中依此插入A、B、C、D，然后在A的后面插入H，删除B和C。<br><code>`</code>JavaScript<br>    var city = new LList();<br>    //插入<br>    console.log(‘插入’);<br>    city.insert(‘A’, ‘head’);<br>    city.insert(‘B’, ‘A’);<br>    city.insert(‘C’, ‘B’);<br>    city.insert(‘D’, ‘C’);<br>    city.insert(‘H’, ‘A’);<br>    city.display();</p>
+<pre><code>//删除
 console.log(&apos;-----------------&apos;);
 console.log(&apos;删除&apos;);
 city.remove(&apos;B&apos;);
 city.remove(&apos;C&apos;);
 city.display();
-</code></pre><p>执行结果：<br><img src="/images/dataStructure/insert_or_remove_test.png" alt="例子"></p>
+</code></pre><p><code>`</code>JavaScript<br>执行结果：<br><img src="/images/dataStructure/insert_or_remove_test.png" alt="例子"></p>
 
       
     </div>
@@ -930,7 +878,7 @@ city.display();
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共 14.6k 字</span>
+  <span class="post-count">博客全站共 14.5k 字</span>
 </div>
 
 
