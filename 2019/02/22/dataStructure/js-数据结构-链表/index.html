@@ -113,24 +113,30 @@
 
 
 
-  <meta name="description" content="心之所向，一往无前">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="https://zhulni.github.io/categories/index.html">
+  <meta name="description" content="什么是链表？&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;链表是由一组节点组成的集合。每个节点都使用一个对象的引用指向它的后继。指向另一 个节点的引用叫做链表。其中链表分为基本链表、双向链表及循环链表，如下图： 基本链表&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前面讲过，栈和队列使用数组模拟，在JavaScript中数组被模拟成对象，相比于其">
+<meta name="keywords" content="data-structure">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js-数据结构-链表">
+<meta property="og:url" content="https://zhulni.github.io/2019/02/22/dataStructure/js-数据结构-链表/index.html">
 <meta property="og:site_name" content="Mr.Zhu">
-<meta property="og:description" content="心之所向，一往无前">
+<meta property="og:description" content="什么是链表？&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;链表是由一组节点组成的集合。每个节点都使用一个对象的引用指向它的后继。指向另一 个节点的引用叫做链表。其中链表分为基本链表、双向链表及循环链表，如下图： 基本链表&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前面讲过，栈和队列使用数组模拟，在JavaScript中数组被模拟成对象，相比于其">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-21T06:24:28.243Z">
+<meta property="og:image" content="https://zhulni.github.io/images/dataStructure/linkedList.jpg">
+<meta property="og:image" content="https://zhulni.github.io/images/dataStructure/insert.jpg">
+<meta property="og:image" content="https://zhulni.github.io/images/dataStructure/remove.jpg">
+<meta property="og:image" content="https://zhulni.github.io/images/dataStructure/insert_or_remove_test.png">
+<meta property="og:updated_time" content="2019-02-22T03:32:49.624Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="categories">
-<meta name="twitter:description" content="心之所向，一往无前">
+<meta name="twitter:title" content="js-数据结构-链表">
+<meta name="twitter:description" content="什么是链表？&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;链表是由一组节点组成的集合。每个节点都使用一个对象的引用指向它的后继。指向另一 个节点的引用叫做链表。其中链表分为基本链表、双向链表及循环链表，如下图： 基本链表&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前面讲过，栈和队列使用数组模拟，在JavaScript中数组被模拟成对象，相比于其">
+<meta name="twitter:image" content="https://zhulni.github.io/images/dataStructure/linkedList.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://zhulni.github.io/categories/">
+  <link rel="canonical" href="https://zhulni.github.io/2019/02/22/dataStructure/js-数据结构-链表/">
 
 
 
@@ -140,7 +146,7 @@
   };
 </script>
 
-  <title>categories | Mr.Zhu</title>
+  <title>js-数据结构-链表 | Mr.Zhu</title>
   
 
 
@@ -247,7 +253,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
 
     
     
@@ -369,107 +375,330 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhulni.github.io/2019/02/22/dataStructure/js-数据结构-链表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Zhu">
+      <meta itemprop="description" content="心之所向，一往无前">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.Zhu">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">categories
+        
+        
+          <h1 class="post-title" itemprop="name headline">js-数据结构-链表
 
-</h1>
+              
+            
+          </h1>
+        
 
-<div class="post-meta">
-  
-  
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
 
+              
+                
+              
+
+              <time title="创建时间：2019-02-22 09:57:43 / 修改时间：11:32:49" itemprop="dateCreated datePublished" datetime="2019-02-22T09:57:43+08:00">2019-02-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/js数据结构/" itemprop="url" rel="index"><span itemprop="name">js数据结构</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="什么是链表？"><a href="#什么是链表？" class="headerlink" title="什么是链表？"></a>什么是链表？</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;链表是由一组节点组成的集合。每个节点都使用一个对象的引用指向它的后继。指向另一 个节点的引用叫做链表。其中链表分为<strong>基本链表、双向链表及循环链表</strong>，如下图：<br><img src="/images/dataStructure/linkedList.jpg" alt="LinkedList"></p>
+<h3 id="基本链表"><a href="#基本链表" class="headerlink" title="基本链表"></a>基本链表</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前面讲过，栈和队列使用数组模拟，在JavaScript中数组被模拟成对象，相比于其他语言（如java或C++），效率明显低了很多，如果使用数组比较慢的情况，那么就应该使用链表。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先定义一个链表，链表中包含两个节点，Node类表示头节点，LinkedList类提供链表的插入、删除、查找、显示等辅助方法。</p>
+<h5 id="Node类"><a href="#Node类" class="headerlink" title="Node类"></a>Node类</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Node类包含两个属性：element属性用来保存节点上的元素，next属性指向下一个节点，Node的构造函数实现，代码如下：</p>
+<pre><code>/**
+ *  节点构造函数
+ * */
+function Node (element) {
+    this.element = element;
+    this.next = null;
+}
+</code></pre><h5 id="LinkedList类"><a href="#LinkedList类" class="headerlink" title="LinkedList类"></a>LinkedList类</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LinkedList类提供了链表的<strong>插入、删除、查找、显示</strong>等操作，LinkedList类的构造函数实现如下：</p>
+<pre><code>/**
+ *  链表构造函数
+ * */
+function LList () {
+    this.head = new Node(&apos;head&apos;);
+    this.find = find;
+    this.insert = insert;
+    this.findPrev = findPrev;
+    this.remove = remove;
+    this.display = display;
+}
+</code></pre><p>默认head节点指向为空，当有节点插入时指向下一个节点，find方法为查找链表指定元素，insert方法指在链表指定节点后插入元素，findPrev方法指查找链表上一个元素，remove方法指删除指定元素，display方法指遍历链表，显示链表元素。</p>
+<h5 id="find方法"><a href="#find方法" class="headerlink" title="find方法"></a>find方法</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;find方法用于遍历链表，查找指定元素，并返回指定元素节点，实现如下：</p>
+<pre><code>/**
+ *  遍历链表，查找链表指定节点
+ * */
+function find (item) {
+    var currNode = this.head;
+
+    //从头节点开始遍历，查找到给定元素，结束循环
+    while (currNode.element !== item) {
+        currNode = currNode.next;
+    }
+
+    return currNode;
+}
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>find()</strong>演示了遍历链表的过程。</p>
+<h5 id="insert方法"><a href="#insert方法" class="headerlink" title="insert方法"></a>insert方法</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;插入节点前，首先需要创建一个新节点，将链表头节点复值给新创建节点，并查找指定元素(<strong>find()</strong>)，在指定元素后插入新节点。插入方法，将新节点的next指向当前元素的next，当前元素的next指向新节点。如图：</p>
+<p><img src="/images/dataStructure/insert.jpg" alt="链表的插入"><br>代码如下：</p>
+<pre><code>/**
+ *  在链表指定节点中插入元素
+ * */
+function insert (newElement, item) {
+    var newNode = new Node(newElement);
+    var currentNode = this.find(item);
+    newNode.next = currentNode.next;
+    newNode.previous = currentNode;
+    currentNode.next = newNode;
+}
+</code></pre><h5 id="display方法"><a href="#display方法" class="headerlink" title="display方法"></a>display方法</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display方法用于显示链表上的节点，故需要遍历链表，每次循环打印出当前节点，并将当前节点的next指向下一个节点，直到null时结束。代码如下：</p>
+<pre><code>/**
+ *  展示链表的所有元素
+ * */
+function display () {
+    var currNode = this.head;
+
+    while (!(currNode.next == null)) {
+        console.log(currNode.next.element + &apos;,&apos;);
+        currNode = currNode.next;
+    }
+}
+</code></pre><h5 id="findPrev方法"><a href="#findPrev方法" class="headerlink" title="findPrev方法"></a>findPrev方法</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;findPrev方法查找链表指定节点的前一个元素，并返回该节点。遍历链表，如果当前节点的下一个元素的element等于指定元素，择找到指定元素的前一个元素，返回。代码如下：</p>
+<pre><code>/**
+ *  查找指定元素上一个元素
+ * */
+function findPrev (item) {
+    var currNode = this.head;
+
+    while (currNode.next !== null &amp;&amp; currNode.next.element !== item) {
+        currNode = currNode.next;
+    }
+
+    return currNode;
+}
+</code></pre><h5 id="remove方法"><a href="#remove方法" class="headerlink" title="remove方法"></a>remove方法</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove方法删除指定元素，在删除指定元素前需要找到指定元素的前一个元素，并改变前一个元素的指针，将前一个元素的next指向前一个元素的next的next，如图：</p>
+<p><img src="/images/dataStructure/remove.jpg" alt="链表删除"><br>代码如下：</p>
+<pre><code>/**
+ *  删除链表指定元素
+ * */
+function remove (item) {
+    var prevNode = this.findPrev(item);
+    if (prevNode.next !== null) {
+        prevNode.next = prevNode.next.next;
+    }
+}
+</code></pre><p>到这里基本链表的常用方法已经完成，该是测试代码的时候了，做点简单的增删功能试试。</p>
+<h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设需要向链表中依此插入A、B、C、D，然后在A的后面插入H，删除B和C。</p>
+<pre><code>var city = new LList();
+//插入
+console.log(&apos;插入&apos;);
+city.insert(&apos;A&apos;, &apos;head&apos;);
+city.insert(&apos;B&apos;, &apos;A&apos;);
+city.insert(&apos;C&apos;, &apos;B&apos;);
+city.insert(&apos;D&apos;, &apos;C&apos;);
+city.insert(&apos;H&apos;, &apos;A&apos;);
+city.display();
+
+//删除
+console.log(&apos;-----------------&apos;);
+console.log(&apos;删除&apos;);
+city.remove(&apos;B&apos;);
+city.remove(&apos;C&apos;);
+city.display();
+</code></pre><p>执行结果：<br><img src="/images/dataStructure/insert_or_remove_test.png" alt="例子"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+            
+
+          
+    </div>
+
+    
+
+    
+      
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
 </div>
 
-</header>
-
-      
-      
-      
-      <div class="post-body">
-        
-        
-          <div class="category-all-page">
-            <div class="category-all-title">
-              
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-              目前共计 5 个分类
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/React小功能/">React小功能</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/jQuery自定义功能/">jQuery自定义功能</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/js数据结构/">js数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/style-components/">style-components</a><span class="category-list-count">1</span></li></ul>
-            </div>
-          </div>
-        
-      </div>
-      
-      
       
     </div>
     
 
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/data-structure/" rel="tag"># data-structure</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/13/css/flex-骰子布局/" rel="next" title="flex-骰子布局">
+                <i class="fa fa-chevron-left"></i> flex-骰子布局
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
 
 
-    
-    
-    
   </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80Mjc2My8xOTMxMA"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -490,8 +719,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -631,6 +869,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是链表？"><span class="nav-number">1.</span> <span class="nav-text">什么是链表？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本链表"><span class="nav-number">2.</span> <span class="nav-text">基本链表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Node类"><span class="nav-number">2.0.1.</span> <span class="nav-text">Node类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LinkedList类"><span class="nav-number">2.0.2.</span> <span class="nav-text">LinkedList类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#find方法"><span class="nav-number">2.0.3.</span> <span class="nav-text">find方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#insert方法"><span class="nav-number">2.0.4.</span> <span class="nav-text">insert方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#display方法"><span class="nav-number">2.0.5.</span> <span class="nav-text">display方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#findPrev方法"><span class="nav-number">2.0.6.</span> <span class="nav-text">findPrev方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#remove方法"><span class="nav-number">2.0.7.</span> <span class="nav-text">remove方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#例子"><span class="nav-number">2.0.8.</span> <span class="nav-text">例子</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -810,6 +1065,23 @@
 
   
 
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/02/22/dataStructure/js-数据结构-链表/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
 
 
   
