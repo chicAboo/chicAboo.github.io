@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://zhulni.github.io/2018/11/23/react/Redux%E7%AE%A1%E7%90%86%E7%8A%B6%E6%80%81-todoList%E5%AE%9E%E7%8E%B0/</loc>
+    <lastmod>2019-02-22</lastmod>
+  </url>  <url>
+    <loc>https://zhulni.github.io/2018/11/13/react/react-todoList%E5%AE%9E%E7%8E%B0/</loc>
+    <lastmod>2019-02-22</lastmod>
+  </url>  <url>
+    <loc>https://zhulni.github.io/2018/11/27/react/style-component/</loc>
+    <lastmod>2019-02-22</lastmod>
+  </url>  <url>
     <loc>https://zhulni.github.io/2018/09/11/jQuery/jQuery-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%BC%A0%E6%A0%87%E5%8F%B3%E9%94%AE/</loc>
     <lastmod>2019-02-22</lastmod>
   </url>  <url>
@@ -20,15 +29,6 @@
     <lastmod>2019-02-22</lastmod>
   </url>  <url>
     <loc>https://zhulni.github.io/2019/02/13/css/flex-%E9%AA%B0%E5%AD%90%E5%B8%83%E5%B1%80/</loc>
-    <lastmod>2019-02-21</lastmod>
-  </url>  <url>
-    <loc>https://zhulni.github.io/2018/11/27/react/style-component/</loc>
-    <lastmod>2019-02-21</lastmod>
-  </url>  <url>
-    <loc>https://zhulni.github.io/2018/11/23/react/Redux%E7%AE%A1%E7%90%86%E7%8A%B6%E6%80%81-todoList%E5%AE%9E%E7%8E%B0/</loc>
-    <lastmod>2019-02-21</lastmod>
-  </url>  <url>
-    <loc>https://zhulni.github.io/2018/11/13/react/react-todoList%E5%AE%9E%E7%8E%B0/</loc>
     <lastmod>2019-02-21</lastmod>
   </url>
 </urlset>

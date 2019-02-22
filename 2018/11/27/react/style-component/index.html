@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/12926544-78fb2ecaa29849c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/12926544-b23d58045a72fa6b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/12926544-bd2a6d306912bb59.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-02-21T07:51:49.449Z">
+<meta property="og:updated_time" content="2019-02-22T06:09:57.914Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css-in-js框架style-components">
 <meta name="twitter:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前端飞一般的发展中，衍生出各式各样的框架，框架的目的是减轻开发人员的开发难度，提高效率。以前网页开发的原则是关注点分离，意思是各种技术只负责自己的领域，不要混合在一起，形成耦合。如html、css、js代码分离。&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;React的出现，这个原则不在实用，Re">
@@ -454,7 +454,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-21 15:51:49" itemprop="dateModified" datetime="2019-02-21T15:51:49+08:00">2019-02-21</time>
+                <time title="修改时间：2019-02-22 14:09:57" itemprop="dateModified" datetime="2019-02-22T14:09:57+08:00">2019-02-22</time>
               
             
           </span>
@@ -513,267 +513,26 @@
       
 
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前端飞一般的发展中，衍生出各式各样的框架，框架的目的是减轻开发人员的开发难度，提高效率。以前网页开发的原则是<code>关注点分离</code>，意思是各种技术只负责自己的领域，不要混合在一起，形成耦合。如html、css、js代码分离。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;React的出现，这个原则不在实用，React是组件结构，强制把html、css、js写在一起。如：</p>
-<pre><code>const style = {
-    &apos;color&apos;: &apos;red&apos;,
-    &apos;fontSize&apos;: &apos;46px&apos;
-};
-
-const clickHandler = () =&gt; alert(&apos;hi&apos;);
-
-ReactDOM.render(
-    &lt;h1 style={style} onclick={clickHandler}&gt;
-        Hello, world!
-    &lt;/h1&gt;,
-    document.getElementById(&apos;example&apos;)
-);
-</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面代码在一个js文件里，封装了结构、样式、逻辑，完全违背了<code>关注点分离</code>，很多人刚开始学习React很不适应，但是，这有利于组件的隔离，每个组件需要的代码不依赖于外部、组件之间没有耦合，方便复用。使用React的越来越多，组件模式深入人心，这种<code>关注点混合</code>的新写法逐渐成为主流。<br><img src="https://upload-images.jianshu.io/upload_images/12926544-78fb2ecaa29849c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="关注点混合"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;表面上，React的写法是html、css、js混合写在一起，实际上是用js在写html、css。React对html的封装是<code>jsx</code>，那么对css的封装是什么呢？这就涉及到今天需要讲的内容<code>style-components</code>。</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前端飞一般的发展中，衍生出各式各样的框架，框架的目的是减轻开发人员的开发难度，提高效率。以前网页开发的原则是<code>关注点分离</code>，意思是各种技术只负责自己的领域，不要混合在一起，形成耦合。如html、css、js代码分离。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;React的出现，这个原则不在实用，React是组件结构，强制把html、css、js写在一起。如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> style = &#123;</span><br><span class="line">    <span class="string">'color'</span>: <span class="string">'red'</span>,</span><br><span class="line">    <span class="string">'fontSize'</span>: <span class="string">'46px'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> clickHandler = <span class="function"><span class="params">()</span> =&gt;</span> alert(<span class="string">'hi'</span>);</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;h1 style=&#123;style&#125; onclick=&#123;clickHandler&#125;&gt;</span><br><span class="line">        Hello, world!</span><br><span class="line">    &lt;<span class="regexp">/h1&gt;,</span></span><br><span class="line"><span class="regexp">    document.getElementById('example')</span></span><br><span class="line"><span class="regexp">);</span></span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面代码在一个js文件里，封装了结构、样式、逻辑，完全违背了<code>关注点分离</code>，很多人刚开始学习React很不适应，但是，这有利于组件的隔离，每个组件需要的代码不依赖于外部、组件之间没有耦合，方便复用。使用React的越来越多，组件模式深入人心，这种<code>关注点混合</code>的新写法逐渐成为主流。<br><img src="https://upload-images.jianshu.io/upload_images/12926544-78fb2ecaa29849c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="关注点混合"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;表面上，React的写法是html、css、js混合写在一起，实际上是用js在写html、css。React对html的封装是<code>jsx</code>，那么对css的封装是什么呢？这就涉及到今天需要讲的内容<code>style-components</code>。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/12926544-b23d58045a72fa6b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="css in js"></p>
 <h3 id="什么是style-components"><a href="#什么是style-components" class="headerlink" title="什么是style-components"></a>什么是style-components</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style-components是针对React写的一套css in js框架，简单来讲就是在js中写css。相对于与预处理器(<code>sass、less</code>)的好处是，css in js使用的是js语法，不用重新再学习新技术，也不会多一道编译步骤。无疑会加快网页速度。如果有sass或less的开发经验，几分钟就可以学会style-components。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/12926544-bd2a6d306912bb59.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="style-components"></p>
 <h3 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h3><p><a href="https://www.styled-components.com/docs/basics" target="_blank" rel="noopener">https://www.styled-components.com/docs/basics</a></p>
 <h6 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h6><p><code>npm install --save style-components</code></p>
-<h6 id="2-基础用法"><a href="#2-基础用法" class="headerlink" title="2. 基础用法"></a>2. 基础用法</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style-components最基础的用法就是以组件的形式编写样式，如下：</p>
-<pre><code>import styled from &apos;styled-components&apos;;
-
-const HomeWrapper = styled.div `
-  width: 960px;
-  margin: 0 auto;
-  overflow: hidden;
-`;
-const HomeLeft = styled.div `
-  float: left;
-  width: 625px;
-  margin-left: 15px;
-  padding-top: 30px;
-  .bannder-img {
-    width: 625px;
-    height: 270px;
-  }
-`;
-const HomeRight = styled.div `
-  float: right;
-  width: 280px;
-  margin-left: 15px;
-  padding-top: 30px;
-`;
-
-render () {
-    return (
-        &lt;HomeWrapper&gt;
-            &lt;HomeLeft&gt;
-                left
-            &lt;/HomeLeft&gt;
-            &lt;HomeRight&gt;
-                right
-            &lt;/HomeRight&gt;
-        &lt;/HomeWrapper&gt;
-    )
-}
-</code></pre><p>上面的代码定义了三个组件，分别为<code>HomeWrapper 、HomeLeft 、HomeRight</code>，这样每一个组件对应唯一的样式，不在出现样式污染的情况。</p>
-<h6 id="2-全局样式"><a href="#2-全局样式" class="headerlink" title="2. 全局样式"></a>2. 全局样式</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每一个组件对应唯一的样式，那么需要设置全局样式怎么办呢？style-components的最新版提供了<code>createGlobalStyle</code>可以设置全局样式，如下：</p>
-<pre><code>import { createGlobalStyle } from &apos;styled-components&apos;;
-
-const GrobalStyle = createGlobalStyle `
-  html, body, div, span, applet, object, iframe,
-    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-    a, abbr, acronym, address, big, cite, code,
-    del, dfn, em, img, ins, kbd, q, s, samp,
-    small, strike, strong, sub, sup, tt, var,
-    b, u, i, center,
-    dl, dt, dd, ol, ul, li,
-    fieldset, form, label, legend,
-    table, caption, tbody, tfoot, thead, tr, th, td,
-    article, aside, canvas, details, embed,
-    figure, figcaption, footer, header, hgroup,
-    menu, nav, output, ruby, section, summary,
-    time, mark, audio, video {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font-size: 100%;
-        font: inherit;
-        vertical-align: baseline;
-    }
-    /* HTML5 display-role reset for older browsers */
-    article, aside, details, figcaption, figure,
-    footer, header, hgroup, menu, nav, section {
-        display: block;
-    }
-    body {
-        line-height: 1;
-    }
-    ol, ul {
-        list-style: none;
-    }
-    blockquote, q {
-        quotes: none;
-    }
-    blockquote:before, blockquote:after,
-    q:before, q:after {
-        content: &apos;&apos;;
-        content: none;
-    }
-    table {
-        border-collapse: collapse;
-        border-spacing: 0;
-    }
-
-    @font-face {
-      font-family: &apos;iconfont&apos;;  /* project id 897264 */
-      src: url(&apos;//at.alicdn.com/t/font_897264_7ma62sn10m3.eot&apos;);
-      src: url(&apos;//at.alicdn.com/t/font_897264_7ma62sn10m3.eot?#iefix&apos;) format(&apos;embedded-opentype&apos;),
-      url(&apos;//at.alicdn.com/t/font_897264_7ma62sn10m3.woff&apos;) format(&apos;woff&apos;),
-      url(&apos;//at.alicdn.com/t/font_897264_7ma62sn10m3.ttf&apos;) format(&apos;truetype&apos;),
-      url(&apos;//at.alicdn.com/t/font_897264_7ma62sn10m3.svg#iconfont&apos;) format(&apos;svg&apos;);
-    }
-    .iconfont {
-      font-family:&quot;iconfont&quot; !important;
-      font-size:16px;
-      font-style:normal;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    .clearfix:after {visibility: hidden;display: block;font-size: 0;content: &quot;.&quot;;clear: both;height: 0;}
-    .clearfix {zoom: 1;}
-`;
-
-render() {
-    return (
-        &lt;Fragment&gt;
-            &lt;Provider&gt;...&lt;/Provider&gt;
-            &lt;GrobalStyle/&gt;
-        &lt;/Fragment&gt;
-    )
-}
-</code></pre><p>上面的代码<code>GrobalStyle</code>是全局样式组件，只需在React组件的最外层引入即可。</p>
-<h6 id="3-图片引入"><a href="#3-图片引入" class="headerlink" title="3. 图片引入"></a>3. 图片引入</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;需要图片引入，如果像css一样的引入方式，会报错。正确的引入方式是import导入，再以变量的方式引入，如下：</p>
-<pre><code>import styled from &apos;styled-components&apos;;
-import logPic from &apos;../../statics/images/logo.png&apos;;
-
-export const Logo = styled.div `
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100px;
-  height: 56px;
-  background-image: url(${logPic});
-  background-size: contain;
-`;
-</code></pre><p>上面的代码<code>logPic</code>是存放logo图片地址的变量，只需使用<code>${logPic}</code>的方式引入即可。如果是后台传过来的图片，如何使用的背景图呢？</p>
-<h6 id="4-props"><a href="#4-props" class="headerlink" title="4. props"></a>4. props</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面提到的问题，可使用组件的传值。先看一个例子：</p>
-<pre><code>recommendList.map((item) =&gt; {
-    return &lt;RecommendItem key={item} imgUrl={item}/&gt;
-})
-
-const RecommendItem = styled.div `
-  width: 280px;
-  height: 50px;
-  background-image: url(${(props) =&gt; props.imgUrl});
-  background-size: contain;
-`;
-</code></pre><p>从上面的例子，不难发现，父组件传入的值，会存放在子组件的props中，故操作props便能得到预期效果。</p>
-<h6 id="5-标签属性"><a href="#5-标签属性" class="headerlink" title="5. 标签属性"></a>5. 标签属性</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用style-components，需要使用标签属性，如input 的placeholder，a标签的href等，style-components提供了属性<code>attrs</code>，如下：</p>
-<pre><code>export const NavSearch = styled.input.attrs({
-    placeholder: &apos;搜索&apos;，
-    type: &apos;text&apos;
-}) `
-  width: 160px;
-  height: 38px;
-  margin-top: 9px;
-  padding: 0 40px 0 20px;
-  box-sizing: border-box;
-  background-color: #eee;
-  outline: none;
-  border: none;
-  border-radius: 19px;
-  color: #666;
-  &amp;::placeholder {
-    color: #999;
-  }
-  &amp;.focused {
-    width: 240px;
-  }
-`;
-</code></pre><p>上面的代码，<code>attrs</code>里面是一个对象，如果需要多个属性，以对象的形式添加即可。</p>
-<h6 id="6-塑造组件"><a href="#6-塑造组件" class="headerlink" title="6. 塑造组件"></a>6. 塑造组件</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有一种情况，一些原本就已经是组件，需要给这些组件添加样式，这时需要用到塑造组件，如下：</p>
-<pre><code>const Link = ({className , children}) =&gt; (
-    &lt;a className={className}&gt;
-        {children}
-    &lt;/a&gt;
-)
-
-const StyledLink = styled(Link)`
-    color: palevioletred;
-`
-render(
-    &lt;div&gt;
-        &lt;Link&gt;普通组件&lt;/Link&gt;
-        &lt;StyledLink&gt;添加了样式的组件&lt;/StyledLink&gt;
-    &lt;/div&gt;
-);
-</code></pre><h6 id="7-继承"><a href="#7-继承" class="headerlink" title="7. 继承"></a>7. 继承</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果某一组件的样式会用到多个地方，不能每个地方都重新写一套样式，这样代码不够优雅。比如：一个button，有warning、有default、有primary等，这个button只是颜色不同，其他样式一样，这里便可用到继承。</p>
-<pre><code>const Button = styled.button`
-    line-height: 1.499;
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 0 15px;
-    font-size: 14px;
-    border-radius: 4px;
-    height: 32px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-transition: all .3s cubic-bezier(.645,.045,.355,1);
-    transition: all .3s cubic-bezier(.645,.045,.355,1);
-    position: relative;
-    -webkit-box-shadow: 0 2px 0 rgba(0,0,0,.015);
-    box-shadow: 0 2px 0 rgba(0,0,0,.015);
-    color: rgba(0,0,0,.65);
-    background-color: #fff;
-    border-color: #d9d9d9;
-`;
-const ButtonPrimary = styled(Button)`
-    color: #fff;
-    background-color: #1890ff;
-    border-color: #1890ff;
-`;
-const ButtonWarning = styled(Button)`
-    color: #f5222d;
-    background-color: #f5f5f5;
-    border-color: #d9d9d9;
-`;
-</code></pre><p>有人说，公用样式的组件完全可以写到全部样式里面，设置不同的class。这样做可行，但是为什么不直接去写css呢？</p>
-<h6 id="8-动画"><a href="#8-动画" class="headerlink" title="8. 动画"></a>8. 动画</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;官网上有这样一个例子，如下：</p>
-<pre><code>const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
-const Rotate = styled.div`
-  display: inline-block;
-  animation: ${rotate} 2s linear infinite;
-  padding: 2rem 1rem;
-  font-size: 1.2rem;
-`;
-
-render(
-    &lt;Rotate&gt;&amp;lt; 💅 &amp;gt;&lt;/Rotate&gt;
-);
-</code></pre><p>个人觉得，如果是简单的动画，直接以这样的方式去做，即可，如果动画比较复杂，建议使用react-transition-group框架有更好的体验。</p>
+<h6 id="2-基础用法"><a href="#2-基础用法" class="headerlink" title="2. 基础用法"></a>2. 基础用法</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style-components最基础的用法就是以组件的形式编写样式，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> styled <span class="keyword">from</span> <span class="string">'styled-components'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> HomeWrapper = styled.div <span class="string">`</span></span><br><span class="line"><span class="string">  width: 960px;</span></span><br><span class="line"><span class="string">  margin: 0 auto;</span></span><br><span class="line"><span class="string">  overflow: hidden;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"><span class="keyword">const</span> HomeLeft = styled.div <span class="string">`</span></span><br><span class="line"><span class="string">  float: left;</span></span><br><span class="line"><span class="string">  width: 625px;</span></span><br><span class="line"><span class="string">  margin-left: 15px;</span></span><br><span class="line"><span class="string">  padding-top: 30px;</span></span><br><span class="line"><span class="string">  .bannder-img &#123;</span></span><br><span class="line"><span class="string">    width: 625px;</span></span><br><span class="line"><span class="string">    height: 270px;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"><span class="keyword">const</span> HomeRight = styled.div <span class="string">`</span></span><br><span class="line"><span class="string">  float: right;</span></span><br><span class="line"><span class="string">  width: 280px;</span></span><br><span class="line"><span class="string">  margin-left: 15px;</span></span><br><span class="line"><span class="string">  padding-top: 30px;</span></span><br><span class="line"><span class="string">`</span>;</span><br><span class="line"></span><br><span class="line">render () &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &lt;HomeWrapper&gt;</span><br><span class="line">            &lt;HomeLeft&gt;</span><br><span class="line">                left</span><br><span class="line">            &lt;<span class="regexp">/HomeLeft&gt;</span></span><br><span class="line"><span class="regexp">            &lt;HomeRight&gt;</span></span><br><span class="line"><span class="regexp">                right</span></span><br><span class="line"><span class="regexp">            &lt;/</span>HomeRight&gt;</span><br><span class="line">        &lt;<span class="regexp">/HomeWrapper&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>上面的代码定义了三个组件，分别为<code>HomeWrapper 、HomeLeft 、HomeRight</code>，这样每一个组件对应唯一的样式，不在出现样式污染的情况。</p>
+<h6 id="2-全局样式"><a href="#2-全局样式" class="headerlink" title="2. 全局样式"></a>2. 全局样式</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每一个组件对应唯一的样式，那么需要设置全局样式怎么办呢？style-components的最新版提供了<code>createGlobalStyle</code>可以设置全局样式，如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createGlobalStyle &#125; from 'styled-components';</span><br><span class="line"></span><br><span class="line">const GrobalStyle = createGlobalStyle `</span><br><span class="line">  <span class="selector-tag">html</span>, <span class="selector-tag">body</span>, <span class="selector-tag">div</span>, <span class="selector-tag">span</span>, <span class="selector-tag">applet</span>, <span class="selector-tag">object</span>, <span class="selector-tag">iframe</span>,</span><br><span class="line">    <span class="selector-tag">h1</span>, <span class="selector-tag">h2</span>, <span class="selector-tag">h3</span>, <span class="selector-tag">h4</span>, <span class="selector-tag">h5</span>, <span class="selector-tag">h6</span>, <span class="selector-tag">p</span>, <span class="selector-tag">blockquote</span>, <span class="selector-tag">pre</span>,</span><br><span class="line">    <span class="selector-tag">a</span>, <span class="selector-tag">abbr</span>, <span class="selector-tag">acronym</span>, <span class="selector-tag">address</span>, <span class="selector-tag">big</span>, <span class="selector-tag">cite</span>, <span class="selector-tag">code</span>,</span><br><span class="line">    <span class="selector-tag">del</span>, <span class="selector-tag">dfn</span>, <span class="selector-tag">em</span>, <span class="selector-tag">img</span>, <span class="selector-tag">ins</span>, <span class="selector-tag">kbd</span>, <span class="selector-tag">q</span>, <span class="selector-tag">s</span>, <span class="selector-tag">samp</span>,</span><br><span class="line">    <span class="selector-tag">small</span>, <span class="selector-tag">strike</span>, <span class="selector-tag">strong</span>, <span class="selector-tag">sub</span>, <span class="selector-tag">sup</span>, <span class="selector-tag">tt</span>, <span class="selector-tag">var</span>,</span><br><span class="line">    <span class="selector-tag">b</span>, <span class="selector-tag">u</span>, <span class="selector-tag">i</span>, <span class="selector-tag">center</span>,</span><br><span class="line">    <span class="selector-tag">dl</span>, <span class="selector-tag">dt</span>, <span class="selector-tag">dd</span>, <span class="selector-tag">ol</span>, <span class="selector-tag">ul</span>, <span class="selector-tag">li</span>,</span><br><span class="line">    <span class="selector-tag">fieldset</span>, <span class="selector-tag">form</span>, <span class="selector-tag">label</span>, <span class="selector-tag">legend</span>,</span><br><span class="line">    <span class="selector-tag">table</span>, <span class="selector-tag">caption</span>, <span class="selector-tag">tbody</span>, <span class="selector-tag">tfoot</span>, <span class="selector-tag">thead</span>, <span class="selector-tag">tr</span>, <span class="selector-tag">th</span>, <span class="selector-tag">td</span>,</span><br><span class="line">    <span class="selector-tag">article</span>, <span class="selector-tag">aside</span>, <span class="selector-tag">canvas</span>, <span class="selector-tag">details</span>, <span class="selector-tag">embed</span>,</span><br><span class="line">    <span class="selector-tag">figure</span>, <span class="selector-tag">figcaption</span>, <span class="selector-tag">footer</span>, <span class="selector-tag">header</span>, <span class="selector-tag">hgroup</span>,</span><br><span class="line">    <span class="selector-tag">menu</span>, <span class="selector-tag">nav</span>, <span class="selector-tag">output</span>, <span class="selector-tag">ruby</span>, <span class="selector-tag">section</span>, <span class="selector-tag">summary</span>,</span><br><span class="line">    <span class="selector-tag">time</span>, <span class="selector-tag">mark</span>, <span class="selector-tag">audio</span>, <span class="selector-tag">video</span> &#123;</span><br><span class="line">        <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">border</span>: <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">font-size</span>: <span class="number">100%</span>;</span><br><span class="line">        <span class="attribute">font</span>: inherit;</span><br><span class="line">        <span class="attribute">vertical-align</span>: baseline;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/* HTML5 display-role reset for older browsers */</span></span><br><span class="line">    <span class="selector-tag">article</span>, <span class="selector-tag">aside</span>, <span class="selector-tag">details</span>, <span class="selector-tag">figcaption</span>, <span class="selector-tag">figure</span>,</span><br><span class="line">    <span class="selector-tag">footer</span>, <span class="selector-tag">header</span>, <span class="selector-tag">hgroup</span>, <span class="selector-tag">menu</span>, <span class="selector-tag">nav</span>, <span class="selector-tag">section</span> &#123;</span><br><span class="line">        <span class="attribute">display</span>: block;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-tag">body</span> &#123;</span><br><span class="line">        <span class="attribute">line-height</span>: <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-tag">ol</span>, <span class="selector-tag">ul</span> &#123;</span><br><span class="line">        <span class="attribute">list-style</span>: none;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-tag">blockquote</span>, <span class="selector-tag">q</span> &#123;</span><br><span class="line">        <span class="attribute">quotes</span>: none;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-tag">blockquote</span><span class="selector-pseudo">:before</span>, <span class="selector-tag">blockquote</span><span class="selector-pseudo">:after</span>,</span><br><span class="line">    <span class="selector-tag">q</span><span class="selector-pseudo">:before</span>, <span class="selector-tag">q</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">        <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">        <span class="attribute">content</span>: none;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-tag">table</span> &#123;</span><br><span class="line">        <span class="attribute">border-collapse</span>: collapse;</span><br><span class="line">        <span class="attribute">border-spacing</span>: <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @<span class="keyword">font-face</span> &#123;</span><br><span class="line">      <span class="attribute">font-family</span>: <span class="string">'iconfont'</span>;  <span class="comment">/* project id 897264 */</span></span><br><span class="line">      <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'//at.alicdn.com/t/font_897264_7ma62sn10m3.eot'</span>);</span><br><span class="line">      <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">'//at.alicdn.com/t/font_897264_7ma62sn10m3.eot?#iefix'</span>) <span class="built_in">format</span>(<span class="string">'embedded-opentype'</span>),</span><br><span class="line">      <span class="built_in">url</span>(<span class="string">'//at.alicdn.com/t/font_897264_7ma62sn10m3.woff'</span>) <span class="built_in">format</span>(<span class="string">'woff'</span>),</span><br><span class="line">      <span class="built_in">url</span>(<span class="string">'//at.alicdn.com/t/font_897264_7ma62sn10m3.ttf'</span>) <span class="built_in">format</span>(<span class="string">'truetype'</span>),</span><br><span class="line">      <span class="built_in">url</span>(<span class="string">'//at.alicdn.com/t/font_897264_7ma62sn10m3.svg#iconfont'</span>) <span class="built_in">format</span>(<span class="string">'svg'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.iconfont</span> &#123;</span><br><span class="line">      <span class="attribute">font-family</span>:<span class="string">"iconfont"</span> <span class="meta">!important</span>;</span><br><span class="line">      <span class="attribute">font-size</span>:<span class="number">16px</span>;</span><br><span class="line">      <span class="attribute">font-style</span>:normal;</span><br><span class="line">      <span class="attribute">-webkit-font-smoothing</span>: antialiased;</span><br><span class="line">      <span class="attribute">-moz-osx-font-smoothing</span>: grayscale;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span> &#123;<span class="attribute">visibility</span>: hidden;<span class="attribute">display</span>: block;<span class="attribute">font-size</span>: <span class="number">0</span>;<span class="attribute">content</span>: <span class="string">"."</span>;<span class="attribute">clear</span>: both;<span class="attribute">height</span>: <span class="number">0</span>;&#125;</span><br><span class="line">    <span class="selector-class">.clearfix</span> &#123;<span class="attribute">zoom</span>: <span class="number">1</span>;&#125;</span><br><span class="line">`;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">render</span>() &#123;</span><br><span class="line">    return (</span><br><span class="line">        &lt;<span class="selector-tag">Fragment</span>&gt;</span><br><span class="line">            &lt;Provider&gt;...&lt;/Provider&gt;</span><br><span class="line">            &lt;GrobalStyle/&gt;</span><br><span class="line">        &lt;/Fragment&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码<code>GrobalStyle</code>是全局样式组件，只需在React组件的最外层引入即可。</p>
+<h6 id="3-图片引入"><a href="#3-图片引入" class="headerlink" title="3. 图片引入"></a>3. 图片引入</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;需要图片引入，如果像css一样的引入方式，会报错。正确的引入方式是import导入，再以变量的方式引入，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> styled <span class="keyword">from</span> <span class="string">'styled-components'</span>;</span><br><span class="line"><span class="keyword">import</span> logPic <span class="keyword">from</span> <span class="string">'../../statics/images/logo.png'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> Logo = styled.div <span class="string">`</span></span><br><span class="line"><span class="string">  position: absolute;</span></span><br><span class="line"><span class="string">  top: 0;</span></span><br><span class="line"><span class="string">  left: 0;</span></span><br><span class="line"><span class="string">  width: 100px;</span></span><br><span class="line"><span class="string">  height: 56px;</span></span><br><span class="line"><span class="string">  background-image: url(<span class="subst">$&#123;logPic&#125;</span>);</span></span><br><span class="line"><span class="string">  background-size: contain;</span></span><br><span class="line"><span class="string">`</span>;</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码<code>logPic</code>是存放logo图片地址的变量，只需使用<code>${logPic}</code>的方式引入即可。如果是后台传过来的图片，如何使用的背景图呢？</p>
+<h6 id="4-props"><a href="#4-props" class="headerlink" title="4. props"></a>4. props</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面提到的问题，可使用组件的传值。先看一个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">recommendList.map(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &lt;RecommendItem key=&#123;item&#125; imgUrl=&#123;item&#125;/&gt;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">const RecommendItem = styled.div `</span><br><span class="line">  width: 280px;</span><br><span class="line">  height: 50px;</span><br><span class="line">  background-image: url($&#123;(props) =&gt; props.imgUrl&#125;);</span><br><span class="line">  background-size: contain;</span><br><span class="line">`;</span><br></pre></td></tr></table></figure></p>
+<p>从上面的例子，不难发现，父组件传入的值，会存放在子组件的props中，故操作props便能得到预期效果。</p>
+<h6 id="5-标签属性"><a href="#5-标签属性" class="headerlink" title="5. 标签属性"></a>5. 标签属性</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用style-components，需要使用标签属性，如input 的placeholder，a标签的href等，style-components提供了属性<code>attrs</code>，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> NavSearch = styled.input.attrs(&#123;</span><br><span class="line">    placeholder: <span class="string">'搜索'</span>，</span><br><span class="line">    type: <span class="string">'text'</span></span><br><span class="line">&#125;) <span class="string">`</span></span><br><span class="line"><span class="string">  width: 160px;</span></span><br><span class="line"><span class="string">  height: 38px;</span></span><br><span class="line"><span class="string">  margin-top: 9px;</span></span><br><span class="line"><span class="string">  padding: 0 40px 0 20px;</span></span><br><span class="line"><span class="string">  box-sizing: border-box;</span></span><br><span class="line"><span class="string">  background-color: #eee;</span></span><br><span class="line"><span class="string">  outline: none;</span></span><br><span class="line"><span class="string">  border: none;</span></span><br><span class="line"><span class="string">  border-radius: 19px;</span></span><br><span class="line"><span class="string">  color: #666;</span></span><br><span class="line"><span class="string">  &amp;::placeholder &#123;</span></span><br><span class="line"><span class="string">    color: #999;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">  &amp;.focused &#123;</span></span><br><span class="line"><span class="string">    width: 240px;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">`</span>;</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码，<code>attrs</code>里面是一个对象，如果需要多个属性，以对象的形式添加即可。</p>
+<h6 id="6-塑造组件"><a href="#6-塑造组件" class="headerlink" title="6. 塑造组件"></a>6. 塑造组件</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有一种情况，一些原本就已经是组件，需要给这些组件添加样式，这时需要用到塑造组件，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Link = <span class="function">(<span class="params">&#123;className , children&#125;</span>) =&gt;</span> (</span><br><span class="line">    &lt;a className=&#123;className&#125;&gt;</span><br><span class="line">        &#123;children&#125;</span><br><span class="line">    &lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">)</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">const StyledLink = styled(Link)`</span></span><br><span class="line"><span class="regexp">    color: palevioletred;</span></span><br><span class="line"><span class="regexp">`</span></span><br><span class="line"><span class="regexp">render(</span></span><br><span class="line"><span class="regexp">    &lt;div&gt;</span></span><br><span class="line"><span class="regexp">        &lt;Link&gt;普通组件&lt;/</span>Link&gt;</span><br><span class="line">        &lt;StyledLink&gt;添加了样式的组件&lt;<span class="regexp">/StyledLink&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<h6 id="7-继承"><a href="#7-继承" class="headerlink" title="7. 继承"></a>7. 继承</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果某一组件的样式会用到多个地方，不能每个地方都重新写一套样式，这样代码不够优雅。比如：一个button，有warning、有default、有primary等，这个button只是颜色不同，其他样式一样，这里便可用到继承。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">const</span> Button = styled.button<span class="string">`</span></span><br><span class="line"><span class="string">        line-height: 1.499;</span></span><br><span class="line"><span class="string">        display: inline-block;</span></span><br><span class="line"><span class="string">        font-weight: 400;</span></span><br><span class="line"><span class="string">        text-align: center;</span></span><br><span class="line"><span class="string">        -ms-touch-action: manipulation;</span></span><br><span class="line"><span class="string">        touch-action: manipulation;</span></span><br><span class="line"><span class="string">        cursor: pointer;</span></span><br><span class="line"><span class="string">        background-image: none;</span></span><br><span class="line"><span class="string">        border: 1px solid transparent;</span></span><br><span class="line"><span class="string">        white-space: nowrap;</span></span><br><span class="line"><span class="string">        padding: 0 15px;</span></span><br><span class="line"><span class="string">        font-size: 14px;</span></span><br><span class="line"><span class="string">        border-radius: 4px;</span></span><br><span class="line"><span class="string">        height: 32px;</span></span><br><span class="line"><span class="string">        -webkit-user-select: none;</span></span><br><span class="line"><span class="string">        -moz-user-select: none;</span></span><br><span class="line"><span class="string">        -ms-user-select: none;</span></span><br><span class="line"><span class="string">        user-select: none;</span></span><br><span class="line"><span class="string">        -webkit-transition: all .3s cubic-bezier(.645,.045,.355,1);</span></span><br><span class="line"><span class="string">        transition: all .3s cubic-bezier(.645,.045,.355,1);</span></span><br><span class="line"><span class="string">        position: relative;</span></span><br><span class="line"><span class="string">        -webkit-box-shadow: 0 2px 0 rgba(0,0,0,.015);</span></span><br><span class="line"><span class="string">        box-shadow: 0 2px 0 rgba(0,0,0,.015);</span></span><br><span class="line"><span class="string">        color: rgba(0,0,0,.65);</span></span><br><span class="line"><span class="string">        background-color: #fff;</span></span><br><span class="line"><span class="string">        border-color: #d9d9d9;</span></span><br><span class="line"><span class="string">    `</span>;</span><br><span class="line">    <span class="keyword">const</span> ButtonPrimary = styled(Button)<span class="string">`</span></span><br><span class="line"><span class="string">        color: #fff;</span></span><br><span class="line"><span class="string">        background-color: #1890ff;</span></span><br><span class="line"><span class="string">        border-color: #1890ff;</span></span><br><span class="line"><span class="string">    `</span>;</span><br><span class="line">    <span class="keyword">const</span> ButtonWarning = styled(Button)<span class="string">`</span></span><br><span class="line"><span class="string">        color: #f5222d;</span></span><br><span class="line"><span class="string">        background-color: #f5f5f5;</span></span><br><span class="line"><span class="string">        border-color: #d9d9d9;</span></span><br><span class="line"><span class="string">    `</span>;</span><br><span class="line"><span class="string">``</span><span class="string">`javascript</span></span><br><span class="line"><span class="string">有人说，公用样式的组件完全可以写到全部样式里面，设置不同的class。这样做可行，但是为什么不直接去写css呢？</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">###### 8. 动画</span></span><br><span class="line"><span class="string">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;官网上有这样一个例子，如下：</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line">    <span class="keyword">const</span> rotate = keyframes<span class="string">`</span></span><br><span class="line"><span class="string">      from &#123;</span></span><br><span class="line"><span class="string">        transform: rotate(0deg);</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">      to &#123;</span></span><br><span class="line"><span class="string">        transform: rotate(360deg);</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">    `</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> Rotate = styled.div<span class="string">`</span></span><br><span class="line"><span class="string">      display: inline-block;</span></span><br><span class="line"><span class="string">      animation: <span class="subst">$&#123;rotate&#125;</span> 2s linear infinite;</span></span><br><span class="line"><span class="string">      padding: 2rem 1rem;</span></span><br><span class="line"><span class="string">      font-size: 1.2rem;</span></span><br><span class="line"><span class="string">    `</span>;</span><br><span class="line"></span><br><span class="line">    render(</span><br><span class="line">        &lt;Rotate&gt;&amp;lt; 💅 &amp;gt;&lt;/Rotate&gt;</span><br><span class="line">    );</span><br></pre></td></tr></table></figure></p>
+<p>个人觉得，如果是简单的动画，直接以这样的方式去做，即可，如果动画比较复杂，建议使用react-transition-group框架有更好的体验。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style-components的常用用法介绍完成，当然官网上还有一些其他的用法，有兴趣可以了解下。使用style-components会随机生成一个class名称，这样不会污染到全局变量，当然因为随机生成，维护会增加难度，期待下一版能解决这个问题。</p>
 
       
@@ -943,6 +702,8 @@ render(
                     
                       
                     
+                      
+                    
                     <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -1052,7 +813,7 @@ render(
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是style-components"><span class="nav-number">2.</span> <span class="nav-text">什么是style-components</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#官方文档"><span class="nav-number">3.</span> <span class="nav-text">官方文档</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-安装"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">1. 安装</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-基础用法"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">2. 基础用法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-全局样式"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">2. 全局样式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-图片引入"><span class="nav-number">3.0.0.4.</span> <span class="nav-text">3. 图片引入</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-props"><span class="nav-number">3.0.0.5.</span> <span class="nav-text">4. props</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-标签属性"><span class="nav-number">3.0.0.6.</span> <span class="nav-text">5. 标签属性</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-塑造组件"><span class="nav-number">3.0.0.7.</span> <span class="nav-text">6. 塑造组件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-继承"><span class="nav-number">3.0.0.8.</span> <span class="nav-text">7. 继承</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#8-动画"><span class="nav-number">3.0.0.9.</span> <span class="nav-text">8. 动画</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是style-components"><span class="nav-number">2.</span> <span class="nav-text">什么是style-components</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#官方文档"><span class="nav-number">3.</span> <span class="nav-text">官方文档</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-安装"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">1. 安装</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-基础用法"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">2. 基础用法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-全局样式"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">2. 全局样式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-图片引入"><span class="nav-number">3.0.0.4.</span> <span class="nav-text">3. 图片引入</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-props"><span class="nav-number">3.0.0.5.</span> <span class="nav-text">4. props</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-标签属性"><span class="nav-number">3.0.0.6.</span> <span class="nav-text">5. 标签属性</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-塑造组件"><span class="nav-number">3.0.0.7.</span> <span class="nav-text">6. 塑造组件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-继承"><span class="nav-number">3.0.0.8.</span> <span class="nav-text">7. 继承</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></div>
             
 
           </div>
@@ -1102,7 +863,7 @@ render(
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共 14.5k 字</span>
+  <span class="post-count">博客全站共 14.6k 字</span>
 </div>
 
 

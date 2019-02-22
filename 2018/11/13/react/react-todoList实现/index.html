@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/12926544-5d9dd940c034f2b8.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/12926544-b447353bf665529b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/12926544-0b9480173bf5297a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-02-21T07:46:53.918Z">
+<meta property="og:updated_time" content="2019-02-22T06:15:32.717Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react-todoList实现">
 <meta name="twitter:description" content="React作为当前最火的框架之一，学习和使用已有一段时间，在这里记录下学习React的心得，纯属个人观点。在学习React之前，了解过Vue,和angular，个人比较喜欢React的开发模式，之前的开发用的比较多jquery的模板（artTemplate,hogan）之类的，和React中的jsx原理类似，因此被吸引。  一、 React的准备工作   学习react有很多途径，可以看官网，可">
@@ -454,7 +454,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-21 15:46:53" itemprop="dateModified" datetime="2019-02-21T15:46:53+08:00">2019-02-21</time>
+                <time title="修改时间：2019-02-22 14:15:32" itemprop="dateModified" datetime="2019-02-22T14:15:32+08:00">2019-02-22</time>
               
             
           </span>
@@ -471,7 +471,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/React小功能/" itemprop="url" rel="index"><span itemprop="name">React小功能</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/React/" itemprop="url" rel="index"><span itemprop="name">React</span></a></span>
 
                 
                 
@@ -523,81 +523,23 @@ Installing packages. This might take a couple of minutes.
 Installing react, react-dom, and react-scripts...
 </code></pre><h6 id="1、主要依赖react-react-dom-react-scripts"><a href="#1、主要依赖react-react-dom-react-scripts" class="headerlink" title="1、主要依赖react,react-dom,react-scripts"></a>1、主要依赖react,react-dom,react-scripts</h6><h6 id="2、目录结构"><a href="#2、目录结构" class="headerlink" title="2、目录结构"></a>2、目录结构</h6><p><img src="https://upload-images.jianshu.io/upload_images/12926544-b447353bf665529b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
 <h6 id="3、运行-npm-start"><a href="#3、运行-npm-start" class="headerlink" title="3、运行 npm start"></a>3、运行 <code>npm start</code></h6><h6 id="4、打包-npm-run-build"><a href="#4、打包-npm-run-build" class="headerlink" title="4、打包 npm run build"></a>4、打包 <code>npm run build</code></h6><h2 id="二、正式开发"><a href="#二、正式开发" class="headerlink" title="二、正式开发"></a>二、正式开发</h2><p>1、使用react做一个输入框，点击提交在下面列表展示，点击对应的列表项，删除该项，如下：<br><img src="https://upload-images.jianshu.io/upload_images/12926544-0b9480173bf5297a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt></p>
-<p>2、项目的数据结构，首先分析需求，一个input框，一个button，一个列表。可以把input和button看成一个组件，列表看成一个组件。在state中的数据结构可以设置为：</p>
-<pre><code>//state的数据结构
-this.state = {
-    inputValue: &apos;&apos;, //用于存放input的值
-    list: []        //存放列表的值
-}
-</code></pre><ol start="3">
+<p>2、项目的数据结构，首先分析需求，一个input框，一个button，一个列表。可以把input和button看成一个组件，列表看成一个组件。在state中的数据结构可以设置为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//state的数据结构</span></span><br><span class="line"><span class="keyword">this</span>.state = &#123;</span><br><span class="line">    inputValue: <span class="string">''</span>, <span class="comment">//用于存放input的值</span></span><br><span class="line">    list: []        <span class="comment">//存放列表的值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol start="3">
 <li><p>input框功能实现，原理：input框绑定onChange事件，每当输入字符时，改变this.state.inputValue的值，React中当state或props中的值改变，render函数会重新执行。实现如下：</p>
-<pre><code>//方法一：改变this.state.inputValue值，通过事件返回的e.target.value,获取输入框中的值
-&lt;input type=&quot;text&quot; onChange={this.handleChange} value={this.state.inputValue} /&gt;
-handleChange (e) {
-    //同步setState
-    this.setState({
-        inputValue: e.target.value
-    });
-}
-
-//方法二：在input框上设置ref属性，ref表示对组件真正实例的引用。
-//设置ref={(input) =&gt; {this.input = input}}表示，将当前input框中的value值，
-//绑定到this上，在handleChange方法中，便可以直接取input的值：this.input.value
-&lt;input type=&quot;text&quot;
-       id=&quot;inputValue&quot;
-       onChange={this.handleChange}
-       value={this.state.inputValue}
-       ref={(input) =&gt; {this.input = input}}
-/&gt;
-handleChange (e) {
-    const value = this.input.value;
-    //异步setState，可以为异步方法，带有一个参数prevState,即为上一步state的内容，同时带有回调函数
-    this.setState(() =&gt; ({
-        inputValue: value
-    }), () =&gt; {
-        console.log(&apos;赋值完成！&apos;);
-    });
-}
-</code></pre></li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方法一：改变this.state.inputValue值，通过事件返回的e.target.value,获取输入框中的值</span></span><br><span class="line">&lt;input type=<span class="string">"text"</span> onChange=&#123;<span class="keyword">this</span>.handleChange&#125; value=&#123;<span class="keyword">this</span>.state.inputValue&#125; /&gt;</span><br><span class="line">handleChange (e) &#123;</span><br><span class="line">    <span class="comment">//同步setState</span></span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">        inputValue: e.target.value</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//方法二：在input框上设置ref属性，ref表示对组件真正实例的引用。</span></span><br><span class="line"><span class="comment">//设置ref=&#123;(input) =&gt; &#123;this.input = input&#125;&#125;表示，将当前input框中的value值，</span></span><br><span class="line"><span class="comment">//绑定到this上，在handleChange方法中，便可以直接取input的值：this.input.value</span></span><br><span class="line">&lt;input type=<span class="string">"text"</span></span><br><span class="line">       id=<span class="string">"inputValue"</span></span><br><span class="line">       onChange=&#123;<span class="keyword">this</span>.handleChange&#125;</span><br><span class="line">       value=&#123;<span class="keyword">this</span>.state.inputValue&#125;</span><br><span class="line">       ref=&#123;(input) =&gt; &#123;<span class="keyword">this</span>.input = input&#125;&#125;</span><br><span class="line">/&gt;</span><br><span class="line">handleChange (e) &#123;</span><br><span class="line">    <span class="keyword">const</span> value = <span class="keyword">this</span>.input.value;</span><br><span class="line">    <span class="comment">//异步setState，可以为异步方法，带有一个参数prevState,即为上一步state的内容，同时带有回调函数</span></span><br><span class="line">    <span class="keyword">this</span>.setState(<span class="function"><span class="params">()</span> =&gt;</span> (&#123;</span><br><span class="line">        inputValue: value</span><br><span class="line">    &#125;), () =&gt; &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'赋值完成！'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>提交功能实现，原理：很容易就想到，当点击提交的时候，将input框中的值push到this.state.list即可。</p>
-<pre><code>&lt;button onClick={this.handleSubmit}&gt;提交&lt;/button&gt;
-//提交添加UI列表
-handleSubmit () {
-    this.setState((prevState) =&gt; ({
-        list: [...prevState.list, prevState.inputValue],
-        inputValue: &apos;&apos;
-    }), () =&gt; { //回调函数
-        console.log(this.ul.querySelectorAll(&apos;li&apos;).length);
-    });
-}
-</code></pre></li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onClick=&#123;<span class="keyword">this</span>.handleSubmit&#125;&gt;提交&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/提交添加UI列表</span></span><br><span class="line"><span class="regexp">handleSubmit () &#123;</span></span><br><span class="line"><span class="regexp">    this.setState((prevState) =&gt; (&#123;</span></span><br><span class="line"><span class="regexp">        list: [...prevState.list, prevState.inputValue],</span></span><br><span class="line"><span class="regexp">        inputValue: ''</span></span><br><span class="line"><span class="regexp">    &#125;), () =&gt; &#123; /</span><span class="regexp">/回调函数</span></span><br><span class="line"><span class="regexp">        console.log(this.ul.querySelectorAll('li').length);</span></span><br><span class="line"><span class="regexp">    &#125;);</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>将list的值在页面展示出来,可以通过map方法，循环li。</p>
-<pre><code>this.state.list.map((item, index) =&gt; {
-    return &lt;li key={index}&gt;{item}&lt;/li&gt;
-})
-/*
-    注：react中循环的时候，必须在每一项加上key的属性，不然控制台会报错，
-    原因是：diff算法在循环的时候,会去匹配对应的key值。此处用index作为key值是不合理的做法，key值应该是唯一的，
-    diff算法后面会详细讲到。
-*/
-</code></pre></li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.state.list.map(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &lt;li key=&#123;index&#125;&gt;&#123;item&#125;&lt;/li&gt;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    注：react中循环的时候，必须在每一项加上key的属性，不然控制台会报错，</span></span><br><span class="line"><span class="comment">    原因是：diff算法在循环的时候,会去匹配对应的key值。此处用index作为key值是不合理的做法，key值应该是唯一的，</span></span><br><span class="line"><span class="comment">    diff算法后面会详细讲到。</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>点击li，删除当前li,原理：每一个li都有对应的index，点击li时，获取index，在list找到对应下标，然后delete即可。</p>
-<pre><code>this.state.list.map((item, index) =&gt; {
-    return &lt;li key={index} onClick={this.handleDeleteItem.bind(this, index)}&gt;{item}&lt;/li&gt;
-})
-//删除当前点击item
-handleDelete (index) {
-    this.setState((prevState) =&gt; {
-        const list = [...prevState.list];
-        list.splice(index, 1);
-        return {
-            list: list
-        }
-    });
-}
-</code></pre></li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.state.list.map(<span class="function">(<span class="params">item, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &lt;li key=&#123;index&#125; onClick=&#123;this.handleDeleteItem.bind(this, index)&#125;&gt;&#123;item&#125;&lt;/li&gt;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//删除当前点击item</span></span><br><span class="line">handleDelete (index) &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(<span class="function">(<span class="params">prevState</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> list = [...prevState.list];</span><br><span class="line">        list.splice(index, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            list: list</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><h6 id="React的原理"><a href="#React的原理" class="headerlink" title="React的原理"></a>React的原理</h6><pre><code>1. state改变
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><h6 id="React的原理"><a href="#React的原理" class="headerlink" title="React的原理"></a>React的原理</h6><blockquote>
+<pre><code>1. state改变
 2. jsx模板
 3. 数据 + 模板 生成虚拟dom（虚拟DOM就是一个js对象，用来描述真实的DOM）（损耗了性能）
 4. 用虚拟DOM结构生成真实的DOM，来显示
@@ -605,14 +547,18 @@ handleDelete (index) {
 6. 数据 + 模板 生成新的虚拟DOM（极大的提升了性能）
 7. 比较原始虚拟DOM和新的虚拟DOM的区别，找到区别（diff算法）
 8. 直接操作DOM，改变不同之处
-</code></pre><h6 id="Diff算法"><a href="#Diff算法" class="headerlink" title="Diff算法"></a>Diff算法</h6><pre><code>1. 同层对比（变化前和变化后，虚拟DOM同一级进行对比）
+</code></pre></blockquote>
+<h6 id="Diff算法"><a href="#Diff算法" class="headerlink" title="Diff算法"></a>Diff算法</h6><blockquote>
+<pre><code> 1. 同层对比（变化前和变化后，虚拟DOM同一级进行对比）
 2. 列表（每个循环的列表都需要一个唯一的key，用于做对比，节约性能，因此用循环的index作为key是不靠谱的做法，浪费性能）
 3. 组件（一个React的APP有多个组件进行组成，diff对比组件的class）
 4. 绘制
     1). 当调用setState时，React将其标记为Dirty，然后事件轮询介绍时，React会查询dirty组件并重新绘制
     2). 当组件的setState方法被调用，组件会重新绘制它的子组件
 5. react事件委托（通过事件冒泡至document处，合成对象(SyntheticEvent)，当触发事件时，通过dispatchEvent分发函数分发）
-</code></pre><h6 id="生命周期函数（在某一时刻组件会自动执行调用的函数）"><a href="#生命周期函数（在某一时刻组件会自动执行调用的函数）" class="headerlink" title="生命周期函数（在某一时刻组件会自动执行调用的函数）"></a>生命周期函数（在某一时刻组件会自动执行调用的函数）</h6><pre><code>1. initialization (constructor) 初始化
+</code></pre></blockquote>
+<h6 id="生命周期函数（在某一时刻组件会自动执行调用的函数）"><a href="#生命周期函数（在某一时刻组件会自动执行调用的函数）" class="headerlink" title="生命周期函数（在某一时刻组件会自动执行调用的函数）"></a>生命周期函数（在某一时刻组件会自动执行调用的函数）</h6><blockquote>
+<pre><code>1. initialization (constructor) 初始化
 2. Mounting (组件第一次挂载的流程)
     1). componentWillMount 在组件即将被挂载到页面的时刻执行，即render前执行
     2). render
@@ -625,7 +571,8 @@ handleDelete (index) {
     5). componentDidUpdate 更新之后调用
 4. Unmounting
     1). componentWillUnmount 即将被页面移除的时候执行
-</code></pre><h6 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h6><p>本文使用react做了一个添加删除的功能，代码已放在GitHub上，有兴趣请<a href="https://github.com/zhuLni/todoList" target="_blank" rel="noopener">狠狠的点击这儿</a>。</p>
+</code></pre></blockquote>
+<h6 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h6><p>本文使用react做了一个添加删除的功能，代码已放在GitHub上，有兴趣请<strong><a href="https://github.com/zhuLni/todoList" target="_blank" rel="noopener">狠狠的点击这儿</a></strong>。</p>
 
       
     </div>
@@ -783,6 +730,8 @@ handleDelete (index) {
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
+                    
+                      
                     
                       
                     
@@ -953,7 +902,7 @@ handleDelete (index) {
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共 14.5k 字</span>
+  <span class="post-count">博客全站共 14.6k 字</span>
 </div>
 
 

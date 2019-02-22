@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhulni.github.io/2018/11/23/react/Redux%E7%AE%A1%E7%90%86%E7%8A%B6%E6%80%81-todoList%E5%AE%9E%E7%8E%B0/</loc>
+    
+    <lastmod>2019-02-22T06:18:19.697Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhulni.github.io/2018/11/13/react/react-todoList%E5%AE%9E%E7%8E%B0/</loc>
+    
+    <lastmod>2019-02-22T06:15:32.717Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhulni.github.io/2018/11/27/react/style-component/</loc>
+    
+    <lastmod>2019-02-22T06:09:57.914Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhulni.github.io/2018/09/11/jQuery/jQuery-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%BC%A0%E6%A0%87%E5%8F%B3%E9%94%AE/</loc>
     
-    <lastmod>2019-02-22T05:46:54.318Z</lastmod>
+    <lastmod>2019-02-22T06:03:52.674Z</lastmod>
     
   </url>
   
@@ -68,27 +89,6 @@
     <loc>https://zhulni.github.io/music/index.html</loc>
     
     <lastmod>2019-02-21T09:07:20.237Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhulni.github.io/2018/11/27/react/style-component/</loc>
-    
-    <lastmod>2019-02-21T07:51:49.449Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhulni.github.io/2018/11/23/react/Redux%E7%AE%A1%E7%90%86%E7%8A%B6%E6%80%81-todoList%E5%AE%9E%E7%8E%B0/</loc>
-    
-    <lastmod>2019-02-21T07:49:37.218Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhulni.github.io/2018/11/13/react/react-todoList%E5%AE%9E%E7%8E%B0/</loc>
-    
-    <lastmod>2019-02-21T07:46:53.918Z</lastmod>
     
   </url>
   
