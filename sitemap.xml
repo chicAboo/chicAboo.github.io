@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhulni.github.io/2019/02/22/dataStructure/js-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/</loc>
+    
+    <lastmod>2019-02-22T06:21:35.193Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhulni.github.io/2018/11/23/react/Redux%E7%AE%A1%E7%90%86%E7%8A%B6%E6%80%81-todoList%E5%AE%9E%E7%8E%B0/</loc>
     
     <lastmod>2019-02-22T06:18:19.697Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>https://zhulni.github.io/2018/12/18/dataStructure/js-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%98%9F%E5%88%97/</loc>
     
     <lastmod>2019-02-22T05:45:02.457Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhulni.github.io/2019/02/22/dataStructure/js-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E9%93%BE%E8%A1%A8/</loc>
-    
-    <lastmod>2019-02-22T05:42:52.525Z</lastmod>
     
   </url>
   
