@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhulni.github.io/music/index.html</loc>
+    
+    <lastmod>2019-02-22T08:17:55.703Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://zhulni.github.io/records/index.html</loc>
+    
+    <lastmod>2019-02-22T08:09:29.643Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhulni.github.io/about/index.html</loc>
     
     <lastmod>2019-02-22T07:27:41.970Z</lastmod>
@@ -82,13 +96,6 @@
     <loc>https://zhulni.github.io/schedule/index.html</loc>
     
     <lastmod>2019-02-21T10:11:08.686Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhulni.github.io/music/index.html</loc>
-    
-    <lastmod>2019-02-21T09:07:20.237Z</lastmod>
     
   </url>
   
