@@ -89,7 +89,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '7.0.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -1349,7 +1349,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -1372,7 +1372,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -1395,7 +1399,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -1507,7 +1515,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录："><span class="nav-number">1.</span> <span class="nav-text">目录：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、概念"><span class="nav-number">2.</span> <span class="nav-text">一、概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、flex容器的属性"><span class="nav-number">3.</span> <span class="nav-text">二、flex容器的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-flex-direction-决定主轴的方向"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">1. flex-direction 决定主轴的方向</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-flex-wrap-项目是否排列在轴线上，是否换行属性"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">2. flex-wrap 项目是否排列在轴线上，是否换行属性</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-flex-flow-flex-direction和flex-wrap的简写"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">3. flex-flow:  flex-direction和flex-wrap的简写</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-justify-content-定义主轴上的对其方式"><span class="nav-number">3.0.0.4.</span> <span class="nav-text">4. justify-content 定义主轴上的对其方式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-align-items-项目在交叉线上的对齐方式"><span class="nav-number">3.0.0.5.</span> <span class="nav-text">5. align-items 项目在交叉线上的对齐方式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-align-content-多行对其，如果只有一行，不起作用"><span class="nav-number">3.0.0.6.</span> <span class="nav-text">6. align-content 多行对其，如果只有一行，不起作用</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#三、项目的属性"><span class="nav-number">4.</span> <span class="nav-text">三、项目的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-order定义项目的排列顺序，值越小越靠前，默认为0"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">1. order定义项目的排列顺序，值越小越靠前，默认为0</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-flex-grow定义项目的放大比例，默认为0"><span class="nav-number">4.0.0.2.</span> <span class="nav-text">2. flex-grow定义项目的放大比例，默认为0</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-flex-shrink定义项目的缩小比例，默认值为1。"><span class="nav-number">4.0.0.3.</span> <span class="nav-text">3. flex-shrink定义项目的缩小比例，默认值为1。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-flex-basis定义在分配空间之前，项目占主轴空间，默认值为auto。"><span class="nav-number">4.0.0.4.</span> <span class="nav-text">4. flex-basis定义在分配空间之前，项目占主轴空间，默认值为auto。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-flex属性是flex-grow-flex-shrink-和-flex-basis的简写，默认值为0-1-auto。后两个属性可选。"><span class="nav-number">4.0.0.5.</span> <span class="nav-text">5. flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性-默认值为auto。"><span class="nav-number">4.0.0.6.</span> <span class="nav-text">6. align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性, 默认值为auto。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、flex布局实践（骰子布局）"><span class="nav-number">5.</span> <span class="nav-text">四、flex布局实践（骰子布局）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-单项目"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">1. 单项目</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-双项目"><span class="nav-number">5.0.0.2.</span> <span class="nav-text">2. 双项目</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-三项目"><span class="nav-number">5.0.0.3.</span> <span class="nav-text">3. 三项目</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-四项目"><span class="nav-number">5.0.0.4.</span> <span class="nav-text">4. 四项目</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-五项目"><span class="nav-number">5.0.0.5.</span> <span class="nav-text">5. 五项目</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-六项目"><span class="nav-number">5.0.0.6.</span> <span class="nav-text">6. 六项目</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-九项目"><span class="nav-number">5.0.0.7.</span> <span class="nav-text">7 九项目</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#五、总结"><span class="nav-number">5.0.0.8.</span> <span class="nav-text">五、总结</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#六、完整代码没上传GitHub，这儿随便写了下符在下面。"><span class="nav-number">5.0.0.9.</span> <span class="nav-text">六、完整代码没上传GitHub，这儿随便写了下符在下面。</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录："><span class="nav-text">目录：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、概念"><span class="nav-text">一、概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、flex容器的属性"><span class="nav-text">二、flex容器的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-flex-direction-决定主轴的方向"><span class="nav-text">1. flex-direction 决定主轴的方向</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-flex-wrap-项目是否排列在轴线上，是否换行属性"><span class="nav-text">2. flex-wrap 项目是否排列在轴线上，是否换行属性</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-flex-flow-flex-direction和flex-wrap的简写"><span class="nav-text">3. flex-flow:  flex-direction和flex-wrap的简写</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-justify-content-定义主轴上的对其方式"><span class="nav-text">4. justify-content 定义主轴上的对其方式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-align-items-项目在交叉线上的对齐方式"><span class="nav-text">5. align-items 项目在交叉线上的对齐方式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-align-content-多行对其，如果只有一行，不起作用"><span class="nav-text">6. align-content 多行对其，如果只有一行，不起作用</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#三、项目的属性"><span class="nav-text">三、项目的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-order定义项目的排列顺序，值越小越靠前，默认为0"><span class="nav-text">1. order定义项目的排列顺序，值越小越靠前，默认为0</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-flex-grow定义项目的放大比例，默认为0"><span class="nav-text">2. flex-grow定义项目的放大比例，默认为0</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-flex-shrink定义项目的缩小比例，默认值为1。"><span class="nav-text">3. flex-shrink定义项目的缩小比例，默认值为1。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-flex-basis定义在分配空间之前，项目占主轴空间，默认值为auto。"><span class="nav-text">4. flex-basis定义在分配空间之前，项目占主轴空间，默认值为auto。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-flex属性是flex-grow-flex-shrink-和-flex-basis的简写，默认值为0-1-auto。后两个属性可选。"><span class="nav-text">5. flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性-默认值为auto。"><span class="nav-text">6. align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性, 默认值为auto。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、flex布局实践（骰子布局）"><span class="nav-text">四、flex布局实践（骰子布局）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-单项目"><span class="nav-text">1. 单项目</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-双项目"><span class="nav-text">2. 双项目</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-三项目"><span class="nav-text">3. 三项目</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-四项目"><span class="nav-text">4. 四项目</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-五项目"><span class="nav-text">5. 五项目</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-六项目"><span class="nav-text">6. 六项目</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-九项目"><span class="nav-text">7 九项目</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#五、总结"><span class="nav-text">五、总结</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#六、完整代码没上传GitHub，这儿随便写了下符在下面。"><span class="nav-text">六、完整代码没上传GitHub，这儿随便写了下符在下面。</span></a></li></ol></li></div>
             
 
           </div>
@@ -1557,7 +1565,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共 14.6k 字</span>
+  <span class="post-count">博客全站共 15k 字</span>
 </div>
 
 
