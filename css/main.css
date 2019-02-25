@@ -1744,6 +1744,53 @@ pre .javascript .function {
 .fancybox-close:hover {
   border: none;
 }
+.post-widgets {
+  border-top: 1px solid #eee;
+  padding-top: 9px;
+  margin-top: 45px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.post-widgets .post-meta-divider {
+  height: 25px;
+  color: #999;
+}
+.wp_rating {
+  height: 20px;
+  margin-right: 10px;
+  text-align: center;
+  line-height: 20px;
+  padding-top: 6px;
+}
+.social-like {
+  font-size: 14px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.vk_like {
+  width: 85px;
+  height: 21px;
+  padding-top: 7px;
+  align-self: center;
+}
+.fb_like {
+  height: 30px;
+  align-self: center;
+}
+.bdsharebuttonbox {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+.bdsharebuttonbox a {
+  border: none;
+}
+.bdshare-slide-button-box a {
+  border: none;
+}
 .rtl.post-body p,
 .rtl.post-body a,
 .rtl.post-body h1,
@@ -1962,7 +2009,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #7e46ff;
+  background: #2bc22e;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3112,7 +3159,8 @@ ul.breadcrumb li+li:last-child {
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
 .archive .post,
-.category .post {
+.category .post,
+.tag .post {
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
   box-shadow: none !important;
@@ -3120,4 +3168,77 @@ ul.breadcrumb li+li:last-child {
 }
 .posts-expand .post-eof {
   margin: 40px auto 20px !important;
+}
+.laws-list a {
+  display: block;
+  text-decoration: none;
+  border: none;
+}
+.laws-list li {
+  list-style: none !important;
+}
+.laws-list {
+  position: relative;
+  padding-top: 6px;
+  margin-top: 24px;
+  text-align: left;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.laws-list .laws-item {
+  margin-right: 24px;
+  margin-bottom: 10px;
+  padding: 0 16px 16px 26px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(44,132,232,0.15);
+  box-sizing: border-box;
+}
+.laws-list .laws-item:hover {
+  box-shadow: 0 2px 8px rgba(44,132,232,0.3);
+}
+.laws-list .laws-item:hover .laws-tit {
+  color: #00923e;
+}
+.laws-list .laws-tit {
+  height: 30px;
+  margin-top: 20px;
+  vertical-align: middle;
+  font: 700 16px/30px Microsoft YaHei;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+.laws-list .laws-tit i {
+  display: inline-block;
+  vertical-align: middle;
+  width: 4px;
+  height: 18px;
+  background-color: #666;
+}
+.laws-list .laws-tit i.line-small {
+  width: 3px;
+  height: 13px;
+  margin: 0 8px 0 2px;
+}
+.laws-list .laws-info {
+  height: 50px;
+  line-height: 24px;
+  font-size: 14px;
+  color: #666;
+  padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-indent: 2em;
+}
+.laws-list .laws-item:hover .laws-tit i {
+  background: #00923e;
+}
+.fluid-vids {
+  padding-top: 37.73% !important;
 }
