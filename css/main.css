@@ -2009,7 +2009,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c2467f;
+  background: #50b4fb;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3168,6 +3168,9 @@ ul.breadcrumb li+li:last-child {
 }
 .posts-expand .post-eof {
   margin: 40px auto 20px !important;
+}
+.posts-expand .post-body img {
+  border: none !important;
 }
 .laws-list a {
   display: block;
