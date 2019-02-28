@@ -542,7 +542,8 @@
             <p>
               在IE9下，input框带有X,如何去除？
 去除IE下input带x的方法，很简单，只需要css中加一句话就行了//去除IE下input框后面的Xinput::-ms-clear, input::-ms-reveal&#123;      display: none;&#125;
-              ...
+
+              
             </p>
           <!--noindex-->
           
@@ -733,7 +734,8 @@
           
             <p>
               一、自定义鼠标右键的实现原理
-自定义右键菜单功能，需清楚，所有浏览器都自带了右键功能，那么自定义右键菜单，需要先屏蔽系统自带的右键功能，如何实现呢？$selector.on('contextmenu', '.box', function () &#123;    return f
+自定义右键菜单功能，需清楚，所有浏览器都自带了右键功能，那么自定义右键菜单，需要先屏蔽系统自带的右键功能，如何实现呢？$selector.on('contextmenu', '.box', function () &#123;    return false;&#125;)
+注：$selector为选择器，.box为禁用鼠标右键的class完成系统自带鼠标右键的禁用后
               ...
             </p>
           <!--noindex-->
