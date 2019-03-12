@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://zhulni.github.io/2019/03/12/jQuery/Mulselect/</loc>
+    <lastmod>2019-03-12</lastmod>
+  </url>  <url>
     <loc>https://zhulni.github.io/2019/03/11/jQuery/Pagination/</loc>
-    <lastmod>2019-03-11</lastmod>
+    <lastmod>2019-03-12</lastmod>
   </url>  <url>
     <loc>https://zhulni.github.io/2019/03/01/jQuery/Dialog/</loc>
     <lastmod>2019-03-11</lastmod>
