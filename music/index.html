@@ -113,17 +113,14 @@
 
 
 
-  <meta name="description" content="由于网易云音乐版权问题，已无法外链，处理中…">
-<meta property="og:type" content="website">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="My Music">
 <meta property="og:url" content="https://zhulni.github.io/music/index.html">
 <meta property="og:site_name" content="Mr.Zhu">
-<meta property="og:description" content="由于网易云音乐版权问题，已无法外链，处理中…">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-23T17:03:06.716Z">
+<meta property="og:updated_time" content="2019-03-14T07:31:59.363Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="My Music">
-<meta name="twitter:description" content="由于网易云音乐版权问题，已无法外链，处理中…">
 
 
 
@@ -179,6 +176,9 @@
   </style>
 </noscript>
 
+<link rel="stylesheet" href="/assets/css/APlayer.min.css" class="aplayer-style-marker">
+<script src="/assets/js/APlayer.min.js" class="aplayer-script-marker"></script>
+<script src="/assets/js/Meting.min.js" class="meting-script-marker"></script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -462,9 +462,8 @@
       <div class="post-body">
         
         
-          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="450" src="//music.163.com/outchain/player?type=0&id=2678378146&auto=1&height=430"></iframe>
-
-<p>由于网易云音乐版权问题，已无法外链，处理中…</p>
+          
+    <div id="aplayer-CkSmPHqg" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="2678378146" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="true" data-mutex="false" data-listmaxheight="340px" data-preload="none" data-theme="#ad7a86"></div>
 
         
       </div>
@@ -1222,7 +1221,18 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(bp, s);
     })();
+
+    $(document).on('pjax:start', function () {
+        if (window.aplayers) {
+            for (let i = 0; i < window.aplayers.length; i++) {
+                window.aplayers[i].destroy();
+            }
+            window.aplayers = [];
+        }
+    });
     </script>
+
+
 </body>
 </html>
 

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhulni.github.io/music/index.html</loc>
+    
+    <lastmod>2019-03-14T07:31:59.363Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhulni.github.io/2019/03/12/jQuery/Mulselect/</loc>
     
     <lastmod>2019-03-12T13:13:08.034Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>https://zhulni.github.io/records/index.html</loc>
     
     <lastmod>2019-02-25T09:42:13.633Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhulni.github.io/music/index.html</loc>
-    
-    <lastmod>2019-02-23T17:03:06.716Z</lastmod>
     
   </url>
   
