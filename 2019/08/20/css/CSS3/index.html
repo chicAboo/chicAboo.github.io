@@ -122,7 +122,7 @@
 <meta property="og:description" content="CSS3整理归类&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CSS3新增了很多模块，比较重要的模块有：  选择器盒模型背景和边框蚊子特效2D和3D转化动画多列布局用户界面  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;此文章主要表达常用CSS3的模块的定义，涉及一些简单例子。 一、border-radius 圆角定义：1border-radi">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://zhulni.github.io/images/css/br.png">
-<meta property="og:updated_time" content="2019-08-20T07:48:35.389Z">
+<meta property="og:updated_time" content="2019-08-21T03:44:40.696Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS3">
 <meta name="twitter:description" content="CSS3整理归类&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CSS3新增了很多模块，比较重要的模块有：  选择器盒模型背景和边框蚊子特效2D和3D转化动画多列布局用户界面  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;此文章主要表达常用CSS3的模块的定义，涉及一些简单例子。 一、border-radius 圆角定义：1border-radi">
@@ -469,12 +469,24 @@
                 
               
 
-              <time title="创建时间：2019-08-20 10:09:51 / 修改时间：15:48:35" itemprop="dateCreated datePublished" datetime="2019-08-20T10:09:51+08:00">2019-08-20</time>
+              <time title="创建时间：2019-08-20 10:09:51" itemprop="dateCreated datePublished" datetime="2019-08-20T10:09:51+08:00">2019-08-20</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-21 11:44:40" itemprop="dateModified" datetime="2019-08-21T11:44:40+08:00">2019-08-21</time>
               
             
           </span>
@@ -586,11 +598,23 @@
 <p>使用多个颜色点       background: linear-gradient(red, green, blue);<br>使用透明度          background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));<br>重复的线性渐变       background: repeating-linear-gradient(red, yellow 10%, green 20%);<br>重复的径向渐变       background: repeating-radial-gradient(red, yellow 10%, green 15%);<br>设置形状            background: radial-gradient(circle, red, yellow, green);</p>
 </blockquote>
 <hr>
-<h3 id="四、transform-2D转换"><a href="#四、transform-2D转换" class="headerlink" title="四、transform 2D转换"></a>四、transform 2D转换</h3><p>CSS3转换可以对元素进行移动、缩放、转动、拉长或拉伸。方法有：</p>
+<h3 id="四、transform"><a href="#四、transform" class="headerlink" title="四、transform"></a>四、transform</h3><p>CSS3转换可以对元素进行移动、缩放、转动、拉长或拉伸。方法有：</p>
 <blockquote>
-<p>translate(x, y)： 根据左侧(x轴)和顶部(y轴)位置给定的参数，从当前元素位置移动。如translate(100px, 200px)从左侧开始向右移动100px,从顶部开始向下移动200px;<br>rotate(angle)：给定度数顺时针旋转，如果是负数，则逆时针旋转指定角度。如rotate(30deg)表示顺时针旋转30度。<br>scale(x, y)：该元素增加和减少的大小，取决于x轴和y轴的参数。如scale(2, 3)表示宽度扩展为原来的两倍<br>skew(<angle>, [<angle>])：分别表示x轴和y轴的倾斜度，第二个参数默认为0,负数为反方向倾斜<br>skewX(<angle>): x轴的倾斜度<br>skewY(<angle>): y轴的倾斜度<br>matrix(): 有六个参数，包含旋转，缩放，移动（平移）和倾斜功能</angle></angle></angle></angle></p>
+<p>translate(x, y)： 根据左侧(x轴)和顶部(y轴)位置给定的参数，从当前元素位置移动。如translate(100px, 200px)从左侧开始向右移动100px,从顶部开始向下移动200px;<br>translate3D(x, y, z): 给定x，y，z参数，从当前位置移动。<br>rotate(angle)：给定度数顺时针旋转，如果是负数，则逆时针旋转指定角度。如rotate(30deg)表示顺时针旋转30度。<br>rotate3D(x, y, z, angle)：3D旋转<br>scale(x, y)：该元素增加和减少的大小，取决于x轴和y轴的参数。如scale(2, 3)表示宽度扩展为原来的两倍<br>scale3D(x, y, z)： 3D缩放转换<br>skew(<angle>, [<angle>])：分别表示x轴和y轴的倾斜度，第二个参数默认为0,负数为反方向倾斜<br>skewX(<angle>): x轴的倾斜度<br>skewY(<angle>): y轴的倾斜度<br>matrix(): 有六个参数，包含旋转，缩放，移动（平移）和倾斜功能<br>perspective(n): 为3D转换元素定义透视视图</angle></angle></angle></angle></p>
 </blockquote>
 <hr>
+<h3 id="五、transition-过渡"><a href="#五、transition-过渡" class="headerlink" title="五、transition 过渡"></a>五、transition 过渡</h3><p>过渡是指从一种样式逐渐改变为另一种样式的效果。<br>过渡属性：</p>
+<blockquote>
+<p>transition-property: 过渡的css属性名称<br>transition-duration: 过渡所花费的时间，默认为0<br>transition-timing-function: 过渡效果的时间曲线，默认为”ease”（linear | ease | ease-in | ease-out | ease-in-out）<br>transition-delay: 延时多久开始过渡，即过渡效果的开始时间。<br>简写方式：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transition: <span class="keyword">property</span><span class="title"> </span>duration timing delay</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>例：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">background</span>: red;</span><br><span class="line">    <span class="attribute">transition</span>: width <span class="number">1s</span>;</span><br><span class="line"></span><br><span class="line">    &amp;:hover &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="六、animation-动画"><a href="#六、animation-动画" class="headerlink" title="六、animation 动画"></a>六、animation 动画</h3><p>在说动画之前，首先要知道@keyframes的规则，@keyframes规则能创建动画，原理是将一套css样式转化为另外一套样式，从而达到动画的效果。首先开个例子：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> move &#123; <span class="comment">// move自定义名称</span></span><br><span class="line">    <span class="attribute">from</span>: &#123;<span class="attribute">top</span>: <span class="number">0</span>&#125;,</span><br><span class="line">    <span class="attribute">to</span>: &#123;<span class="attribute">top</span>: <span class="number">200px</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> move_percent &#123;</span><br><span class="line">    <span class="selector-tag">0%</span>: &#123;<span class="attribute">left</span>: <span class="number">0</span>&#125;</span><br><span class="line">    <span class="selector-tag">10%</span>: &#123;<span class="attribute">left</span>: <span class="number">20px</span>&#125;</span><br><span class="line">    <span class="selector-tag">30%</span>: &#123;<span class="attribute">left</span>: <span class="number">50px</span>&#125;</span><br><span class="line">    <span class="selector-tag">50%</span>: &#123;<span class="attribute">left</span>: <span class="number">100px</span>&#125;</span><br><span class="line">    <span class="selector-tag">100%</span>: &#123;<span class="attribute">left</span>: <span class="number">200px</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>了解完@keyframes后，再来看看animation，animation的属性：</p>
+<blockquote>
+<p>animation-name: keyframes的名称<br>animation-duration: 完成一周动画所花费的秒或毫秒，默认为0<br>animation-timing-function: 过渡效果的时间曲线,默认为ease（linear | ease | ease-in | ease-out | ease-in-out）<br>animation-delay: 规定动画何时开始，默认为0<br>animation-iteration-count: 规定动画被播放的次数，默认为1<br>animation-direction: 规定动画是否在下一周期逆向地播放。默认是 “normal”（normal | alternate）<br>animation-play-state: 规定动画正在运行还是暂停，默认”running”（paused | running）<br>animation-animation-fill-mode : 规定对象动画时间之外的状态。(none | forwards | backwards | both)</p>
+</blockquote>
+<p>动画属性的简写：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">animation: <span class="built_in">name</span> duration timing <span class="built_in">delay</span> iteration direction play fill</span><br></pre></td></tr></table></figure></p>
+<p>例：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">keyframes</span> dropdown &#123;</span><br><span class="line">    0% &#123; <span class="attribute">margin-top</span>: <span class="number">0px</span>;&#125;</span><br><span class="line">   <span class="comment">/** 暂停效果 */</span></span><br><span class="line">   10% &#123; <span class="attribute">margin-top</span>: <span class="number">0px</span>;&#125;</span><br><span class="line">   50% &#123; <span class="attribute">margin-top</span>: -<span class="number">100px</span>;&#125;</span><br><span class="line">   60% &#123; <span class="attribute">margin-top</span>: -<span class="number">100px</span>;&#125;</span><br><span class="line">   90% &#123; <span class="attribute">margin-top</span>: -<span class="number">200px</span>;&#125;</span><br><span class="line">  100% &#123; <span class="attribute">margin-top</span>: -<span class="number">200px</span>;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.list</span> <span class="selector-tag">div</span><span class="selector-pseudo">:first-child</span> &#123;</span><br><span class="line"> <span class="attribute">animation</span>: dropdown <span class="number">8s</span> linear infinite;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -906,7 +930,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS3整理归类"><span class="nav-text">CSS3整理归类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、border-radius-圆角"><span class="nav-text">一、border-radius 圆角</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、background背景"><span class="nav-text">二、background背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、gradients渐变"><span class="nav-text">三、gradients渐变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、transform-2D转换"><span class="nav-text">四、transform 2D转换</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS3整理归类"><span class="nav-text">CSS3整理归类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、border-radius-圆角"><span class="nav-text">一、border-radius 圆角</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、background背景"><span class="nav-text">二、background背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、gradients渐变"><span class="nav-text">三、gradients渐变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、transform"><span class="nav-text">四、transform</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、transition-过渡"><span class="nav-text">五、transition 过渡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、animation-动画"><span class="nav-text">六、animation 动画</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -956,7 +980,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共 22.7k 字</span>
+  <span class="post-count">博客全站共 23.2k 字</span>
 </div>
 
 
