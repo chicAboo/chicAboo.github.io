@@ -752,6 +752,13 @@ pre .javascript .function {
 .page-post-detail .post-type-quote blockquote div {
   text-align: center;
 }
+.post-block blockquote {
+  margin: 1rem 0;
+  color: #819198;
+  border-left: 0.2rem solid #4285f4;
+  background: #f2f5f9;
+  padding: 0.8rem 1.2rem;
+}
 .post .post-body .group-picture img {
   box-sizing: border-box;
   padding: 0 3px;
@@ -2009,7 +2016,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fff;
+  background: #f77971;
 }
 .links-of-blogroll {
   font-size: 13px;
