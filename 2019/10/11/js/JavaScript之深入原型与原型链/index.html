@@ -126,7 +126,7 @@
 <meta property="og:image" content="https://zhulni.github.io/images/js/原型与原型链/构造函数、实例与原型对象.jpg">
 <meta property="og:image" content="https://zhulni.github.io/images/js/原型与原型链/原型链1.jpg">
 <meta property="og:image" content="https://zhulni.github.io/images/js/原型与原型链/原型链2.jpg">
-<meta property="og:updated_time" content="2020-06-19T04:16:46.427Z">
+<meta property="og:updated_time" content="2020-06-30T09:14:30.903Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript之深入原型与原型链">
 <meta name="twitter:description" content="一、前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;天、惊雷一声，响彻神州大地，凄厉厉的大雨瞬间而至，街上行色匆匆，视线所致，一辆辆车，五颜六色的伞，夹杂着各色水声，来了又走，而留下的只有你形单影只。如人生一般，身边总有那么多的人来了又走……&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;因项目增多，缺乏人手，最近面了一些工作多年的面试者，普遍现">
@@ -490,7 +490,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-06-19 12:16:46" itemprop="dateModified" datetime="2020-06-19T12:16:46+08:00">2020-06-19</time>
+                <time title="修改时间：2020-06-30 17:14:30" itemprop="dateModified" datetime="2020-06-30T17:14:30+08:00">2020-06-30</time>
               
             
           </span>
@@ -573,6 +573,7 @@
 <h6 id="4）、in操作符"><a href="#4）、in操作符" class="headerlink" title="4）、in操作符"></a>4）、in操作符</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>in</code>操作符访问给定属性会返回true，无论该属性在原型对象上还是在构造函数上。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Person.prototype.age = <span class="number">35</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> Person();</span><br><span class="line">p.name = <span class="string">'zhangSan'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'name'</span> <span class="keyword">in</span> p); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'age'</span> <span class="keyword">in</span> p); <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
 <p>从上面看，同时使用in和hasOwnProperty()可判断一个属性在原型对象上，只需该属性在hasOwnProperty上为false，在in上为true即可，封装如下：<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">function</span> <span class="title">hasOwnProtorypeProperty</span>(object, name) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">!object.hasOwnProperty(name)</span> &amp;&amp; (name <span class="keyword">in</span> object);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="5、结语"><a href="#5、结语" class="headerlink" title="5、结语"></a>5、结语</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;到此，已写完了，构造函数、原型、实例及之间的关系，同时通过实例指向原型对象的内部指针，一直到顶层Object.prototype，构成原型链。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若文章中有不对的地方，欢迎指出。</p>
+<p>Git地址：<a href="https://github.com/zhuLni/zt-blogs" target="_blank" rel="noopener">JavaScript</a></p>
 
       
     </div>
@@ -636,6 +637,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/30/js/JavaScript之深入多种种继承方式及优缺点/" rel="prev" title="JavaScript之深入多种种继承方式及优缺点">
+                JavaScript之深入多种种继承方式及优缺点 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -714,7 +719,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
