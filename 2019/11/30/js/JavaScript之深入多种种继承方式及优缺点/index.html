@@ -113,27 +113,25 @@
 
 
 
-  <meta name="description" content="CSS3整理归类&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CSS3新增了很多模块，比较重要的模块有：  选择器盒模型背景和边框蚊子特效2D和3D转化动画多列布局用户界面  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;此文章主要表达常用CSS3的模块的定义，涉及一些简单例子。 一、border-radius 圆角定义：1border-radi">
-<meta name="keywords" content="css3">
+  <meta name="description" content="一、前言上一篇文章讲解了JavaScript之深入原型与原型链，继承本质就是在构造函数和原型上进行一系列的操作，以达到子类能访问到父类的属性和方法。下面会介绍多种继承方式，及每种继承的优缺点。 二、构造函数继承构造函数的继承使用.call()或.apply()方法，在子类中调用父类的构造函数，本质上是在子类中引用父类的构造函数，初始化父类构造函数。代码如下123456789101112131415">
+<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS3">
-<meta property="og:url" content="https://zhulni.github.io/2019/08/20/css/CSS3/index.html">
+<meta property="og:title" content="JavaScript之深入多种种继承方式及优缺点">
+<meta property="og:url" content="https://zhulni.github.io/2019/11/30/js/JavaScript之深入多种种继承方式及优缺点/index.html">
 <meta property="og:site_name" content="Mr.Zhu">
-<meta property="og:description" content="CSS3整理归类&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CSS3新增了很多模块，比较重要的模块有：  选择器盒模型背景和边框蚊子特效2D和3D转化动画多列布局用户界面  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;此文章主要表达常用CSS3的模块的定义，涉及一些简单例子。 一、border-radius 圆角定义：1border-radi">
+<meta property="og:description" content="一、前言上一篇文章讲解了JavaScript之深入原型与原型链，继承本质就是在构造函数和原型上进行一系列的操作，以达到子类能访问到父类的属性和方法。下面会介绍多种继承方式，及每种继承的优缺点。 二、构造函数继承构造函数的继承使用.call()或.apply()方法，在子类中调用父类的构造函数，本质上是在子类中引用父类的构造函数，初始化父类构造函数。代码如下123456789101112131415">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://zhulni.github.io/images/css/br.png">
-<meta property="og:updated_time" content="2019-08-21T03:44:40.696Z">
+<meta property="og:updated_time" content="2020-07-07T08:03:25.743Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS3">
-<meta name="twitter:description" content="CSS3整理归类&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CSS3新增了很多模块，比较重要的模块有：  选择器盒模型背景和边框蚊子特效2D和3D转化动画多列布局用户界面  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;此文章主要表达常用CSS3的模块的定义，涉及一些简单例子。 一、border-radius 圆角定义：1border-radi">
-<meta name="twitter:image" content="https://zhulni.github.io/images/css/br.png">
+<meta name="twitter:title" content="JavaScript之深入多种种继承方式及优缺点">
+<meta name="twitter:description" content="一、前言上一篇文章讲解了JavaScript之深入原型与原型链，继承本质就是在构造函数和原型上进行一系列的操作，以达到子类能访问到父类的属性和方法。下面会介绍多种继承方式，及每种继承的优缺点。 二、构造函数继承构造函数的继承使用.call()或.apply()方法，在子类中调用父类的构造函数，本质上是在子类中引用父类的构造函数，初始化父类构造函数。代码如下123456789101112131415">
 
 
 
 
 
 
-  <link rel="canonical" href="https://zhulni.github.io/2019/08/20/css/CSS3/">
+  <link rel="canonical" href="https://zhulni.github.io/2019/11/30/js/JavaScript之深入多种种继承方式及优缺点/">
 
 
 
@@ -143,7 +141,7 @@
   };
 </script>
 
-  <title>CSS3 | Mr.Zhu</title>
+  <title>JavaScript之深入多种种继承方式及优缺点 | Mr.Zhu</title>
   
 
 
@@ -426,7 +424,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhulni.github.io/2019/08/20/css/CSS3/">
+    <link itemprop="mainEntityOfPage" href="https://zhulni.github.io/2019/11/30/js/JavaScript之深入多种种继承方式及优缺点/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Zhu">
@@ -443,7 +441,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CSS3
+          <h1 class="post-title" itemprop="name headline">JavaScript之深入多种种继承方式及优缺点
 
               
             
@@ -469,7 +467,7 @@
                 
               
 
-              <time title="创建时间：2019-08-20 10:09:51" itemprop="dateCreated datePublished" datetime="2019-08-20T10:09:51+08:00">2019-08-20</time>
+              <time title="创建时间：2019-11-30 14:55:50" itemprop="dateCreated datePublished" datetime="2019-11-30T14:55:50+08:00">2019-11-30</time>
             
 
             
@@ -486,7 +484,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-21 11:44:40" itemprop="dateModified" datetime="2019-08-21T11:44:40+08:00">2019-08-21</time>
+                <time title="修改时间：2020-07-07 16:03:25" itemprop="dateModified" datetime="2020-07-07T16:03:25+08:00">2020-07-07</time>
               
             
           </span>
@@ -503,7 +501,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/css3/" itemprop="url" rel="index"><span itemprop="name">css3</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
 
                 
                 
@@ -545,76 +543,28 @@
       
 
       
-        <h1 id="CSS3整理归类"><a href="#CSS3整理归类" class="headerlink" title="CSS3整理归类"></a>CSS3整理归类</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSS3新增了很多模块，比较重要的模块有：</p>
-<blockquote>
-<p>选择器<br>盒模型<br>背景和边框<br>蚊子特效<br>2D和3D转化<br>动画<br>多列布局<br>用户界面</p>
-</blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此文章主要表达常用CSS3的模块的定义，涉及一些简单例子。</p>
-<h3 id="一、border-radius-圆角"><a href="#一、border-radius-圆角" class="headerlink" title="一、border-radius 圆角"></a>一、border-radius 圆角</h3><p>定义：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">border-radius: </span>a <span class="keyword">b </span>c d</span><br></pre></td></tr></table></figure></p>
-<p>a、b、c、d分别表示对应位置的圆角，a表示：左上，b表示：右上，c表示：右下，d表示：左下。</p>
-<p>如果border-radius只有三个值，如下：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">border-radius: </span>a <span class="keyword">b </span>c</span><br></pre></td></tr></table></figure></p>
-<p>a表示：左上，b表示：右上和左下， c表示：右下</p>
-<p>如果order-radius只有两个值，如下：<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">border</span>-<span class="built_in">radius</span>: a b</span><br></pre></td></tr></table></figure></p>
-<p>a表示：左上和右下， b表示：右上和左下</p>
-<p>如果border-radius只有一个值，如下：<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">border</span>-<span class="built_in">radius</span>: a</span><br></pre></td></tr></table></figure></p>
-<p>a表示: 四个圆角值相同</p>
-<p>border-radius可以单独表示每一个圆角：</p>
-<blockquote>
-<p>border-top-left-radius: a         左上<br>border-top-right-radius: a        右上<br>border-bottom-right-radius: a     右下<br>border-bottom-left-radius: a      左下</p>
-</blockquote>
-<p>例：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">div</span> class=<span class="string">"box"</span>&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        <span class="selector-class">.box</span> &#123;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">            <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span><br><span class="line">            <span class="comment">/*border-radius: 5px 10px 20px 30px;*/</span></span><br><span class="line">            <span class="comment">/*border-radius: 5px 10px 20px;*/</span></span><br><span class="line">            <span class="comment">/*border-radius: 5px 10px;*/</span></span><br><span class="line">            <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="/images/css/br.png" alt="一个参数"></p>
-<hr>
-<h3 id="二、background背景"><a href="#二、background背景" class="headerlink" title="二、background背景"></a>二、background背景</h3><p>CSS3中为background提供了几种背景属性</p>
-<blockquote>
-<p>background-image: url(“图片地址1”), url(“图片地址2”)…  添加背景图片,多个图片用都好分隔，显示在最顶端的为第一张<br>background-size: length | percentage | cover | contain;   指定背景图片的大小<br>background-repeat: no-repeat   不重复<br>background-origin: content-box | padding-box | border-box 指定背景图片的位置区域<br>background-clip: content-box | padding-box | border-box 指定背景的绘制区域</p>
-</blockquote>
-<p>background-size：</p>
-<blockquote>
-<p>length: 设置背景图片的宽度和高度，第一个参数为宽度，第二个为高度,如果只给第一个值，第二个为auto<br>percentage: 相对于背景定位区域的百分比，第一个百分比为宽度，第二个为高度，只有第一个值，第二个为auto<br>cover：将图片缩放成完全覆盖定位区域的大小<br>contain: 将图片的缩放成适合背景定位区域的大小</p>
-</blockquote>
-<p>background-origin:</p>
-<blockquote>
-<p>padding-box: 背景图片填充框的相对位置<br>border-box: 背景图片边界框的相对位置<br>content-box: 背景图片相对位置的内容框</p>
-</blockquote>
-<p>background-clip:</p>
-<blockquote>
-<p>padding-box: 背景绘制在内边距方框内<br>border-box: 背景绘制在边框方框内<br>content-box: 被景绘制在内容区方框内</p>
-</blockquote>
-<hr>
-<h3 id="三、gradients渐变"><a href="#三、gradients渐变" class="headerlink" title="三、gradients渐变"></a>三、gradients渐变</h3><p>CSS3提供的渐变可以让两个或多个指定颜色平稳过渡，有两种类型的渐变：</p>
-<blockquote>
-<p>线性渐变(linear-gradient)：向下 | 向上 | 向左 | 向右 方向渐变<br>径向渐变(radial-gradient)：有中心定义开始渐变</p>
-</blockquote>
-<p>线性渐变：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">linear-gradient</span><span class="params">(direction, color1, color2...)</span></span></span><br></pre></td></tr></table></figure></p>
-<p>direction:</p>
-<blockquote>
-<p>to right 从左向右<br>to left 从右向左<br>to bottom right 从左上到右下<br>……</p>
-</blockquote>
-<p>径向渐变：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">radial-gradient</span><span class="params">(angle, color1, color2...)</span></span></span><br></pre></td></tr></table></figure></p>
-<p>angle表示角度，指水平线和渐变线之间的角度，逆时针方向计算。</p>
-<p>其他功能：</p>
-<blockquote>
-<p>使用多个颜色点       background: linear-gradient(red, green, blue);<br>使用透明度          background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));<br>重复的线性渐变       background: repeating-linear-gradient(red, yellow 10%, green 20%);<br>重复的径向渐变       background: repeating-radial-gradient(red, yellow 10%, green 15%);<br>设置形状            background: radial-gradient(circle, red, yellow, green);</p>
-</blockquote>
-<hr>
-<h3 id="四、transform"><a href="#四、transform" class="headerlink" title="四、transform"></a>四、transform</h3><p>CSS3转换可以对元素进行移动、缩放、转动、拉长或拉伸。方法有：</p>
-<blockquote>
-<p>translate(x, y)： 根据左侧(x轴)和顶部(y轴)位置给定的参数，从当前元素位置移动。如translate(100px, 200px)从左侧开始向右移动100px,从顶部开始向下移动200px;<br>translate3D(x, y, z): 给定x，y，z参数，从当前位置移动。<br>rotate(angle)：给定度数顺时针旋转，如果是负数，则逆时针旋转指定角度。如rotate(30deg)表示顺时针旋转30度。<br>rotate3D(x, y, z, angle)：3D旋转<br>scale(x, y)：该元素增加和减少的大小，取决于x轴和y轴的参数。如scale(2, 3)表示宽度扩展为原来的两倍<br>scale3D(x, y, z)： 3D缩放转换<br>skew(<angle>, [<angle>])：分别表示x轴和y轴的倾斜度，第二个参数默认为0,负数为反方向倾斜<br>skewX(<angle>): x轴的倾斜度<br>skewY(<angle>): y轴的倾斜度<br>matrix(): 有六个参数，包含旋转，缩放，移动（平移）和倾斜功能<br>perspective(n): 为3D转换元素定义透视视图</angle></angle></angle></angle></p>
-</blockquote>
-<hr>
-<h3 id="五、transition-过渡"><a href="#五、transition-过渡" class="headerlink" title="五、transition 过渡"></a>五、transition 过渡</h3><p>过渡是指从一种样式逐渐改变为另一种样式的效果。<br>过渡属性：</p>
-<blockquote>
-<p>transition-property: 过渡的css属性名称<br>transition-duration: 过渡所花费的时间，默认为0<br>transition-timing-function: 过渡效果的时间曲线，默认为”ease”（linear | ease | ease-in | ease-out | ease-in-out）<br>transition-delay: 延时多久开始过渡，即过渡效果的开始时间。<br>简写方式：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transition: <span class="keyword">property</span><span class="title"> </span>duration timing delay</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p>例：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">background</span>: red;</span><br><span class="line">    <span class="attribute">transition</span>: width <span class="number">1s</span>;</span><br><span class="line"></span><br><span class="line">    &amp;:hover &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="六、animation-动画"><a href="#六、animation-动画" class="headerlink" title="六、animation 动画"></a>六、animation 动画</h3><p>在说动画之前，首先要知道@keyframes的规则，@keyframes规则能创建动画，原理是将一套css样式转化为另外一套样式，从而达到动画的效果。首先开个例子：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> move &#123; <span class="comment">// move自定义名称</span></span><br><span class="line">    <span class="attribute">from</span>: &#123;<span class="attribute">top</span>: <span class="number">0</span>&#125;,</span><br><span class="line">    <span class="attribute">to</span>: &#123;<span class="attribute">top</span>: <span class="number">200px</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> move_percent &#123;</span><br><span class="line">    <span class="selector-tag">0%</span>: &#123;<span class="attribute">left</span>: <span class="number">0</span>&#125;</span><br><span class="line">    <span class="selector-tag">10%</span>: &#123;<span class="attribute">left</span>: <span class="number">20px</span>&#125;</span><br><span class="line">    <span class="selector-tag">30%</span>: &#123;<span class="attribute">left</span>: <span class="number">50px</span>&#125;</span><br><span class="line">    <span class="selector-tag">50%</span>: &#123;<span class="attribute">left</span>: <span class="number">100px</span>&#125;</span><br><span class="line">    <span class="selector-tag">100%</span>: &#123;<span class="attribute">left</span>: <span class="number">200px</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>了解完@keyframes后，再来看看animation，animation的属性：</p>
-<blockquote>
-<p>animation-name: keyframes的名称<br>animation-duration: 完成一周动画所花费的秒或毫秒，默认为0<br>animation-timing-function: 过渡效果的时间曲线,默认为ease（linear | ease | ease-in | ease-out | ease-in-out）<br>animation-delay: 规定动画何时开始，默认为0<br>animation-iteration-count: 规定动画被播放的次数，默认为1<br>animation-direction: 规定动画是否在下一周期逆向地播放。默认是 “normal”（normal | alternate）<br>animation-play-state: 规定动画正在运行还是暂停，默认”running”（paused | running）<br>animation-animation-fill-mode : 规定对象动画时间之外的状态。(none | forwards | backwards | both)</p>
-</blockquote>
-<p>动画属性的简写：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">animation: <span class="built_in">name</span> duration timing <span class="built_in">delay</span> iteration direction play fill</span><br></pre></td></tr></table></figure></p>
-<p>例：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">keyframes</span> dropdown &#123;</span><br><span class="line">    0% &#123; <span class="attribute">margin-top</span>: <span class="number">0px</span>;&#125;</span><br><span class="line">   <span class="comment">/** 暂停效果 */</span></span><br><span class="line">   10% &#123; <span class="attribute">margin-top</span>: <span class="number">0px</span>;&#125;</span><br><span class="line">   50% &#123; <span class="attribute">margin-top</span>: -<span class="number">100px</span>;&#125;</span><br><span class="line">   60% &#123; <span class="attribute">margin-top</span>: -<span class="number">100px</span>;&#125;</span><br><span class="line">   90% &#123; <span class="attribute">margin-top</span>: -<span class="number">200px</span>;&#125;</span><br><span class="line">  100% &#123; <span class="attribute">margin-top</span>: -<span class="number">200px</span>;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.list</span> <span class="selector-tag">div</span><span class="selector-pseudo">:first-child</span> &#123;</span><br><span class="line"> <span class="attribute">animation</span>: dropdown <span class="number">8s</span> linear infinite;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>上一篇文章讲解了<a href="https://github.com/zhuLni/zt-blogs/issues/1#issue-647957995" target="_blank" rel="noopener">JavaScript之深入原型与原型链</a>，继承本质就是在构造函数和原型上进行一系列的操作，以达到子类能访问到父类的属性和方法。下面会介绍多种继承方式，及每种继承的优缺点。</p>
+<h3 id="二、构造函数继承"><a href="#二、构造函数继承" class="headerlink" title="二、构造函数继承"></a>二、构造函数继承</h3><p>构造函数的继承使用<code>.call()</code>或<code>.apply()</code>方法，在子类中调用父类的构造函数，本质上是在子类中引用父类的构造函数，初始化父类构造函数。代码如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.show = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`构造函数中的方法：<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.showName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`原型链上的方法： <span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span>`</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Man</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    Person.call(<span class="keyword">this</span>, name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> m = <span class="keyword">new</span> Man(<span class="string">'chicABoo'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(m <span class="keyword">instanceof</span> Man);  <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(m <span class="keyword">instanceof</span> Person); <span class="comment">// false</span></span><br><span class="line">m.show(); <span class="comment">// 构造函数中的方法：chicABoo</span></span><br><span class="line">m.showName(); <span class="comment">// typeError: m.showName is not a function</span></span><br></pre></td></tr></table></figure></p>
+<p>上面的代码定义了一个Person构造函数，Person中有属性name和show方法，Person的原型对象上定义了showName方法；构造函数Man中通过.call()的方法，初始化了父类的构造函数，即能Man继承了父类的构造函数。<br>优点：<br>1、子类能成功继承到父类的构造函数；<br>2、子类能继承多个父类的构造函数；<br>3、可以通过call或apply方法向父类传参；</p>
+<p>缺点：<br>1、只能继承到父类构造函数的属性和方法，无法继承原型链上的属性和方法；<br>2、每个新的实例都会创建父类的副本；<br>3、无法实现构造函数的复用，每次都要调用；</p>
+<h3 id="三、原型链继承"><a href="#三、原型链继承" class="headerlink" title="三、原型链继承"></a>三、原型链继承</h3><p>原型链继承的方式，通过子类的原型对象去指向父类的实例，这样能继承到父类原型链上的属性和方法，代码如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Person.prototype.name = <span class="string">'chicAboo'</span>;</span><br><span class="line">Person.prototype.showName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Man</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Man.prototype = <span class="keyword">new</span> Person(); <span class="comment">// 关键代码</span></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> Person();</span><br><span class="line">p.age = <span class="number">35</span>;</span><br><span class="line"><span class="keyword">const</span> m = <span class="keyword">new</span> Man();</span><br><span class="line">m.showName(); <span class="comment">// chicAboo</span></span><br><span class="line"><span class="built_in">console</span>.log(m <span class="keyword">instanceof</span> Man);  <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(m <span class="keyword">instanceof</span> Person); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(m.age); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure></p>
+<p>原型链继承，通过子类的原型对象等于父类的实例，实现继承。<br>优点：<br>1、子类可继承父类构造函数中的属性、原型链上的属性和方法。</p>
+<p>缺点：<br>1、子类创建的实例无法向父类传参；<br>2、父类引用类型的属性被所有实例所共享；如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Person.prototype.names = [];</span><br><span class="line">Person.prototype.showName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.names);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Man</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Man.prototype = <span class="keyword">new</span> Person(); <span class="comment">// 关键代码</span></span><br><span class="line"><span class="keyword">const</span> m1 = <span class="keyword">new</span> Man();</span><br><span class="line">m1.names.push(<span class="string">'张三'</span>);</span><br><span class="line"><span class="keyword">const</span> m2 = <span class="keyword">new</span> Man();</span><br><span class="line">m2.showName(); <span class="comment">// ['张三']</span></span><br></pre></td></tr></table></figure>
+<p>从上面例子能看到，在父类Person的原型链上是引用类型即时，在子类实例m1上push一个值，m2也能访问。</p>
+<h3 id="三、组合继承"><a href="#三、组合继承" class="headerlink" title="三、组合继承"></a>三、组合继承</h3><p>原型链继承和构造函数继承，都存在致命的缺点，原型链继承不能传参、原型链上属性为引用类型时会被所有的实例所共享；构造函数继承，只能继承到构造函数的属性和方法，每次创建实例，父类都重新生成一遍。为了解决这些问题，将它们组合起来使用，便解决了这些问题，同时组合继承也是JavaScript最常用的继承方式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.names = [];</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.showName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Man</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    Person.call(<span class="keyword">this</span>, name);</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line">Man.prototype.showAge = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.age);</span><br><span class="line">&#125;;</span><br><span class="line">Man.prototype = <span class="keyword">new</span> Person; <span class="comment">// 原型链继承关键代码</span></span><br><span class="line">Man.prototype.constructor = Man; <span class="comment">// Man的原型对象的constructor指向Person，需手动指回来</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> m1 = <span class="keyword">new</span> Man(<span class="string">'张三'</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">const</span> m2 = <span class="keyword">new</span> Man(<span class="string">'李四'</span>, <span class="number">25</span>);</span><br><span class="line">m1.names.push(<span class="number">100</span>);</span><br><span class="line"><span class="built_in">console</span>.log(m2.names); <span class="comment">// []</span></span><br></pre></td></tr></table></figure></p>
+<p>优点：<br>1、结合了前两种构造函数的优点，构造函数继承传参和原型链继承复用；<br>2、每个实例引用的构造函数属性都是私有的；</p>
+<p>缺点：<br>1、调用了两次父类构造函数，Person.call(this)和Man.prototype = new Person()<br>2、子类上的构造函数会代替父类原型链上的构造函数（这不能算是缺点，上章讲过，类中查找属性和方法时，现在构造函数中查找，如果找不到，才会在原型链上查找，直到找到为止）</p>
+<h3 id="四、原型式继承"><a href="#四、原型式继承" class="headerlink" title="四、原型式继承"></a>四、原型式继承</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span><span class="params">(obj)</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">    F.prototype = obj;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> F();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用函数包装一个对象，返回这个函数的调用。ES5中Object.create的模拟实现，将传入对象作为创建对象的原型。<br>缺点：<br>1、 引用类型的属性值，会被所有的实例所共享，类似原型链。如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">obj</span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">    F.prototype = obj;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> F();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    name: <span class="string">'chicABoo'</span>,</span><br><span class="line">    names: [<span class="string">'zs'</span>, <span class="string">'ls'</span>]</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> c1 = create(obj);</span><br><span class="line"><span class="keyword">const</span> c2 = create(obj);</span><br><span class="line">c1.names.push(<span class="string">'ww'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(c2.names); <span class="comment">// ['zs', 'ls', 'ww]</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="五、寄生式继承"><a href="#五、寄生式继承" class="headerlink" title="五、寄生式继承"></a>五、寄生式继承</h3><p>创建一个用于继承过程的封装函数，该函数内部以某种形式来做增强函数，返回该对象。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createObj</span> <span class="params">(obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">clone</span> = Object.create(obj);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">clone</span>.show = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        console.log(<span class="string">'something...'</span>);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">clone</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这种方式类似构造函数继承，每次创建就会创建父类的构造函数。<br>缺点：<br>1、没有原型，无法复用；<br>2、每次都会创建一遍父类的构造函数；</p>
+<h3 id="六、寄生组合式继承（常用）"><a href="#六、寄生组合式继承（常用）" class="headerlink" title="六、寄生组合式继承（常用）"></a>六、寄生组合式继承（常用）</h3><p>寄生组合在继承修正了组合继承调用两次父类问题，那么如何修正的呢？先看下组合继承，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.names = [];</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.showName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Man</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    Person.call(<span class="keyword">this</span>, name); <span class="comment">// 第二次调用父类</span></span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line">Man.prototype.showAge = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.age);</span><br><span class="line">&#125;;</span><br><span class="line">Man.prototype = <span class="keyword">new</span> Person(); <span class="comment">// 第一次调用父类</span></span><br><span class="line">Man.prototype.constructor = Man;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> m1 = <span class="keyword">new</span> Man(<span class="string">'张三'</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">const</span> m2 = <span class="keyword">new</span> Man(<span class="string">'李四'</span>, <span class="number">25</span>);</span><br><span class="line">m1.names.push(<span class="number">100</span>);</span><br><span class="line"><span class="built_in">console</span>.log(m2.names); <span class="comment">// []</span></span><br></pre></td></tr></table></figure></p>
+<p>从上面的代码可以看到，子类共调用了父类两次。<br>第一次调用是子类的原型对象指向父类实例时<br><figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Man</span>.proto<span class="keyword">type</span> = new <span class="type">Person</span>()</span><br></pre></td></tr></table></figure></p>
+<p>第二次调用时子类实例时，初始化了父类<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> m1 = <span class="keyword">new</span> Man(<span class="string">'张三'</span>, <span class="number">20</span>);</span><br><span class="line"><span class="comment">// ....</span></span><br><span class="line">Person.call(<span class="keyword">this</span>, name);</span><br></pre></td></tr></table></figure></p>
+<p>借鉴寄生式继承方式，可以避免<code>Man.prototype = new Person()</code>这一次调用，封装一个函数，创建父类的副本，为副本添加构造函数，并将副本赋给子类的原型。如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inheritPrototype</span>(<span class="params">_sub, _super</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> prototype = <span class="built_in">Object</span>.create(_super.prototype); <span class="comment">// 创建Super对象原型的副本</span></span><br><span class="line">    prototype.constructor = _sub; <span class="comment">// 为创建的副本添加构造函数</span></span><br><span class="line">    _sub.prototype = prototype; <span class="comment">// 将新创建的副本赋值给子类的原型</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>完整代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.showName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Man</span> (<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    Person.call(<span class="keyword">this</span>, name);</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">inheritPrototype</span>(<span class="params">_sub, _super</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> prototype = <span class="built_in">Object</span>.create(_super.prototype); <span class="comment">// 创建Super对象原型的副本</span></span><br><span class="line">    prototype.constructor = _sub; <span class="comment">// 为创建的副本添加构造函数</span></span><br><span class="line">    _sub.prototype = prototype; <span class="comment">// 将新创建的副本赋值给子类的原型</span></span><br><span class="line">&#125;</span><br><span class="line">inheritPrototype(Man, Person);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> c1 = <span class="keyword">new</span> Man(<span class="string">'chicABoo'</span>, <span class="number">35</span>);</span><br><span class="line">c1.showName(); <span class="comment">// chicABoo</span></span><br><span class="line"><span class="built_in">console</span>.log(c1.age); <span class="comment">// 35</span></span><br><span class="line"><span class="built_in">console</span>.log(c1 <span class="keyword">instanceof</span> Man); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(c1 <span class="keyword">instanceof</span> Person); <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>借用高程上的话来说：<br>这种方式的高效率体现它只调用了一次 Parent 构造函数，并且因此避免了在 Parent.prototype 上面创建不必要的、多余的属性。与此同时，原型链还能保持不变；因此，还能够正常使用 instanceof 和 isPrototypeOf。开发人员普遍认为寄生组合式继承是引用类型最理想的继承范式。</p>
 
       
     </div>
@@ -656,7 +606,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/css3/" rel="tag"># css3</a>
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
           
         </div>
       
@@ -669,8 +619,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/15/js/Promise/" rel="next" title="Promise">
-                <i class="fa fa-chevron-left"></i> Promise
+              <a href="/2019/10/11/js/JavaScript之深入原型与原型链/" rel="next" title="JavaScript之深入原型与原型链">
+                <i class="fa fa-chevron-left"></i> JavaScript之深入原型与原型链
               </a>
             
           </div>
@@ -678,10 +628,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/11/js/JavaScript之深入原型与原型链/" rel="prev" title="JavaScript之深入原型与原型链">
-                JavaScript之深入原型与原型链 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -934,7 +880,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS3整理归类"><span class="nav-text">CSS3整理归类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、border-radius-圆角"><span class="nav-text">一、border-radius 圆角</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、background背景"><span class="nav-text">二、background背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、gradients渐变"><span class="nav-text">三、gradients渐变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、transform"><span class="nav-text">四、transform</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、transition-过渡"><span class="nav-text">五、transition 过渡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、animation-动画"><span class="nav-text">六、animation 动画</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、前言"><span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、构造函数继承"><span class="nav-text">二、构造函数继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、原型链继承"><span class="nav-text">三、原型链继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、组合继承"><span class="nav-text">三、组合继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、原型式继承"><span class="nav-text">四、原型式继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、寄生式继承"><span class="nav-text">五、寄生式继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、寄生组合式继承（常用）"><span class="nav-text">六、寄生组合式继承（常用）</span></a></li></ol></div>
             
 
           </div>
@@ -1114,7 +1060,7 @@
   
     <script>
   window.livereOptions = {
-    refer: '2019/08/20/css/CSS3/'
+    refer: '2019/11/30/js/JavaScript之深入多种种继承方式及优缺点/'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];
