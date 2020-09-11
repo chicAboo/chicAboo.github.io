@@ -4,12 +4,43 @@
   
     
     <entry>
+      <title>vsCode终端不能用yarn、npm解决办法</title>
+      <link href="/2020/09/11/others/vsCode%E7%BB%88%E7%AB%AF%E4%B8%8D%E8%83%BD%E7%94%A8yarn%E3%80%81npm%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
+      <url>/2020/09/11/others/vsCode%E7%BB%88%E7%AB%AF%E4%B8%8D%E8%83%BD%E7%94%A8yarn%E3%80%81npm%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="一、步骤"><a href="#一、步骤" class="headerlink" title="一、步骤"></a>一、步骤</h3><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、 <span class="keyword">window</span> +x</span><br><span class="line"><span class="number">2</span>、 Windw.powerShell(管理员A)</span><br><span class="line"><span class="number">3</span>、 set-ExecutionPolicy <span class="comment">RemoteSigned</span></span><br><span class="line"><span class="number">4</span>、 y</span><br><span class="line"><span class="number">5</span>、 <span class="keyword">get</span>-ExecutionPolicy</span><br></pre></td></tr></table></figure><p>如图:<br><img src="https://upload-images.jianshu.io/upload_images/12926544-770ae50c7bddaf45.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> others </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> others </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>GitHub访问慢的解决办法</title>
       <link href="/2019/12/05/others/GitHub%E8%AE%BF%E9%97%AE%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
       <url>/2019/12/05/others/GitHub%E8%AE%BF%E9%97%AE%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="1、-修改本地hosts文件"><a href="#1、-修改本地hosts文件" class="headerlink" title="1、 修改本地hosts文件"></a>1、 修改本地hosts文件</h2><p>windows系统的hosts文件的位置如下：<br><figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:<span class="symbol">\W</span>indows<span class="symbol">\S</span>ystem32<span class="symbol">\d</span>rivers<span class="symbol">\e</span>tc<span class="symbol">\h</span>osts</span><br></pre></td></tr></table></figure></p><p>mac/linux系统的hosts文件的位置如下：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/etc/</span>hosts</span><br></pre></td></tr></table></figure></p><h2 id="2、增加http-github-global-ssl-fastly-net和http-github-com的映射"><a href="#2、增加http-github-global-ssl-fastly-net和http-github-com的映射" class="headerlink" title="2、增加http://github.global.ssl.fastly.net和http://github.com的映射"></a>2、增加<code>http://github.global.ssl.fastly.net</code>和<code>http://github.com</code>的映射</h2><p>获取Github相关网站的ip</p><blockquote><p>访问<a href="https://www.ipaddress.com" target="_blank" rel="noopener">https://www.ipaddress.com</a><br>拉下来，找到页面中下方的“IP Address Tools – IP Address Lookup”<br>分别输入github.global.ssl.fastly.net和github.com，查询ip地址<br>如下<br><img src="https://upload-images.jianshu.io/upload_images/12926544-a5ddb18fcd3e2696.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p></blockquote><p>下面是我的配置<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">140<span class="selector-class">.82</span><span class="selector-class">.112</span><span class="selector-class">.4</span><span class="selector-tag">github</span><span class="selector-class">.com</span></span><br><span class="line">199<span class="selector-class">.232</span><span class="selector-class">.69</span><span class="selector-class">.194</span><span class="selector-tag">github</span><span class="selector-class">.global</span><span class="selector-class">.ssl</span><span class="selector-class">.fastly</span><span class="selector-class">.net</span></span><br></pre></td></tr></table></figure></p><h2 id="3-命令提示符中输入ping-github-com"><a href="#3-命令提示符中输入ping-github-com" class="headerlink" title="3.命令提示符中输入ping github.com"></a>3.命令提示符中输入<code>ping github.com</code></h2><p>再次访问<a href="https://github.com/" target="_blank" rel="noopener">github</a>，快了很多</p>]]></content>
       
+      
+      <categories>
+          
+          <category> others </category>
+          
+      </categories>
       
       
         <tags>
