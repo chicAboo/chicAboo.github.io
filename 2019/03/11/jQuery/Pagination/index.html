@@ -15,7 +15,7 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -117,23 +117,23 @@
 <meta name="keywords" content="自定义功能封装">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jQuery_Pagination封装">
-<meta property="og:url" content="https://zhulni.github.io/2019/03/11/jQuery/Pagination/index.html">
+<meta property="og:url" content="http://monchic.top/2019/03/11/jQuery/Pagination/index.html">
 <meta property="og:site_name" content="Mr.Zhu">
 <meta property="og:description" content="Pagination封装&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;这段时间维护以前jQuery做的网站，优化了下分页的封装，主要使用的思想：构造函数+原型链的方式，将封装好的方法挂在到jQuery和window上，先上一个图： 构造函数：123456789101112131415161718192021222324function Pagination (elemen">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://zhulni.github.io/images/jquery/pagination.jpg">
+<meta property="og:image" content="http://monchic.top/images/jquery/pagination.jpg">
 <meta property="og:updated_time" content="2019-03-12T06:23:11.459Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jQuery_Pagination封装">
 <meta name="twitter:description" content="Pagination封装&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;这段时间维护以前jQuery做的网站，优化了下分页的封装，主要使用的思想：构造函数+原型链的方式，将封装好的方法挂在到jQuery和window上，先上一个图： 构造函数：123456789101112131415161718192021222324function Pagination (elemen">
-<meta name="twitter:image" content="https://zhulni.github.io/images/jquery/pagination.jpg">
+<meta name="twitter:image" content="http://monchic.top/images/jquery/pagination.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://zhulni.github.io/2019/03/11/jQuery/Pagination/">
+  <link rel="canonical" href="http://monchic.top/2019/03/11/jQuery/Pagination/">
 
 
 
@@ -426,7 +426,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhulni.github.io/2019/03/11/jQuery/Pagination/">
+    <link itemprop="mainEntityOfPage" href="http://monchic.top/2019/03/11/jQuery/Pagination/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Zhu">
@@ -551,10 +551,10 @@
 <p>window和jQuery上扩展：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.Pagination = Pagination;</span><br><span class="line">$.fn.Pagination = <span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> pagination = <span class="keyword">new</span> Pagination(<span class="keyword">this</span>, config);</span><br><span class="line">    <span class="keyword">return</span> pagination.init();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><h6 id="1-基础分页"><a href="#1-基础分页" class="headerlink" title="1. 基础分页"></a>1. 基础分页</h6><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(</span><span class="string">'.basePagination'</span>).Pagination(&#123;</span><br><span class="line">    <span class="symbol">isJumpPage:</span> <span class="keyword">false</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p><code>isJumpPage</code>是否显示可跳转输入框，默认true</p>
-<h6 id="2-跳转指定页"><a href="#2-跳转指定页" class="headerlink" title="2. 跳转指定页"></a>2. 跳转指定页</h6><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$('.pagePagination').Pagination(&#123;</span></span><br><span class="line"><span class="attr">    currentPage:</span> <span class="number">1</span><span class="string">,</span></span><br><span class="line"><span class="attr">    numberOfPages:</span> <span class="number">3</span><span class="string">,</span></span><br><span class="line"><span class="attr">    total:</span> <span class="number">6</span><span class="string">,</span></span><br><span class="line"><span class="attr">    isJumpPage:</span> <span class="literal">true</span><span class="string">,</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
+<h6 id="2-跳转指定页"><a href="#2-跳转指定页" class="headerlink" title="2. 跳转指定页"></a>2. 跳转指定页</h6><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$('.pagePagination').Pagination(&#123;</span></span><br><span class="line">    <span class="attr">currentPage:</span> <span class="number">1</span><span class="string">,</span></span><br><span class="line">    <span class="attr">numberOfPages:</span> <span class="number">3</span><span class="string">,</span></span><br><span class="line">    <span class="attr">total:</span> <span class="number">6</span><span class="string">,</span></span><br><span class="line">    <span class="attr">isJumpPage:</span> <span class="literal">true</span><span class="string">,</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
 <p><code>currentPage</code>当前页， numberOfPages中间显示个数(只能大于3的奇数)，total总页数</p>
-<h6 id="3-文字设置"><a href="#3-文字设置" class="headerlink" title="3. 文字设置"></a>3. 文字设置</h6><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$('.setPaginationWord').Pagination(&#123;</span></span><br><span class="line"><span class="attr">    currentPage:</span> <span class="number">1</span><span class="string">,</span></span><br><span class="line"><span class="attr">    numberOfPages:</span> <span class="number">3</span><span class="string">,</span></span><br><span class="line"><span class="attr">    total:</span> <span class="number">9</span><span class="string">,</span></span><br><span class="line"><span class="attr">    isJumpPage:</span> <span class="literal">true</span><span class="string">,</span></span><br><span class="line"><span class="attr">    itemTexts:</span> <span class="string">&#123;</span></span><br><span class="line"><span class="attr">        first:</span> <span class="string">'首页'</span><span class="string">,</span></span><br><span class="line"><span class="attr">        prev:</span> <span class="string">'上一页'</span><span class="string">,</span></span><br><span class="line"><span class="attr">        next:</span> <span class="string">'下一页'</span><span class="string">,</span></span><br><span class="line"><span class="attr">        last:</span> <span class="string">'最后一页'</span></span><br><span class="line">    <span class="string">&#125;,</span></span><br><span class="line"><span class="attr">    jumpItems:</span> <span class="string">&#123;</span></span><br><span class="line"><span class="attr">        jumpTo:</span> <span class="string">'跳转到'</span><span class="string">,</span></span><br><span class="line"><span class="attr">        page:</span> <span class="string">'页'</span></span><br><span class="line">    <span class="string">&#125;,</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
-<h6 id="4-跳转回调"><a href="#4-跳转回调" class="headerlink" title="4. 跳转回调"></a>4. 跳转回调</h6><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'.jumpPaginationCallBack'</span>).Pagination(&#123;</span><br><span class="line">    currentPage: <span class="number">1</span>,</span><br><span class="line">    numberOfPages: <span class="number">3</span>,</span><br><span class="line">    total: <span class="number">12</span>,</span><br><span class="line">    isJumpPage:<span class="built_in"> true</span>,</span><br><span class="line">    itemTexts: &#123;</span><br><span class="line">        first: <span class="string">'首页'</span>,</span><br><span class="line">        prev: <span class="string">'上一页'</span>,</span><br><span class="line">        next: <span class="string">'下一页'</span>,</span><br><span class="line">       <span class="built_in"> last</span>: <span class="string">'最后一页'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    jumpItems: &#123;</span><br><span class="line">        jumpTo: <span class="string">'跳转到'</span>,</span><br><span class="line">        page: <span class="string">'页'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    onPageChanged: <span class="keyword">function</span> (<span class="keyword">option</span>, <span class="keyword">element</span>) &#123;</span><br><span class="line">        console.log(<span class="keyword">option</span>);</span><br><span class="line">        console.log(<span class="keyword">element</span>);</span><br><span class="line">        alert(`跳转到$&#123;<span class="keyword">option</span>.currentPage&#125;页`);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h6 id="3-文字设置"><a href="#3-文字设置" class="headerlink" title="3. 文字设置"></a>3. 文字设置</h6><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$('.setPaginationWord').Pagination(&#123;</span></span><br><span class="line">    <span class="attr">currentPage:</span> <span class="number">1</span><span class="string">,</span></span><br><span class="line">    <span class="attr">numberOfPages:</span> <span class="number">3</span><span class="string">,</span></span><br><span class="line">    <span class="attr">total:</span> <span class="number">9</span><span class="string">,</span></span><br><span class="line">    <span class="attr">isJumpPage:</span> <span class="literal">true</span><span class="string">,</span></span><br><span class="line">    <span class="attr">itemTexts:</span> <span class="string">&#123;</span></span><br><span class="line">        <span class="attr">first:</span> <span class="string">'首页'</span><span class="string">,</span></span><br><span class="line">        <span class="attr">prev:</span> <span class="string">'上一页'</span><span class="string">,</span></span><br><span class="line">        <span class="attr">next:</span> <span class="string">'下一页'</span><span class="string">,</span></span><br><span class="line">        <span class="attr">last:</span> <span class="string">'最后一页'</span></span><br><span class="line">    <span class="string">&#125;,</span></span><br><span class="line">    <span class="attr">jumpItems:</span> <span class="string">&#123;</span></span><br><span class="line">        <span class="attr">jumpTo:</span> <span class="string">'跳转到'</span><span class="string">,</span></span><br><span class="line">        <span class="attr">page:</span> <span class="string">'页'</span></span><br><span class="line">    <span class="string">&#125;,</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
+<h6 id="4-跳转回调"><a href="#4-跳转回调" class="headerlink" title="4. 跳转回调"></a>4. 跳转回调</h6><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$('.jumpPaginationCallBack').Pagination(&#123;</span></span><br><span class="line">    <span class="attr">currentPage:</span> <span class="number">1</span><span class="string">,</span></span><br><span class="line">    <span class="attr">numberOfPages:</span> <span class="number">3</span><span class="string">,</span></span><br><span class="line">    <span class="attr">total:</span> <span class="number">12</span><span class="string">,</span></span><br><span class="line">    <span class="attr">isJumpPage:</span> <span class="literal">true</span><span class="string">,</span></span><br><span class="line">    <span class="attr">itemTexts:</span> <span class="string">&#123;</span></span><br><span class="line">        <span class="attr">first:</span> <span class="string">'首页'</span><span class="string">,</span></span><br><span class="line">        <span class="attr">prev:</span> <span class="string">'上一页'</span><span class="string">,</span></span><br><span class="line">        <span class="attr">next:</span> <span class="string">'下一页'</span><span class="string">,</span></span><br><span class="line">        <span class="attr">last:</span> <span class="string">'最后一页'</span></span><br><span class="line">    <span class="string">&#125;,</span></span><br><span class="line">    <span class="attr">jumpItems:</span> <span class="string">&#123;</span></span><br><span class="line">        <span class="attr">jumpTo:</span> <span class="string">'跳转到'</span><span class="string">,</span></span><br><span class="line">        <span class="attr">page:</span> <span class="string">'页'</span></span><br><span class="line">    <span class="string">&#125;,</span></span><br><span class="line">    <span class="attr">onPageChanged:</span> <span class="string">function</span> <span class="string">(option,</span> <span class="string">element)</span> <span class="string">&#123;</span></span><br><span class="line">        <span class="string">console.log(option);</span></span><br><span class="line">        <span class="string">console.log(element);</span></span><br><span class="line">        <span class="string">alert(`跳转到$&#123;option.currentPage&#125;页`);</span></span><br><span class="line">    <span class="string">&#125;</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
 <p><code>isFooter</code>是否显示底部，true为显示，默认为true</p>
 <h6 id="5-参数"><a href="#5-参数" class="headerlink" title="5. 参数"></a>5. 参数</h6><table>
 <thead>
@@ -764,7 +764,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -797,7 +797,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -851,7 +853,7 @@
                   
                     
                   
-                  <a href="https://github.com/zhuLni" title="GitHub &rarr; https://github.com/zhuLni" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/chicAboo/monchic" title="GitHub &rarr; https://github.com/chicAboo/monchic" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -962,7 +964,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -992,7 +994,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共 27.1k 字</span>
+  <span class="post-count">博客全站共 29.4k 字</span>
 </div>
 
 

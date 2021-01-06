@@ -15,7 +15,7 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -117,23 +117,23 @@
 <meta name="keywords" content="自定义功能封装">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jQuery_Dialog封装">
-<meta property="og:url" content="https://zhulni.github.io/2019/03/01/jQuery/Dialog/index.html">
+<meta property="og:url" content="http://monchic.top/2019/03/01/jQuery/Dialog/index.html">
 <meta property="og:site_name" content="Mr.Zhu">
 <meta property="og:description" content="jQuery自定义Dialog封装&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;这段时间维护以前jQuery写的网站，里面涉及到很多弹框的功能，为方便使用jQuery封装了个模态框，模态框的封装主要使用构造函数和原型链结合的方式实现，然后在window和jQuery上扩展该方法，首先看一下效果： 构造函数代码：1234567891011121314151617181920">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://zhulni.github.io/images/jquery/dialog.jpg">
+<meta property="og:image" content="http://monchic.top/images/jquery/dialog.jpg">
 <meta property="og:updated_time" content="2019-03-11T06:56:52.745Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jQuery_Dialog封装">
 <meta name="twitter:description" content="jQuery自定义Dialog封装&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;这段时间维护以前jQuery写的网站，里面涉及到很多弹框的功能，为方便使用jQuery封装了个模态框，模态框的封装主要使用构造函数和原型链结合的方式实现，然后在window和jQuery上扩展该方法，首先看一下效果： 构造函数代码：1234567891011121314151617181920">
-<meta name="twitter:image" content="https://zhulni.github.io/images/jquery/dialog.jpg">
+<meta name="twitter:image" content="http://monchic.top/images/jquery/dialog.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://zhulni.github.io/2019/03/01/jQuery/Dialog/">
+  <link rel="canonical" href="http://monchic.top/2019/03/01/jQuery/Dialog/">
 
 
 
@@ -426,7 +426,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhulni.github.io/2019/03/01/jQuery/Dialog/">
+    <link itemprop="mainEntityOfPage" href="http://monchic.top/2019/03/01/jQuery/Dialog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mr.Zhu">
@@ -553,11 +553,11 @@
 <p><code>content</code>表示弹框的内容区，可自定义</p>
 <h6 id="2-基础弹框测试-内容居中"><a href="#2-基础弹框测试-内容居中" class="headerlink" title="2. 基础弹框测试(内容居中)"></a>2. 基础弹框测试(内容居中)</h6><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(</span><span class="string">'body'</span>).Dialog(&#123;</span><br><span class="line">    <span class="symbol">title:</span> <span class="string">'基础弹框(内容居中）'</span>,</span><br><span class="line">    <span class="symbol">content:</span> <span class="string">'基础弹框测试'</span>,</span><br><span class="line">    <span class="symbol">isContentCenter:</span> <span class="keyword">true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p><code>title</code>弹框的标题， isContentCenter表示是否居中，true为居中，默认为false</p>
-<h6 id="3-不显示头部弹框"><a href="#3-不显示头部弹框" class="headerlink" title="3. 不显示头部弹框"></a>3. 不显示头部弹框</h6><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$('body').Dialog(&#123;</span></span><br><span class="line"><span class="attr">    content:</span> <span class="string">'弹框测试'</span><span class="string">,</span></span><br><span class="line"><span class="attr">    isContentCenter:</span> <span class="literal">true</span><span class="string">,</span></span><br><span class="line"><span class="attr">    isHeader:</span> <span class="literal">false</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
+<h6 id="3-不显示头部弹框"><a href="#3-不显示头部弹框" class="headerlink" title="3. 不显示头部弹框"></a>3. 不显示头部弹框</h6><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$('body').Dialog(&#123;</span></span><br><span class="line">    <span class="attr">content:</span> <span class="string">'弹框测试'</span><span class="string">,</span></span><br><span class="line">    <span class="attr">isContentCenter:</span> <span class="literal">true</span><span class="string">,</span></span><br><span class="line">    <span class="attr">isHeader:</span> <span class="literal">false</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
 <p><code>isHeader</code>是否显示头部，true为显示，默认为true</p>
-<h6 id="4-不显示底部弹框"><a href="#4-不显示底部弹框" class="headerlink" title="4. 不显示底部弹框"></a>4. 不显示底部弹框</h6><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$('body').Dialog(&#123;</span></span><br><span class="line"><span class="attr">    content:</span> <span class="string">'不显示底部'</span><span class="string">,</span></span><br><span class="line"><span class="attr">    isContentCenter:</span> <span class="literal">true</span><span class="string">,</span></span><br><span class="line"><span class="attr">    isFooter:</span> <span class="literal">false</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
+<h6 id="4-不显示底部弹框"><a href="#4-不显示底部弹框" class="headerlink" title="4. 不显示底部弹框"></a>4. 不显示底部弹框</h6><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$('body').Dialog(&#123;</span></span><br><span class="line">    <span class="attr">content:</span> <span class="string">'不显示底部'</span><span class="string">,</span></span><br><span class="line">    <span class="attr">isContentCenter:</span> <span class="literal">true</span><span class="string">,</span></span><br><span class="line">    <span class="attr">isFooter:</span> <span class="literal">false</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
 <p><code>isFooter</code>是否显示底部，true为显示，默认为true</p>
-<h6 id="5-点击空白关闭弹窗"><a href="#5-点击空白关闭弹窗" class="headerlink" title="5. 点击空白关闭弹窗"></a>5. 点击空白关闭弹窗</h6><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$('body').Dialog(&#123;</span></span><br><span class="line"><span class="attr">    content:</span> <span class="string">'点击空白关闭弹窗'</span><span class="string">,</span></span><br><span class="line"><span class="attr">    isContentCenter:</span> <span class="literal">true</span><span class="string">,</span></span><br><span class="line"><span class="attr">    maskClick:</span> <span class="literal">true</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
+<h6 id="5-点击空白关闭弹窗"><a href="#5-点击空白关闭弹窗" class="headerlink" title="5. 点击空白关闭弹窗"></a>5. 点击空白关闭弹窗</h6><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">$('body').Dialog(&#123;</span></span><br><span class="line">    <span class="attr">content:</span> <span class="string">'点击空白关闭弹窗'</span><span class="string">,</span></span><br><span class="line">    <span class="attr">isContentCenter:</span> <span class="literal">true</span><span class="string">,</span></span><br><span class="line">    <span class="attr">maskClick:</span> <span class="literal">true</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
 <p><code>maskClick</code>点击背景是否关闭弹窗，true为点击能关闭，默认false</p>
 <h6 id="6-确认和取消回调"><a href="#6-确认和取消回调" class="headerlink" title="6. 确认和取消回调"></a>6. 确认和取消回调</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'body'</span>).Dialog(&#123;</span><br><span class="line">    content: <span class="string">'确认和取消回调'</span>,</span><br><span class="line">    isContentCenter: <span class="literal">true</span>,</span><br><span class="line">    maskClick: <span class="literal">true</span>,</span><br><span class="line">    confirmName: <span class="string">'点我确认'</span>,</span><br><span class="line">    cancelName: <span class="string">'点我取消'</span>,</span><br><span class="line">    confirmCallback: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">'确认'</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    cancelCallback: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="string">'取消'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p><code>confirmCallback</code>确认回调；<code>cancelCallback</code>取消回调</p>
@@ -791,7 +791,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -824,7 +824,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -878,7 +880,7 @@
                   
                     
                   
-                  <a href="https://github.com/zhuLni" title="GitHub &rarr; https://github.com/zhuLni" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  <a href="https://github.com/chicAboo/monchic" title="GitHub &rarr; https://github.com/chicAboo/monchic" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -989,7 +991,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -1019,7 +1021,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共 27.1k 字</span>
+  <span class="post-count">博客全站共 29.4k 字</span>
 </div>
 
 
