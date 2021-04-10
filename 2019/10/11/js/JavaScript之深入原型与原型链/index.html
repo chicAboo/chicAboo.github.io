@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+
+  <meta name="description" content="一、前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;天、惊雷一声，响彻神州大地，凄厉厉的大雨瞬间而至，街上行色匆匆，视线所致，一辆辆车，五颜六色的伞，夹杂着各色水声，来了又走，而留下的只有你形单影只。如人生一般，身边总有那么多的人来了又走……&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;因项目增多，缺乏人手，最近面了一些工作多年的面试者，普遍现">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript之深入原型与原型链">
+<meta property="og:url" content="https://chicaboo.github.io/2019/10/11/js/JavaScript之深入原型与原型链/index.html">
+<meta property="og:site_name" content="Mr.Zhu">
+<meta property="og:description" content="一、前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;天、惊雷一声，响彻神州大地，凄厉厉的大雨瞬间而至，街上行色匆匆，视线所致，一辆辆车，五颜六色的伞，夹杂着各色水声，来了又走，而留下的只有你形单影只。如人生一般，身边总有那么多的人来了又走……&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;因项目增多，缺乏人手，最近面了一些工作多年的面试者，普遍现">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://chicaboo.github.io/images/js/原型与原型链/构造函数与实例.jpg">
+<meta property="og:image" content="https://chicaboo.github.io/images/js/原型与原型链/构造函数与原型对象.jpg">
+<meta property="og:image" content="https://chicaboo.github.io/images/js/原型与原型链/构造函数、实例与原型对象.jpg">
+<meta property="og:image" content="https://chicaboo.github.io/images/js/原型与原型链/原型链1.jpg">
+<meta property="og:image" content="https://chicaboo.github.io/images/js/原型与原型链/原型链2.jpg">
+<meta property="og:updated_time" content="2021-01-05T07:09:23.678Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript之深入原型与原型链">
+<meta name="twitter:description" content="一、前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;天、惊雷一声，响彻神州大地，凄厉厉的大雨瞬间而至，街上行色匆匆，视线所致，一辆辆车，五颜六色的伞，夹杂着各色水声，来了又走，而留下的只有你形单影只。如人生一般，身边总有那么多的人来了又走……&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;因项目增多，缺乏人手，最近面了一些工作多年的面试者，普遍现">
+<meta name="twitter:image" content="https://chicaboo.github.io/images/js/原型与原型链/构造函数与实例.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://chicaboo.github.io/2019/10/11/js/JavaScript之深入原型与原型链/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JavaScript之深入原型与原型链 | Mr.Zhu</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr.Zhu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">So beauty waiting to be discovered</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-music">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/music/" rel="section"><i class="menu-item-icon fa fa-fw fa-music"></i> <br>音乐</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-records">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/records/" rel="section"><i class="menu-item-icon fa fa-fw fa-pencil-square-o"></i> <br>随笔</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chicaboo.github.io/2019/10/11/js/JavaScript之深入原型与原型链/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Zhu">
+      <meta itemprop="description" content="Nothing for nothing">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.Zhu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript之深入原型与原型链
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-11 23:58:58" itemprop="dateCreated datePublished" datetime="2019-10-11T23:58:58+08:00">2019-10-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-01-05 15:09:23" itemprop="dateModified" datetime="2021-01-05T15:09:23+08:00">2021-01-05</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;天、惊雷一声，响彻神州大地，凄厉厉的大雨瞬间而至，街上行色匆匆，视线所致，一辆辆车，五颜六色的伞，夹杂着各色水声，来了又走，而留下的只有你形单影只。如人生一般，身边总有那么多的人来了又走……<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因项目增多，缺乏人手，最近面了一些工作多年的面试者，普遍现象，业务代码写的太多，而不太注重底层原理的加深。故这儿整理下一些常用方法的底层原来及实现，本文主要记录什么是原型，什么是原型链，以及他们之间的关系。</p>
+<h3 id="二、原型"><a href="#二、原型" class="headerlink" title="二、原型"></a>二、原型</h3><h6 id="1、构造函数"><a href="#1、构造函数" class="headerlink" title="1、构造函数"></a>1、构造函数</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在讲解原型前，首先需要知道什么是构造函数，先看一个例子：<br> <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面的例子就是一个构造函数，JavaScript默认函数首字母大写为构造函数，调用方式必须通过new关键字调用。上面的代码创建一个名为<code>Person</code>的构造函数，通过<code>new</code>实例出来一个实例对象<code>p</code>, 如下：<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(p<span class="function">.<span class="keyword">constructor</span> === <span class="title">Person</span>);</span>   <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>下面的图展示了实例p和构造函数Person之间的关系：<br><img src="/images/js/原型与原型链/构造函数与实例.jpg" alt="构造函数和实例的关系"></p>
+<p>注：从上面打印的结果看，实例p应该会有一个constructor属性，指向的构造函数Person，其实并不是这样的。p本身并没有constructor属性，虽然p.constructor是指向了Person。原理是p.constructor被委托给了Person.prototype，而Person.prototype.constructor默认指向的时Person。</p>
+<h3 id="2、prototype"><a href="#2、prototype" class="headerlink" title="2、prototype"></a>2、prototype</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JavaScript规定每一个函数都有一个<code>prototype</code>（原型）属性，这个属性是一个指针，指向原型对象，这样就可以包含特定类型的所有实例共享的属性和方法。如下所示：<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">()</span> <span class="comment">&#123;&#125;</span></span></span><br><span class="line"><span class="function"><span class="title">Person</span>.<span class="title">prototype</span>.<span class="title">name</span> = '<span class="title">zhangSan</span>';</span></span><br><span class="line">Person.prototype.age = <span class="number">35</span>;</span><br><span class="line">Person.prototype.showInfo = <span class="function"><span class="keyword">function</span> <span class="params">()</span> <span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">    console.log(this.name, this.age);</span></span></span><br><span class="line"><span class="function"><span class="comment">&#125;</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">const</span> <span class="title">p1</span> = <span class="title">new</span> <span class="title">Person</span><span class="params">()</span>;</span></span><br><span class="line"><span class="keyword">const</span> p2 = new Person();</span><br><span class="line">console.log(p1.<span class="keyword">name</span>, p2.<span class="keyword">name</span>);  <span class="comment">// zhangSan zhangSan</span></span><br><span class="line">console.log(p1.showInfo === p2.showInfo); <span class="comment">// true</span></span><br><span class="line">console.log(p1.prototype<span class="function">.<span class="keyword">constructor</span> === <span class="title">Person</span>);</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从上面的例子可看出，创建了一个空的构造函数<code>Person</code>，在Person的prototype属性中添加了属性和方法<code>name、age、showInfo</code>，并且在新创建的实例对象中，这些属性和方法是被实例所共享的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么prototype属性指向的是什么呢？例子中不难发现，prototype属性指向了一个对象，这个对象叫做<code>原型对象（Person.prototype）</code>， 而原型对象的constructor属性指向的是构造函数Person，从下面的可以直观的看出，构造函数和原型对象的关系：<br><img src="/images/js/原型与原型链/构造函数与原型对象.jpg" alt="构造函数和原型对象的关系"></p>
+<h3 id="3、-proto"><a href="#3、-proto" class="headerlink" title="3、__proto__"></a>3、__proto__</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>__proto__</code>是JavaScript对象中特殊的内置属性，即对其他对象的一个引用。每当创建一个新实例后，该实例内部都包含一个指针（<code>__proto__</code>），指向原型对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="built_in">console</span>.log(p.__proto__ === Person.prototype); <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>到此，已可以看出构造函数、原型对象、实例之间的关系，如下：<br><img src="/images/js/原型与原型链/构造函数、实例与原型对象.jpg" alt="构造函数、实例和原型对象的关系"></p>
+<p>总结：每一个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。</p>
+<h3 id="3、原型链"><a href="#3、原型链" class="headerlink" title="3、原型链"></a>3、原型链</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;再讲原型链前，先回顾最开始讲的，Person.prototype.constructor默认是指向的Person，假如创建一个新的对象来替代Person.prototype的引用，那么会发生什么呢？看个例子：<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">()</span> <span class="comment">&#123;&#125;</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">Person</span>.<span class="title">prototype</span> = <span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">    name: 'zhangSan',</span></span></span><br><span class="line"><span class="function"><span class="comment">&#125;</span></span></span><br><span class="line"><span class="function"><span class="title">const</span> <span class="title">p</span> = <span class="title">new</span> <span class="title">Person</span><span class="params">()</span>;</span></span><br><span class="line">console.log(p<span class="function">.<span class="keyword">constructor</span> === <span class="title">Person</span>);</span> <span class="comment">// false</span></span><br><span class="line">console.log(p<span class="function">.<span class="keyword">constructor</span> === <span class="title">Object</span>);</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;看结果为什么Person.prototype.constructor指向了Object？因为改变了Person.prototype的引用，Person.prototype并不会自动获取.constructor属性。简单讲就是p并没有constructor属性，所以p会委托__proto__链上的Person.prototype，Person.prototype默认constructor属性已经被改变，所以这个对象上并没有constructor属性，它会继续委托，委托给最顶端的Object.prototype，这个对象的.constructor指向Object。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么如何让p.constructor指向Person呢？直接在Person.prototype中创建一个constructor属性即可，如下：<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">()</span> <span class="comment">&#123;&#125;</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">Person</span>.<span class="title">prototype</span> = <span class="comment">&#123;</span></span></span><br><span class="line"><span class="function"><span class="comment">    constructor: 'Person',</span></span></span><br><span class="line"><span class="function"><span class="comment">    name: 'zhangSan',</span></span></span><br><span class="line"><span class="function"><span class="comment">&#125;</span></span></span><br><span class="line"><span class="function"><span class="title">const</span> <span class="title">p</span> = <span class="title">new</span> <span class="title">Person</span><span class="params">()</span>;</span></span><br><span class="line">console.log(p<span class="function">.<span class="keyword">constructor</span> === <span class="title">Person</span>);</span> <span class="comment">// true</span></span><br><span class="line">console.log(p<span class="function">.<span class="keyword">constructor</span> === <span class="title">Object</span>);</span> <span class="comment">// true</span></span><br><span class="line">console.log(<span class="keyword">Object</span>.prototype.__proto__); <span class="comment">// null</span></span><br></pre></td></tr></table></figure></p>
+<p>故更新上面的图如下：<br><img src="/images/js/原型与原型链/原型链1.jpg" alt="原型链1"></p>
+<p>总结：当查找实例属性时，如果找不到，就会查找与原型相关联的属性，一直往上找，直到最顶层。这样就构成了实例与原型的链条，叫做<code>原型链</code>。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可能还没有太明白什么是原型链，再以原型链继承的方式，具体解释原型链的构成。<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span><span class="params">()</span> <span class="comment">&#123;&#125;</span></span></span><br><span class="line"><span class="function"><span class="title">function</span> <span class="title">Man</span><span class="params">()</span> <span class="comment">&#123;&#125;</span></span></span><br><span class="line"><span class="function"><span class="title">Man</span>.<span class="title">prototype</span> = <span class="title">new</span> <span class="title">Person</span><span class="params">()</span>;</span> <span class="comment">// 关键代码</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> m = new Man();</span><br><span class="line">console.log(m<span class="function">.<span class="keyword">constructor</span>);</span> <span class="comment">// Person</span></span><br><span class="line">console.log(Man.prototype.__proto__ === Person.prototype); <span class="comment">// true</span></span><br><span class="line">console.log(Person.prototype.__proto__ === <span class="keyword">Object</span>.prototype); <span class="comment">// true</span></span><br><span class="line">console.log(<span class="keyword">Object</span>.prototype.__proto__ === null); <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>上面代码创建了两个构造函数Person、Man，第三行代码改变了Man.prototype的引用，本质上是重写了Man的原型对象，Man.prototype.constructor已不指向默认的Man了，而是指向了Person实例，而Person的实例的constructor会委托Person.prototype上，故m.constructor指向了Person，这样的一个过程就构成了原型链。如图：<br><img src="/images/js/原型与原型链/原型链2.jpg" alt="原型链2"></p>
+<p>上面的图中，通过由相关联__proto__连接组成的链条结构，就是原型链。</p>
+<h3 id="4、-方法"><a href="#4、-方法" class="headerlink" title="4、 方法"></a>4、 方法</h3><h6 id="1）、isPrototypeOf-方法"><a href="#1）、isPrototypeOf-方法" class="headerlink" title="1）、isPrototypeOf()方法"></a>1）、isPrototypeOf()方法</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现实中是无法访问到prototype，但可以通过一个方法（<code>isPrototypeOf()</code>）来确定对象之间是否存在这种关系，如果存在就返回true，否则false。以上面的例子为例，如下：<br><figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">console</span>.log(<span class="type">Man</span>.proto<span class="keyword">type</span>.isPrototypeOf(m)); // true</span><br><span class="line"><span class="title">console</span>.log(<span class="type">Person</span>.proto<span class="keyword">type</span>.isPrototypeOf(m)); // true</span><br><span class="line"><span class="title">console</span>.log(<span class="type">Object</span>.proto<span class="keyword">type</span>.isPrototypeOf(m)); // true</span><br></pre></td></tr></table></figure></p>
+<p>从上面的结果可以看出，prototype指向了调用<code>isPrototypeOf()</code>方法的对象Man.prototype，故这个方法返回true，因Person.prototype、Object.prototype都是存在同一条原型链上，故返回结果都都为true。</p>
+<h6 id="2）、getPrototypeOf-方法"><a href="#2）、getPrototypeOf-方法" class="headerlink" title="2）、getPrototypeOf()方法"></a>2）、getPrototypeOf()方法</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ES5新增了Object.getPrototypeOf()返回对象的原型，即返回prototype。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getPrototypeOf(m) === Man.prototype); <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<h6 id="3）、hasOwnProperty-方法"><a href="#3）、hasOwnProperty-方法" class="headerlink" title="3）、hasOwnProperty()方法"></a>3）、hasOwnProperty()方法</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hasOwnProperty方法检测一个属性是否存在实例中。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Person.prototype.age = <span class="number">35</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> Person();</span><br><span class="line">p.name = <span class="string">'zhangSan'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(p.hasOwnProperty(<span class="string">'name'</span>)); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(p.hasOwnProperty(<span class="string">'age'</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure></p>
+<p>从结果看，hasOwnProperty()只能判断对象的属性在构造函数中，不能判断原型对象上的属性，那么如何判断原型对象上的属性呢？</p>
+<h6 id="4）、in操作符"><a href="#4）、in操作符" class="headerlink" title="4）、in操作符"></a>4）、in操作符</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>in</code>操作符访问给定属性会返回true，无论该属性在原型对象上还是在构造函数上。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Person.prototype.age = <span class="number">35</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> Person();</span><br><span class="line">p.name = <span class="string">'zhangSan'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'name'</span> <span class="keyword">in</span> p); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'age'</span> <span class="keyword">in</span> p); <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>从上面看，同时使用in和hasOwnProperty()可判断一个属性在原型对象上，只需该属性在hasOwnProperty上为false，在in上为true即可，封装如下：<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">function</span> <span class="title">hasOwnProtorypeProperty</span>(object, name) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">!object.hasOwnProperty(name)</span> &amp;&amp; (name <span class="keyword">in</span> object);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="5、结语"><a href="#5、结语" class="headerlink" title="5、结语"></a>5、结语</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;到此，已写完了，构造函数、原型、实例及之间的关系，同时通过实例指向原型对象的内部指针，一直到顶层Object.prototype，构成原型链。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若文章中有不对的地方，欢迎指出。</p>
+<p>Git地址：<a href="https://github.com/chicAboo/zt-blogs" target="_blank" rel="noopener">JavaScript</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+            
+
+          
+    </div>
+
+    
+
+    
+      
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/20/css/CSS3/" rel="next" title="CSS3">
+                <i class="fa fa-chevron-left"></i> CSS3
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/30/js/JavaScript之深入多种种继承方式及优缺点/" rel="prev" title="JavaScript之深入多种种继承方式及优缺点">
+                JavaScript之深入多种种继承方式及优缺点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80Mjc2My8xOTMxMA"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="Mr.Zhu">
+            
+              <p class="site-author-name" itemprop="name">Mr.Zhu</p>
+              <p class="site-description motion-element" itemprop="description" style="margin-bottom:0;">Nothing for nothing</p>
+
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="83" src="//music.163.com/outchain/player?type=2&id=38358214&auto=0&height=66"></iframe>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/chicAboo/monchic" title="GitHub &rarr; https://github.com/chicAboo/monchic" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/5973947560/profile?topnav=1&wvr=6" title="Weibo &rarr; https://weibo.com/5973947560/profile?topnav=1&wvr=6" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/50c37bf5608b" title="简书 &rarr; https://www.jianshu.com/u/50c37bf5608b" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://blog.csdn.net/qq_34474628" title="csdn &rarr; https://blog.csdn.net/qq_34474628" rel="noopener" target="_blank"><i class="fa fa-fw fa-crosshairs"></i>csdn</a>
+                </span>
+              
+            </div>
+          
+
+
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2019/03/11/jQuery/Pagination/" title="/2019/03/11/jQuery/Pagination/">jQuery_Pagination封装</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2019/03/01/jQuery/Dialog/" title="/2019/03/01/jQuery/Dialog/">jQuery_Dialog封装</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2019/02/13/css/flex-%E9%AA%B0%E5%AD%90%E5%B8%83%E5%B1%80/" title="/2019/02/13/css/flex-%E9%AA%B0%E5%AD%90%E5%B8%83%E5%B1%80/">Flex布局_骰子布局</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2018/11/27/react/style-component/" title="/2018/11/27/react/style-component/">css_in_js style-components</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、前言"><span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、原型"><span class="nav-text">二、原型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1、构造函数"><span class="nav-text">1、构造函数</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#2、prototype"><span class="nav-text">2、prototype</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、-proto"><span class="nav-text">3、__proto__</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、原型链"><span class="nav-text">3、原型链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、-方法"><span class="nav-text">4、 方法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1）、isPrototypeOf-方法"><span class="nav-text">1）、isPrototypeOf()方法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2）、getPrototypeOf-方法"><span class="nav-text">2）、getPrototypeOf()方法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3）、hasOwnProperty-方法"><span class="nav-text">3）、hasOwnProperty()方法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4）、in操作符"><span class="nav-text">4）、in操作符</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、结语"><span class="nav-text">5、结语</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Zhu</span>
+
+  
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数: <span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<span class="post-meta-divider">|</span>
+
+<div class="powered-by">
+<i class="fa fa-eye"></i>
+<span id="site-pv">
+  本站总访问量: <span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+
+<span class="post-meta-divider">|</span>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共 32.5k 字</span>
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/10/11/js/JavaScript之深入原型与原型链/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+    <!-- 页面点击小红心 -->
+    <script type="text/javascript" src="/js/src/clickLove.js"></script>
+    <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+
+
+</body>
+</html>
+

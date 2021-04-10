@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+
+  <meta name="description" content="前言提到改变 this 的指向，首先想到的方式就是 call、apply 和 bind。对于每种方式底层是如何实现，大多数人不太清楚，如果你还不清楚他们的用法，请移步call、apply、bind。本文会简单讲解他们的用法，底层实现思路，及模拟实现 call、apply、bind。 call1、定义： 使用一个指定的 this 值和单独给出一个或多个参数来调用一个函数。1function.call">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手写call、apply和bind函数">
+<meta property="og:url" content="https://chicaboo.github.io/2021/04/08/js/手写call-apply和bind函数/index.html">
+<meta property="og:site_name" content="Mr.Zhu">
+<meta property="og:description" content="前言提到改变 this 的指向，首先想到的方式就是 call、apply 和 bind。对于每种方式底层是如何实现，大多数人不太清楚，如果你还不清楚他们的用法，请移步call、apply、bind。本文会简单讲解他们的用法，底层实现思路，及模拟实现 call、apply、bind。 call1、定义： 使用一个指定的 this 值和单独给出一个或多个参数来调用一个函数。1function.call">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-04-08T09:21:52.819Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="手写call、apply和bind函数">
+<meta name="twitter:description" content="前言提到改变 this 的指向，首先想到的方式就是 call、apply 和 bind。对于每种方式底层是如何实现，大多数人不太清楚，如果你还不清楚他们的用法，请移步call、apply、bind。本文会简单讲解他们的用法，底层实现思路，及模拟实现 call、apply、bind。 call1、定义： 使用一个指定的 this 值和单独给出一个或多个参数来调用一个函数。1function.call">
+
+
+
+
+
+
+  <link rel="canonical" href="https://chicaboo.github.io/2021/04/08/js/手写call-apply和bind函数/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>手写call、apply和bind函数 | Mr.Zhu</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr.Zhu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">So beauty waiting to be discovered</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-music">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/music/" rel="section"><i class="menu-item-icon fa fa-fw fa-music"></i> <br>音乐</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-records">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/records/" rel="section"><i class="menu-item-icon fa fa-fw fa-pencil-square-o"></i> <br>随笔</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chicaboo.github.io/2021/04/08/js/手写call-apply和bind函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Zhu">
+      <meta itemprop="description" content="Nothing for nothing">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.Zhu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">手写call、apply和bind函数
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-04-08 11:37:26 / 修改时间：17:21:52" itemprop="dateCreated datePublished" datetime="2021-04-08T11:37:26+08:00">2021-04-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>提到改变 this 的指向，首先想到的方式就是 call、apply 和 bind。对于每种方式底层是如何实现，大多数人不太清楚，如果你还不清楚他们的用法，请移步<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call" target="_blank" rel="noopener">call</a>、<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply" target="_blank" rel="noopener">apply</a>、<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind" target="_blank" rel="noopener">bind</a>。本文会简单讲解他们的用法，底层实现思路，及模拟实现 call、apply、bind。</p>
+<h2 id="call"><a href="#call" class="headerlink" title="call"></a>call</h2><h3 id="1、定义：-使用一个指定的-this-值和单独给出一个或多个参数来调用一个函数。"><a href="#1、定义：-使用一个指定的-this-值和单独给出一个或多个参数来调用一个函数。" class="headerlink" title="1、定义： 使用一个指定的 this 值和单独给出一个或多个参数来调用一个函数。"></a>1、定义： 使用一个指定的 this 值和单独给出一个或多个参数来调用一个函数。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>.<span class="title">call</span>(<span class="params">this, arg1, arg2, arg3, ...</span>)</span></span><br></pre></td></tr></table></figure>
+<p>根据定义我们知道，call()方法有两个作用，一个是改变 this 指向，另外一个传递参数，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  value: <span class="number">1</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.value, arg); <span class="comment">// 1, 2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn.call(obj, <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p>上面的例子，使用 call()方法使函数<code>fn</code>的 this 指向了<code>obj</code>，所以 this.value 的值为 1。那么如果不使用 call()方法，该如何实现呢？</p>
+<h3 id="2、call-实现思路"><a href="#2、call-实现思路" class="headerlink" title="2、call 实现思路"></a>2、call 实现思路</h3><p>不考虑使用 call、apply、bind 方法，上面例子 fn 函数如何能拿到 obj 里面的 value 值呢？改造一下上面的例子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  value: <span class="number">1</span>,</span><br><span class="line">  fn: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.value); <span class="comment">// 1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.fn();</span><br></pre></td></tr></table></figure>
+<p>这样一改，this 就指向了 obj，根据这个思路，可以封装一个方法，将传入的 this，转换成这样的方式，那么当前 this 的指向就是我们想要的结果。<code>需要注意fn函数不能写成箭头函数，因为箭头函数没有this</code>。所以模拟的步骤为：</p>
+<ol>
+<li>将函数设置为传入对象的属性；</li>
+<li>执行该函数；</li>
+<li>删除该属性；<br>上面的例子就可以改写为：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 给obj添加属性func</span></span><br><span class="line">obj.func = fn;</span><br><span class="line"><span class="comment">// 执行函数</span></span><br><span class="line">obj.func();</span><br><span class="line"><span class="comment">// 删除添加的属性</span></span><br><span class="line"><span class="keyword">delete</span> obj.func;</span><br></pre></td></tr></table></figure>
+<h3 id="3、模拟-call-方法"><a href="#3、模拟-call-方法" class="headerlink" title="3、模拟 call 方法"></a>3、模拟 call 方法</h3><p>根据上面的思路，来模拟实现一版 call()方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.call1 = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line">  context.func = <span class="keyword">this</span>;</span><br><span class="line">  context.func();</span><br><span class="line">  <span class="keyword">delete</span> context.func;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现了简化版 call 方法，来试验下是否能正确改变 this。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  value: <span class="number">1</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">arg</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.value, arg); <span class="comment">// 1, undefined</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn.call1(obj, <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p>根据上面例子，已经能正确改变 this 的指向，但是传入的值却没有拿到，该怎么办呢？考虑的传入的值是不确定的，只能借助<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/arguments" target="_blank" rel="noopener">Arguments 对象</a>。通过它可以拿到所有传入的参数。</p>
+<h3 id="4、模拟-call-方法第二版"><a href="#4、模拟-call-方法第二版" class="headerlink" title="4、模拟 call 方法第二版"></a>4、模拟 call 方法第二版</h3><p>上面提到可以通过 arguments 解决传入参数不定长问题，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> res = [];</span><br><span class="line"><span class="comment">// 因为第一个参数是传入的this，故这里从i = 1开始遍历</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">    res.push(<span class="built_in">arguments</span>[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="keyword">const</span> args = [...arguments].splice(<span class="number">0</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>这样就能拿到所有的参数，接下来我们是不是将拿到的参数放到函数里面执行就可以了吗？先试一下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.call1 = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 初始化存储函数参数</span></span><br><span class="line">    <span class="keyword">const</span> res = [];</span><br><span class="line">    <span class="comment">// 改变当前函数的this指向</span></span><br><span class="line">    context.fn = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">        res.push(<span class="built_in">arguments</span>[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    context.fn(res.join(<span class="string">','</span>));</span><br><span class="line">    <span class="keyword">delete</span> context.fn;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    value: <span class="number">1</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">val1, val2</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.value, ...arguments); <span class="comment">// 1 "1,2,200,[object Object]"</span></span><br><span class="line">&#125;</span><br><span class="line">fn.call1(obj, [<span class="number">1</span>,<span class="number">2</span>], <span class="number">200</span>, &#123;<span class="attr">a</span>: <span class="number">1</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p>结果和我们期望的不一致，函数的参数被转换成了一个字符串，那么怎么出来才能达到想要的结果呢？这儿可以考虑两种方式处理</p>
+<p>第一种方式 es6 的“…”操作符，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.call1 = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 初始化存储函数参数</span></span><br><span class="line">    <span class="keyword">const</span> res = [];</span><br><span class="line">    <span class="comment">// 改变当前函数的this指向</span></span><br><span class="line">    context.fn = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">        res.push(<span class="built_in">arguments</span>[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    context.fn(...res);</span><br><span class="line">    <span class="keyword">delete</span> context.fn;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    value: <span class="number">1</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">val1, val2</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.value, ...arguments);  <span class="comment">// 1 [1, 2] 200 &#123;a: 1&#125;</span></span><br><span class="line">&#125;</span><br><span class="line">fn.call1(obj, [<span class="number">1</span>,<span class="number">2</span>], <span class="number">200</span>, &#123;<span class="attr">a</span>: <span class="number">1</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p>第二种方式，借助<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/eval" target="_blank" rel="noopener">eval</a>方法，eval 会将传入的字符串当做 JavaScript 代码执行。那么我们可以考虑将要执行的函数，拼装成字符串，然后通过 eval 执行即可。思路如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.call1 = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">   <span class="comment">// 初始化，用于存放参数</span></span><br><span class="line">   <span class="keyword">const</span> args = [];</span><br><span class="line">   <span class="comment">// 在传入的对象上设置属性为待执行函数</span></span><br><span class="line">   context.fn = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">       <span class="comment">// 将参数从第二个开始，拼装成待执行的字符串参数列表</span></span><br><span class="line">       args.push(<span class="string">`arguments[<span class="subst">$&#123;i&#125;</span>]`</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="built_in">eval</span>(<span class="string">`context.fn(<span class="subst">$&#123;args&#125;</span>)`</span>);</span><br><span class="line"></span><br><span class="line">   <span class="keyword">delete</span> context.fn;</span><br><span class="line">&#125;</span><br><span class="line"> <span class="keyword">const</span> obj = &#123;</span><br><span class="line">   value: <span class="number">1</span>,</span><br><span class="line"> &#125;;</span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">val1, val2</span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="keyword">this</span>.value, ...arguments); <span class="comment">// 1 [1, 2] 200 &#123;a: 1&#125;</span></span><br><span class="line"> &#125;</span><br><span class="line"> fn.call1(obj, [<span class="number">1</span>, <span class="number">2</span>], <span class="number">200</span>, &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;);</span><br></pre></td></tr></table></figure>
+<p>到这里，通过模拟实现 call 方法，已经能实现改变 this，传入参数，是不是就完了呢？可能会有这样一种情况，如果函数本身会有返回值，还是用吗？如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  value: <span class="number">1</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> args = [...arguments];</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.value, ...args); <span class="comment">// 1 [1, 2] 200 &#123;a: 1&#125;</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    c: args,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(fn.call1(obj, [<span class="number">1</span>, <span class="number">2</span>], <span class="number">200</span>, &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;)); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>此时，执行函数的返回值为<code>undefined</code>，解决这个问题很好办，在封装的 call 方法里面，将执行的函数结果存下来，return 出来即可，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.call1 = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 初始化，用于存放参数</span></span><br><span class="line">    <span class="keyword">const</span> args = [];</span><br><span class="line">    <span class="comment">// 在传入的对象上设置属性为待执行函数</span></span><br><span class="line">    context.fn = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; <span class="built_in">arguments</span>.length; i++) &#123;</span><br><span class="line">      <span class="comment">// 将参数从第二个开始，拼装成待执行的字符串参数列表</span></span><br><span class="line">      args.push(<span class="string">`arguments[<span class="subst">$&#123;i&#125;</span>]`</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">eval</span>(<span class="string">`context.fn(<span class="subst">$&#123;args&#125;</span>)`</span>);</span><br><span class="line">    <span class="keyword">delete</span> context.fn;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> obj = &#123;</span><br><span class="line">    value: <span class="number">1</span>,</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> args = [...arguments];</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.value, ...args); <span class="comment">// 1 [1, 2] 200 &#123;a: 1&#125;</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      c: args[<span class="number">0</span>],</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(fn.call1(obj, [<span class="number">1</span>, <span class="number">2</span>], <span class="number">200</span>, &#123; <span class="attr">a</span>: <span class="number">1</span> &#125;)); <span class="comment">// &#123;c: [1, 2]&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="模拟-call-终版"><a href="#模拟-call-终版" class="headerlink" title="模拟 call 终版"></a>模拟 call 终版</h3><p>上面的方式都是使用 eval 来实现 call 方法，es6 提供了很多语法糖，个人比较喜欢 es6 的实现方式，比较简洁，故终版使用的 es6 的实现方式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.call1 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 初始化，获取传入的this对象和后续所有参数</span></span><br><span class="line">    <span class="keyword">const</span> [context, ...args] = [...arguments];</span><br><span class="line">    <span class="comment">// 在传入的对象上设置属性为待执行函数</span></span><br><span class="line">    context.fn = <span class="keyword">this</span>;</span><br><span class="line">    <span class="comment">// 执行函数</span></span><br><span class="line">    <span class="keyword">const</span> res = context.fn(args);</span><br><span class="line">    <span class="comment">// 删除属性</span></span><br><span class="line">    <span class="keyword">delete</span> context.fn;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回执行结果</span></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+<p>到此，模拟实现了 call 方法。</p>
+<h2 id="模拟-apply-方法"><a href="#模拟-apply-方法" class="headerlink" title="模拟 apply 方法"></a>模拟 apply 方法</h2><h3 id="定义：-调用一个具有给定-this-值的函数，及以一个数组的形式提供的参数。"><a href="#定义：-调用一个具有给定-this-值的函数，及以一个数组的形式提供的参数。" class="headerlink" title="定义： 调用一个具有给定 this 值的函数，及以一个数组的形式提供的参数。"></a>定义： 调用一个具有给定 this 值的函数，及以一个数组的形式提供的参数。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func.apply(thisArg, [argsArray]);</span><br></pre></td></tr></table></figure>
+<p>从定义上知道，apply 相比于 call 方法，区别在与 this 后面的参数,call 后面的有一个或多个参数，而 apply 只有两个参数，第二个参数是一个数组，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    value: <span class="number">1</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.value); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [...arguments]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(fn.apply(obj, [<span class="number">1</span>, <span class="number">2</span>])); <span class="comment">// [1, 2]</span></span><br></pre></td></tr></table></figure>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>apply 的实现思路和 call 一样，需要考虑的是 apply 只有两个参数，因此，根据 call 的思路实现如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.apply1 = <span class="function"><span class="keyword">function</span> (<span class="params">context, args</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 给传入的对象添加属性，值为当前函数</span></span><br><span class="line">    context.fn = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 判断第二个参数是否存在，不存在直接执行，否则拼接参数执行，并存储函数执行结果</span></span><br><span class="line">    <span class="keyword">let</span> res = !args ? context.fn() : context.fn(...args)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除新增属性</span></span><br><span class="line">    <span class="keyword">delete</span> context.fn;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回函数执行结果</span></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">    value: <span class="number">1</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.value); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [...arguments]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(fn.apply(obj, [<span class="number">1</span>, <span class="number">2</span>])); <span class="comment">// [1, 2]</span></span><br></pre></td></tr></table></figure>
+<h2 id="模拟-bind"><a href="#模拟-bind" class="headerlink" title="模拟 bind"></a>模拟 bind</h2><h3 id="定义：创建一个新的函数，在-bind-被调用时，这个新函数的-this-被指定为-bind-的第一个参数，而其余参数将作为新函数的参数，供调用时使用。"><a href="#定义：创建一个新的函数，在-bind-被调用时，这个新函数的-this-被指定为-bind-的第一个参数，而其余参数将作为新函数的参数，供调用时使用。" class="headerlink" title="定义：创建一个新的函数，在 bind 被调用时，这个新函数的 this 被指定为 bind()的第一个参数，而其余参数将作为新函数的参数，供调用时使用。"></a>定义：创建一个新的函数，在 bind 被调用时，这个新函数的 this 被指定为 bind()的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>.<span class="title">bind</span>(<span class="params">thisArg[, arg1[, arg2[, ...]]]</span>)</span></span><br></pre></td></tr></table></figure>
+<p>bind 相比于 call、apply 有较大的区别，bind 方法会创建一个新的函数，返回一个函数，并允许传入参数。首先看一个例子。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  value: <span class="number">1</span>,</span><br><span class="line">  fn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.value;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> func = obj.fn;</span><br><span class="line"><span class="built_in">console</span>.log(func()); <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>为什么值是 undefined 呢？这会涉及到 this 的问题，不清楚的可以看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this" target="_blank" rel="noopener">这里</a>，简单来讲，函数的调用决定 this 的值，即运行时绑定。这里声明了 func 用于存放 obj.fn,再执行 func()方法时，当前的 this 指向的是 window 是，故值为 undefined。改如何处理才能达到预期的值呢？这时 bind 即将登场。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  value: <span class="number">1</span>,</span><br><span class="line">  fn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.value;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> func = obj.fn;</span><br><span class="line"><span class="keyword">const</span> bindFunc = func.bind(obj);</span><br><span class="line"><span class="built_in">console</span>.log(bindFunc()); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<h3 id="模拟-bind-第一版"><a href="#模拟-bind-第一版" class="headerlink" title="模拟 bind 第一版"></a>模拟 bind 第一版</h3><p>首先解决 bind 的第一个问题，返回一个函数，可通过<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures" target="_blank" rel="noopener">闭包</a>的模式实现，改变 this 指向问题，可以使用 call 和 apply 方法，可参照上面的实现方式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bind1 = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将当前函数的this存放起来</span></span><br><span class="line">  <span class="keyword">const</span> _self = <span class="keyword">this</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 改变this</span></span><br><span class="line">    <span class="keyword">return</span> _self.apply(context);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>this 改变了后，需要考虑第二个问题，传参，bind 的参数，从第二个到第 n 个函数，存在参数不定的情况，结合上面 call 的实现方式，解决这个问题如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方法1, 从第二个参数开始</span></span><br><span class="line"><span class="keyword">const</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法2</span></span><br><span class="line"><span class="keyword">const</span> [context, ...args] = [...arguments];</span><br></pre></td></tr></table></figure>
+<p>参数取到后，将参数传入即可，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bind1 = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将当前函数的this存放起来</span></span><br><span class="line">  <span class="keyword">const</span> _self = <span class="keyword">this</span>;</span><br><span class="line">  <span class="comment">// 绑定bind传入的参数，从第二个开始</span></span><br><span class="line">  <span class="keyword">const</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 绑定bind返回新的函数，执行所带的参数</span></span><br><span class="line">    <span class="keyword">const</span> bindArgs = <span class="built_in">Array</span>.prototype.slice.apply(<span class="built_in">arguments</span>);</span><br><span class="line">    <span class="comment">// 改变this</span></span><br><span class="line">    <span class="keyword">return</span> _self.apply(context, [...args, ...bindArgs]);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  value: <span class="number">1</span>,</span><br><span class="line">  fn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      value: <span class="keyword">this</span>.value,</span><br><span class="line">      args: [...arguments],</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> func = obj.fn;</span><br><span class="line"><span class="keyword">const</span> bindFunc = func.bind1(obj, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(bindFunc(<span class="number">3</span>)); <span class="comment">// &#123; value: 1, args: [1, 2, 3]&#125;</span></span><br></pre></td></tr></table></figure>
+<p>到这里，bind 的模拟已经完成一半，为什么说完成一半呢？功能已经实现，考虑到有这样一种情况，将绑定的 bind 返回的新函数作为构造函数使用，使用<code>new</code>操作符去创建一个由目标函数创建的新实例。当绑定函数是用来构建一个值的，原来提供的 this 就会被忽略。什么意思呢？先看下面例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> value = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  value: <span class="number">100</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.value); <span class="comment">// undefined</span></span><br><span class="line">  <span class="built_in">console</span>.log(name); <span class="comment">// jack</span></span><br><span class="line">  <span class="built_in">console</span>.log(age); <span class="comment">// 35</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bindPerson = Person.bind1(obj, <span class="string">"jack"</span>);</span><br><span class="line"><span class="keyword">var</span> bp = <span class="keyword">new</span> bindPerson(<span class="number">35</span>);</span><br></pre></td></tr></table></figure>
+<p>从上面的结果可以看出，尽管已经在全局和 obj 上定义了 value 值，但是构造函数 Person 中拿到的 this.value 仍然是 undefined 值，说明 this 的绑定失效了，为什么会出现这样的情况呢？<br>出现这样的情况是因为关键字<code>new</code>造成的，当程序遇到 new 会进行如下的操作：</p>
+<ol>
+<li>创建一个空的简单的 JavaScript 对象（如{}）;</li>
+<li>设置该对象的 constructor 到另外一个对象；</li>
+<li>将步骤 1 创建的对象作为 this 的上下文；</li>
+<li>如果函数没有返回对象则返回 this；<br>这样就明白为什么 this.value 的值为 undefined 了，当前的 this 指向的是 bp，bp 上并没有 value 属性，所以为 undefined。</li>
+</ol>
+<h3 id="模拟-bind-终版"><a href="#模拟-bind-终版" class="headerlink" title="模拟 bind 终版"></a>模拟 bind 终版</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bind1 = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 将当前函数的this存放起来</span></span><br><span class="line">  <span class="keyword">var</span> _self = <span class="keyword">this</span>;</span><br><span class="line">  <span class="comment">// 绑定bind传入的参数，从第二个开始</span></span><br><span class="line">  <span class="keyword">var</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 声明一个空的构造函数</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">fNOP</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> fBound = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 绑定bind返回新的函数，执行所带的参数</span></span><br><span class="line">    <span class="keyword">const</span> bindArgs = <span class="built_in">Array</span>.prototype.slice.apply(<span class="built_in">arguments</span>);</span><br><span class="line">    <span class="comment">// 合并数组</span></span><br><span class="line">    args.push.apply(args, bindArgs);</span><br><span class="line">    <span class="comment">// 作为普通函数，this指向Window</span></span><br><span class="line">    <span class="comment">// 作为构造函数，this指向实例</span></span><br><span class="line">    <span class="keyword">return</span> _self.apply(<span class="keyword">this</span> <span class="keyword">instanceof</span> fNOP ? <span class="keyword">this</span> : context, args);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.prototype) &#123;</span><br><span class="line">    <span class="comment">// 修改返回函数的prototype为绑定函数的prototype，实例就可以继承绑定函数的原型中的值</span></span><br><span class="line">    fNOP.prototype = <span class="keyword">this</span>.prototype;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// FNOP继承fBound</span></span><br><span class="line">  fBound.prototype = <span class="keyword">new</span> fNOP();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> fBound;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在这个方法里面用到了原型与原型链、继承等知识，不清楚的可以转到到<a href="https://juejin.cn/post/6914158539787370509" target="_blank" rel="noopener">《JavaScript 之深入原型与原型链》</a>、<a href="https://juejin.cn/post/6914643284803452935" target="_blank" rel="noopener">《JavaScript 之深入多种继承方式及优缺点》</a>。<br>到这里，还需要思考调用 bind 不是函数怎么办？报个错就好了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="keyword">this</span> !== <span class="string">"function"</span>) &#123;</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Function.prototype.bind - what is trying to be bound is not callable"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里模拟的 bind 函数不是最终版，在 CDN 上有<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind" target="_blank" rel="noopener">bind 实现</a>;</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call" target="_blank" rel="noopener">《Function.prototype.call()》</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind" target="_blank" rel="noopener">《Function.prototype.bind()》</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply" target="_blank" rel="noopener">《Function.prototype.apply()》</a><br><a href="https://github.com/mqyqingfeng/Blog/issues/12" target="_blank" rel="noopener">《JavaScript 深入之 bind 的模拟实现》</a><br><a href="https://github.com/mqyqingfeng/Blog/issues/11" target="_blank" rel="noopener">《JavaScript 深入之 call 和 apply 的模拟实现》</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+            
+
+          
+    </div>
+
+    
+
+    
+      
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/05/redux/reduxjs-toolkit黑魔法/" rel="next" title="reduxjs/toolkit黑魔法">
+                <i class="fa fa-chevron-left"></i> reduxjs/toolkit黑魔法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80Mjc2My8xOTMxMA"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="Mr.Zhu">
+            
+              <p class="site-author-name" itemprop="name">Mr.Zhu</p>
+              <p class="site-description motion-element" itemprop="description" style="margin-bottom:0;">Nothing for nothing</p>
+
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="83" src="//music.163.com/outchain/player?type=2&id=38358214&auto=0&height=66"></iframe>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/chicAboo/monchic" title="GitHub &rarr; https://github.com/chicAboo/monchic" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/5973947560/profile?topnav=1&wvr=6" title="Weibo &rarr; https://weibo.com/5973947560/profile?topnav=1&wvr=6" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/50c37bf5608b" title="简书 &rarr; https://www.jianshu.com/u/50c37bf5608b" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://blog.csdn.net/qq_34474628" title="csdn &rarr; https://blog.csdn.net/qq_34474628" rel="noopener" target="_blank"><i class="fa fa-fw fa-crosshairs"></i>csdn</a>
+                </span>
+              
+            </div>
+          
+
+
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2019/03/11/jQuery/Pagination/" title="/2019/03/11/jQuery/Pagination/">jQuery_Pagination封装</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2019/03/01/jQuery/Dialog/" title="/2019/03/01/jQuery/Dialog/">jQuery_Dialog封装</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2019/02/13/css/flex-%E9%AA%B0%E5%AD%90%E5%B8%83%E5%B1%80/" title="/2019/02/13/css/flex-%E9%AA%B0%E5%AD%90%E5%B8%83%E5%B1%80/">Flex布局_骰子布局</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2018/11/27/react/style-component/" title="/2018/11/27/react/style-component/">css_in_js style-components</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call"><span class="nav-text">call</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、定义：-使用一个指定的-this-值和单独给出一个或多个参数来调用一个函数。"><span class="nav-text">1、定义： 使用一个指定的 this 值和单独给出一个或多个参数来调用一个函数。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、call-实现思路"><span class="nav-text">2、call 实现思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、模拟-call-方法"><span class="nav-text">3、模拟 call 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、模拟-call-方法第二版"><span class="nav-text">4、模拟 call 方法第二版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟-call-终版"><span class="nav-text">模拟 call 终版</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟-apply-方法"><span class="nav-text">模拟 apply 方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义：-调用一个具有给定-this-值的函数，及以一个数组的形式提供的参数。"><span class="nav-text">定义： 调用一个具有给定 this 值的函数，及以一个数组的形式提供的参数。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟-bind"><span class="nav-text">模拟 bind</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义：创建一个新的函数，在-bind-被调用时，这个新函数的-this-被指定为-bind-的第一个参数，而其余参数将作为新函数的参数，供调用时使用。"><span class="nav-text">定义：创建一个新的函数，在 bind 被调用时，这个新函数的 this 被指定为 bind()的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟-bind-第一版"><span class="nav-text">模拟 bind 第一版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟-bind-终版"><span class="nav-text">模拟 bind 终版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文献"><span class="nav-text">参考文献</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Zhu</span>
+
+  
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数: <span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<span class="post-meta-divider">|</span>
+
+<div class="powered-by">
+<i class="fa fa-eye"></i>
+<span id="site-pv">
+  本站总访问量: <span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+
+<span class="post-meta-divider">|</span>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共 32.5k 字</span>
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2021/04/08/js/手写call-apply和bind函数/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+    <!-- 页面点击小红心 -->
+    <script type="text/javascript" src="/js/src/clickLove.js"></script>
+    <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+
+
+</body>
+</html>
+

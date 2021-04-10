@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+
+  <meta name="description" content="CSS3整理归类&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CSS3新增了很多模块，比较重要的模块有：  选择器盒模型背景和边框蚊子特效2D和3D转化动画多列布局用户界面  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;此文章主要表达常用CSS3的模块的定义，涉及一些简单例子。 一、border-radius 圆角定义：1border-radi">
+<meta name="keywords" content="css3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS3">
+<meta property="og:url" content="https://chicaboo.github.io/2019/08/20/css/CSS3/index.html">
+<meta property="og:site_name" content="Mr.Zhu">
+<meta property="og:description" content="CSS3整理归类&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CSS3新增了很多模块，比较重要的模块有：  选择器盒模型背景和边框蚊子特效2D和3D转化动画多列布局用户界面  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;此文章主要表达常用CSS3的模块的定义，涉及一些简单例子。 一、border-radius 圆角定义：1border-radi">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://chicaboo.github.io/images/css/br.png">
+<meta property="og:updated_time" content="2019-08-21T03:44:40.696Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS3">
+<meta name="twitter:description" content="CSS3整理归类&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;CSS3新增了很多模块，比较重要的模块有：  选择器盒模型背景和边框蚊子特效2D和3D转化动画多列布局用户界面  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;此文章主要表达常用CSS3的模块的定义，涉及一些简单例子。 一、border-radius 圆角定义：1border-radi">
+<meta name="twitter:image" content="https://chicaboo.github.io/images/css/br.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://chicaboo.github.io/2019/08/20/css/CSS3/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>CSS3 | Mr.Zhu</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr.Zhu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">So beauty waiting to be discovered</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-music">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/music/" rel="section"><i class="menu-item-icon fa fa-fw fa-music"></i> <br>音乐</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-records">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/records/" rel="section"><i class="menu-item-icon fa fa-fw fa-pencil-square-o"></i> <br>随笔</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chicaboo.github.io/2019/08/20/css/CSS3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Zhu">
+      <meta itemprop="description" content="Nothing for nothing">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.Zhu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CSS3
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-20 10:09:51" itemprop="dateCreated datePublished" datetime="2019-08-20T10:09:51+08:00">2019-08-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-21 11:44:40" itemprop="dateModified" datetime="2019-08-21T11:44:40+08:00">2019-08-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/css3/" itemprop="url" rel="index"><span itemprop="name">css3</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="CSS3整理归类"><a href="#CSS3整理归类" class="headerlink" title="CSS3整理归类"></a>CSS3整理归类</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSS3新增了很多模块，比较重要的模块有：</p>
+<blockquote>
+<p>选择器<br>盒模型<br>背景和边框<br>蚊子特效<br>2D和3D转化<br>动画<br>多列布局<br>用户界面</p>
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此文章主要表达常用CSS3的模块的定义，涉及一些简单例子。</p>
+<h3 id="一、border-radius-圆角"><a href="#一、border-radius-圆角" class="headerlink" title="一、border-radius 圆角"></a>一、border-radius 圆角</h3><p>定义：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">border-radius: </span>a <span class="keyword">b </span>c d</span><br></pre></td></tr></table></figure></p>
+<p>a、b、c、d分别表示对应位置的圆角，a表示：左上，b表示：右上，c表示：右下，d表示：左下。</p>
+<p>如果border-radius只有三个值，如下：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">border-radius: </span>a <span class="keyword">b </span>c</span><br></pre></td></tr></table></figure></p>
+<p>a表示：左上，b表示：右上和左下， c表示：右下</p>
+<p>如果order-radius只有两个值，如下：<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">border</span>-<span class="built_in">radius</span>: a b</span><br></pre></td></tr></table></figure></p>
+<p>a表示：左上和右下， b表示：右上和左下</p>
+<p>如果border-radius只有一个值，如下：<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">border</span>-<span class="built_in">radius</span>: a</span><br></pre></td></tr></table></figure></p>
+<p>a表示: 四个圆角值相同</p>
+<p>border-radius可以单独表示每一个圆角：</p>
+<blockquote>
+<p>border-top-left-radius: a         左上<br>border-top-right-radius: a        右上<br>border-bottom-right-radius: a     右下<br>border-bottom-left-radius: a      左下</p>
+</blockquote>
+<p>例：<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=<span class="string">"box"</span>&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">        .<span class="built_in">box</span> &#123;</span><br><span class="line">            <span class="built_in">width</span>: 100px;</span><br><span class="line">            <span class="built_in">height</span>: 100px;</span><br><span class="line">            <span class="built_in">border</span>: 1px solid red;</span><br><span class="line">            <span class="comment">/*border-radius: 5px 10px 20px 30px;*/</span></span><br><span class="line">            <span class="comment">/*border-radius: 5px 10px 20px;*/</span></span><br><span class="line">            <span class="comment">/*border-radius: 5px 10px;*/</span></span><br><span class="line">            <span class="built_in">border</span>-<span class="built_in">radius</span>: 5px;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/images/css/br.png" alt="一个参数"></p>
+<hr>
+<h3 id="二、background背景"><a href="#二、background背景" class="headerlink" title="二、background背景"></a>二、background背景</h3><p>CSS3中为background提供了几种背景属性</p>
+<blockquote>
+<p>background-image: url(“图片地址1”), url(“图片地址2”)…  添加背景图片,多个图片用都好分隔，显示在最顶端的为第一张<br>background-size: length | percentage | cover | contain;   指定背景图片的大小<br>background-repeat: no-repeat   不重复<br>background-origin: content-box | padding-box | border-box 指定背景图片的位置区域<br>background-clip: content-box | padding-box | border-box 指定背景的绘制区域</p>
+</blockquote>
+<p>background-size：</p>
+<blockquote>
+<p>length: 设置背景图片的宽度和高度，第一个参数为宽度，第二个为高度,如果只给第一个值，第二个为auto<br>percentage: 相对于背景定位区域的百分比，第一个百分比为宽度，第二个为高度，只有第一个值，第二个为auto<br>cover：将图片缩放成完全覆盖定位区域的大小<br>contain: 将图片的缩放成适合背景定位区域的大小</p>
+</blockquote>
+<p>background-origin:</p>
+<blockquote>
+<p>padding-box: 背景图片填充框的相对位置<br>border-box: 背景图片边界框的相对位置<br>content-box: 背景图片相对位置的内容框</p>
+</blockquote>
+<p>background-clip:</p>
+<blockquote>
+<p>padding-box: 背景绘制在内边距方框内<br>border-box: 背景绘制在边框方框内<br>content-box: 被景绘制在内容区方框内</p>
+</blockquote>
+<hr>
+<h3 id="三、gradients渐变"><a href="#三、gradients渐变" class="headerlink" title="三、gradients渐变"></a>三、gradients渐变</h3><p>CSS3提供的渐变可以让两个或多个指定颜色平稳过渡，有两种类型的渐变：</p>
+<blockquote>
+<p>线性渐变(linear-gradient)：向下 | 向上 | 向左 | 向右 方向渐变<br>径向渐变(radial-gradient)：有中心定义开始渐变</p>
+</blockquote>
+<p>线性渐变：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">linear-gradient</span><span class="params">(direction, color1, color2...)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>direction:</p>
+<blockquote>
+<p>to right 从左向右<br>to left 从右向左<br>to bottom right 从左上到右下<br>……</p>
+</blockquote>
+<p>径向渐变：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">radial-gradient</span><span class="params">(angle, color1, color2...)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>angle表示角度，指水平线和渐变线之间的角度，逆时针方向计算。</p>
+<p>其他功能：</p>
+<blockquote>
+<p>使用多个颜色点       background: linear-gradient(red, green, blue);<br>使用透明度          background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1));<br>重复的线性渐变       background: repeating-linear-gradient(red, yellow 10%, green 20%);<br>重复的径向渐变       background: repeating-radial-gradient(red, yellow 10%, green 15%);<br>设置形状            background: radial-gradient(circle, red, yellow, green);</p>
+</blockquote>
+<hr>
+<h3 id="四、transform"><a href="#四、transform" class="headerlink" title="四、transform"></a>四、transform</h3><p>CSS3转换可以对元素进行移动、缩放、转动、拉长或拉伸。方法有：</p>
+<blockquote>
+<p>translate(x, y)： 根据左侧(x轴)和顶部(y轴)位置给定的参数，从当前元素位置移动。如translate(100px, 200px)从左侧开始向右移动100px,从顶部开始向下移动200px;<br>translate3D(x, y, z): 给定x，y，z参数，从当前位置移动。<br>rotate(angle)：给定度数顺时针旋转，如果是负数，则逆时针旋转指定角度。如rotate(30deg)表示顺时针旋转30度。<br>rotate3D(x, y, z, angle)：3D旋转<br>scale(x, y)：该元素增加和减少的大小，取决于x轴和y轴的参数。如scale(2, 3)表示宽度扩展为原来的两倍<br>scale3D(x, y, z)： 3D缩放转换<br>skew(<angle>, [<angle>])：分别表示x轴和y轴的倾斜度，第二个参数默认为0,负数为反方向倾斜<br>skewX(<angle>): x轴的倾斜度<br>skewY(<angle>): y轴的倾斜度<br>matrix(): 有六个参数，包含旋转，缩放，移动（平移）和倾斜功能<br>perspective(n): 为3D转换元素定义透视视图</angle></angle></angle></angle></p>
+</blockquote>
+<hr>
+<h3 id="五、transition-过渡"><a href="#五、transition-过渡" class="headerlink" title="五、transition 过渡"></a>五、transition 过渡</h3><p>过渡是指从一种样式逐渐改变为另一种样式的效果。<br>过渡属性：</p>
+<blockquote>
+<p>transition-property: 过渡的css属性名称<br>transition-duration: 过渡所花费的时间，默认为0<br>transition-timing-function: 过渡效果的时间曲线，默认为”ease”（linear | ease | ease-in | ease-out | ease-in-out）<br>transition-delay: 延时多久开始过渡，即过渡效果的开始时间。<br>简写方式：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transition: <span class="keyword">property</span><span class="title"> </span>duration timing delay</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>例：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">background</span>: red;</span><br><span class="line">    <span class="attribute">transition</span>: width <span class="number">1s</span>;</span><br><span class="line"></span><br><span class="line">    &amp;<span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">300px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="六、animation-动画"><a href="#六、animation-动画" class="headerlink" title="六、animation 动画"></a>六、animation 动画</h3><p>在说动画之前，首先要知道@keyframes的规则，@keyframes规则能创建动画，原理是将一套css样式转化为另外一套样式，从而达到动画的效果。首先开个例子：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> move &#123; <span class="comment">// move自定义名称</span></span><br><span class="line">    <span class="attribute">from</span>: &#123;<span class="attribute">top</span>: <span class="number">0</span>&#125;,</span><br><span class="line">    <span class="attribute">to</span>: &#123;<span class="attribute">top</span>: <span class="number">200px</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> move_percent &#123;</span><br><span class="line">    <span class="selector-tag">0%</span>: &#123;<span class="attribute">left</span>: <span class="number">0</span>&#125;</span><br><span class="line">    <span class="selector-tag">10%</span>: &#123;<span class="attribute">left</span>: <span class="number">20px</span>&#125;</span><br><span class="line">    <span class="selector-tag">30%</span>: &#123;<span class="attribute">left</span>: <span class="number">50px</span>&#125;</span><br><span class="line">    <span class="selector-tag">50%</span>: &#123;<span class="attribute">left</span>: <span class="number">100px</span>&#125;</span><br><span class="line">    <span class="selector-tag">100%</span>: &#123;<span class="attribute">left</span>: <span class="number">200px</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>了解完@keyframes后，再来看看animation，animation的属性：</p>
+<blockquote>
+<p>animation-name: keyframes的名称<br>animation-duration: 完成一周动画所花费的秒或毫秒，默认为0<br>animation-timing-function: 过渡效果的时间曲线,默认为ease（linear | ease | ease-in | ease-out | ease-in-out）<br>animation-delay: 规定动画何时开始，默认为0<br>animation-iteration-count: 规定动画被播放的次数，默认为1<br>animation-direction: 规定动画是否在下一周期逆向地播放。默认是 “normal”（normal | alternate）<br>animation-play-state: 规定动画正在运行还是暂停，默认”running”（paused | running）<br>animation-animation-fill-mode : 规定对象动画时间之外的状态。(none | forwards | backwards | both)</p>
+</blockquote>
+<p>动画属性的简写：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">animation: <span class="built_in">name</span> duration timing <span class="built_in">delay</span> iteration direction play fill</span><br></pre></td></tr></table></figure></p>
+<p>例：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> dropdown &#123;</span><br><span class="line">    0% &#123; <span class="attribute">margin-top</span>: <span class="number">0px</span>;&#125;</span><br><span class="line">   <span class="comment">/** 暂停效果 */</span></span><br><span class="line">   10% &#123; <span class="attribute">margin-top</span>: <span class="number">0px</span>;&#125;</span><br><span class="line">   50% &#123; <span class="attribute">margin-top</span>: -<span class="number">100px</span>;&#125;</span><br><span class="line">   60% &#123; <span class="attribute">margin-top</span>: -<span class="number">100px</span>;&#125;</span><br><span class="line">   90% &#123; <span class="attribute">margin-top</span>: -<span class="number">200px</span>;&#125;</span><br><span class="line">  100% &#123; <span class="attribute">margin-top</span>: -<span class="number">200px</span>;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.list</span> <span class="selector-tag">div</span><span class="selector-pseudo">:first-child</span> &#123;</span><br><span class="line"> <span class="attribute">animation</span>: dropdown <span class="number">8s</span> linear infinite;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+            
+
+          
+    </div>
+
+    
+
+    
+      
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css3/" rel="tag"># css3</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/15/js/Promise/" rel="next" title="Promise">
+                <i class="fa fa-chevron-left"></i> Promise
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/11/js/JavaScript之深入原型与原型链/" rel="prev" title="JavaScript之深入原型与原型链">
+                JavaScript之深入原型与原型链 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80Mjc2My8xOTMxMA"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="Mr.Zhu">
+            
+              <p class="site-author-name" itemprop="name">Mr.Zhu</p>
+              <p class="site-description motion-element" itemprop="description" style="margin-bottom:0;">Nothing for nothing</p>
+
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="83" src="//music.163.com/outchain/player?type=2&id=38358214&auto=0&height=66"></iframe>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/chicAboo/monchic" title="GitHub &rarr; https://github.com/chicAboo/monchic" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/5973947560/profile?topnav=1&wvr=6" title="Weibo &rarr; https://weibo.com/5973947560/profile?topnav=1&wvr=6" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/50c37bf5608b" title="简书 &rarr; https://www.jianshu.com/u/50c37bf5608b" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://blog.csdn.net/qq_34474628" title="csdn &rarr; https://blog.csdn.net/qq_34474628" rel="noopener" target="_blank"><i class="fa fa-fw fa-crosshairs"></i>csdn</a>
+                </span>
+              
+            </div>
+          
+
+
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2019/03/11/jQuery/Pagination/" title="/2019/03/11/jQuery/Pagination/">jQuery_Pagination封装</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2019/03/01/jQuery/Dialog/" title="/2019/03/01/jQuery/Dialog/">jQuery_Dialog封装</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2019/02/13/css/flex-%E9%AA%B0%E5%AD%90%E5%B8%83%E5%B1%80/" title="/2019/02/13/css/flex-%E9%AA%B0%E5%AD%90%E5%B8%83%E5%B1%80/">Flex布局_骰子布局</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2018/11/27/react/style-component/" title="/2018/11/27/react/style-component/">css_in_js style-components</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS3整理归类"><span class="nav-text">CSS3整理归类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、border-radius-圆角"><span class="nav-text">一、border-radius 圆角</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、background背景"><span class="nav-text">二、background背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、gradients渐变"><span class="nav-text">三、gradients渐变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、transform"><span class="nav-text">四、transform</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、transition-过渡"><span class="nav-text">五、transition 过渡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、animation-动画"><span class="nav-text">六、animation 动画</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Zhu</span>
+
+  
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数: <span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<span class="post-meta-divider">|</span>
+
+<div class="powered-by">
+<i class="fa fa-eye"></i>
+<span id="site-pv">
+  本站总访问量: <span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+
+<span class="post-meta-divider">|</span>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共 32.5k 字</span>
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/08/20/css/CSS3/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+    <!-- 页面点击小红心 -->
+    <script type="text/javascript" src="/js/src/clickLove.js"></script>
+    <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+
+
+</body>
+</html>
+
