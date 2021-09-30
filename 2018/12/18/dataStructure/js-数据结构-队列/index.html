@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+
+  <meta name="description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前面讲过使用js模拟栈的算法，今天主要讲，使用js模拟队列的算法，为什么要这样做呢？说实话是闲的无聊，现在处于一个项目空档期，为了不至于太无聊，就想把数据结构里面的算法都使用js模拟一遍。 队列1、什么是队列？&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;想象中午食堂吃饭时、等电梯时、早晚高峰进地">
+<meta name="keywords" content="data-structure">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js-数据结构-队列">
+<meta property="og:url" content="https://monchic.top/2018/12/18/dataStructure/js-数据结构-队列/index.html">
+<meta property="og:site_name" content="Mr.Zhu">
+<meta property="og:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前面讲过使用js模拟栈的算法，今天主要讲，使用js模拟队列的算法，为什么要这样做呢？说实话是闲的无聊，现在处于一个项目空档期，为了不至于太无聊，就想把数据结构里面的算法都使用js模拟一遍。 队列1、什么是队列？&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;想象中午食堂吃饭时、等电梯时、早晚高峰进地">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/12926544-66be795cfa8c3659.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-02-23T16:31:04.790Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js-数据结构-队列">
+<meta name="twitter:description" content="前言&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;前面讲过使用js模拟栈的算法，今天主要讲，使用js模拟队列的算法，为什么要这样做呢？说实话是闲的无聊，现在处于一个项目空档期，为了不至于太无聊，就想把数据结构里面的算法都使用js模拟一遍。 队列1、什么是队列？&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;想象中午食堂吃饭时、等电梯时、早晚高峰进地">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/12926544-66be795cfa8c3659.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+
+
+
+  <link rel="canonical" href="https://monchic.top/2018/12/18/dataStructure/js-数据结构-队列/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>js-数据结构-队列 | Mr.Zhu</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr.Zhu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">So beauty waiting to be discovered</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-music">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/music/" rel="section"><i class="menu-item-icon fa fa-fw fa-music"></i> <br>音乐</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-records">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/records/" rel="section"><i class="menu-item-icon fa fa-fw fa-pencil-square-o"></i> <br>随笔</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://monchic.top/2018/12/18/dataStructure/js-数据结构-队列/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Zhu">
+      <meta itemprop="description" content="Nothing for nothing">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.Zhu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js-数据结构-队列
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-18 16:02:00" itemprop="dateCreated datePublished" datetime="2018-12-18T16:02:00+08:00">2018-12-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-24 00:31:04" itemprop="dateModified" datetime="2019-02-24T00:31:04+08:00">2019-02-24</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前面讲过使用js模拟栈的算法，今天主要讲，使用js模拟队列的算法，为什么要这样做呢？说实话是闲的无聊，现在处于一个项目空档期，为了不至于太无聊，就想把数据结构里面的算法都使用js模拟一遍。</p>
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><h6 id="1、什么是队列？"><a href="#1、什么是队列？" class="headerlink" title="1、什么是队列？"></a>1、什么是队列？</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;想象中午食堂吃饭时、等电梯时、早晚高峰进地铁时，都需要排队。那么肯定是先排队的有优先权，然后依次进入。队列也是这个道理，只有一个出口，一个入口，特点是<code>先进先出</code>，这和栈的思想相反。明白了队列的特点，分析如何使用js实现队列？<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;队列有一个入口，取名为<code>enqueue</code>;出口取名为<code>dequeue</code>;正常情况下，还需要读取队首和队尾元素，命名为<code>front</code>和<code>back</code>，读取队列所有元素，命名为<code>toStringData</code>, 判断队列是否空，命名为<code>isEmpty</code>。现在可以完成队列的构造函数了，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Queue</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.data = [];</span><br><span class="line">    <span class="keyword">this</span>.enqueue = enqueue;  <span class="comment">//队尾添加一个元素</span></span><br><span class="line">    <span class="keyword">this</span>.dequeue = dequeue;  <span class="comment">//队首删除一个元素</span></span><br><span class="line">    <span class="keyword">this</span>.front = front;  <span class="comment">//读取队首元素</span></span><br><span class="line">    <span class="keyword">this</span>.back = back;  <span class="comment">//读取队尾元素</span></span><br><span class="line">    <span class="keyword">this</span>.toStringData = toStringData;  <span class="comment">//显示队内元素</span></span><br><span class="line">    <span class="keyword">this</span>.isEmpty = isEmpty;  <span class="comment">//判断队列是否为空</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h6 id="2、使用enqueue-方法，在队尾添加一个元素，如下："><a href="#2、使用enqueue-方法，在队尾添加一个元素，如下：" class="headerlink" title="2、使用enqueue()方法，在队尾添加一个元素，如下："></a>2、使用enqueue()方法，在队尾添加一个元素，如下：</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">enqueue</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.data.push(element);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="3、使用dequeue-方法，在队首删除一个元素，并返回删除的值，如下："><a href="#3、使用dequeue-方法，在队首删除一个元素，并返回删除的值，如下：" class="headerlink" title="3、使用dequeue()方法，在队首删除一个元素，并返回删除的值，如下："></a>3、使用dequeue()方法，在队首删除一个元素，并返回删除的值，如下：</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dequeue</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.data.shift();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="4、使用front-方法，返回队首元素，如下："><a href="#4、使用front-方法，返回队首元素，如下：" class="headerlink" title="4、使用front()方法，返回队首元素，如下："></a>4、使用front()方法，返回队首元素，如下：</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">front</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.data[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"><span class="string">``</span><span class="string">`JavaScript</span></span><br><span class="line"><span class="string">###### 5、使用back()方法，返回队尾元素，如下：</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>JavaScript</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">back</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.data[<span class="keyword">this</span>.data.length - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h6 id="6、使用toStringData-方法，返回队列元素，如下："><a href="#6、使用toStringData-方法，返回队列元素，如下：" class="headerlink" title="6、使用toStringData()方法，返回队列元素，如下："></a>6、使用toStringData()方法，返回队列元素，如下：</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toStringData</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> queueString = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.data.length; i++) &#123;</span><br><span class="line">        queueString += <span class="keyword">this</span>.data[i] + <span class="string">'\n'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> queueString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="7、使用isEmpty-方法，判断队列是否为空，如下："><a href="#7、使用isEmpty-方法，判断队列是否为空，如下：" class="headerlink" title="7、使用isEmpty()方法，判断队列是否为空，如下："></a>7、使用isEmpty()方法，判断队列是否为空，如下：</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isEmpty</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.data.length === <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;到这里，就使用js实现了一个单向队列。</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><h6 id="1、使用队列进行排序（基数排序）"><a href="#1、使用队列进行排序（基数排序）" class="headerlink" title="1、使用队列进行排序（基数排序）"></a>1、使用队列进行排序（基数排序）</h6><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先介绍下什么是<code>基数排序</code>，基数排序又叫<code>分配式排序</code>或<code>桶子法</code>，它是通过数据的部分信息，将要排序的元素分配至<code>桶</code>中，以达到排序的作用。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;假设有一串数值，如下所示：</p>
+<pre><code>98、25、31、10、99、81、65、42、51
+</code></pre><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先根据个位数的数值，在走访数值时将它们分配至编号0到9的桶子中：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>： <span class="number">10</span></span><br><span class="line"><span class="number">1</span>： <span class="number">31</span> <span class="number">81</span> <span class="number">51</span></span><br><span class="line"><span class="number">2</span>： <span class="number">42</span></span><br><span class="line"><span class="number">3</span>：</span><br><span class="line"><span class="number">4</span>：</span><br><span class="line"><span class="number">5</span>： <span class="number">25</span> <span class="number">65</span></span><br><span class="line"><span class="number">6</span>：</span><br><span class="line"><span class="number">7</span>：</span><br><span class="line"><span class="number">8</span>： <span class="number">98</span></span><br><span class="line"><span class="number">9</span>： <span class="number">99</span></span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接下来将这些桶子中的数值串接起来，如下所示：<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">10 </span><span class="number">31</span> <span class="number">81</span> <span class="number">51</span> <span class="number">42</span> <span class="number">25</span> <span class="number">65</span> <span class="number">98</span> <span class="number">99</span></span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接着根据十位数在进行一次分配，如下所示：<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span>：</span><br><span class="line"><span class="number">1</span>： <span class="number">10</span></span><br><span class="line"><span class="number">2</span>： <span class="number">25</span></span><br><span class="line"><span class="number">3</span>： <span class="number">31</span></span><br><span class="line"><span class="number">4</span>： <span class="number">42</span></span><br><span class="line"><span class="number">5</span>： <span class="number">51</span></span><br><span class="line"><span class="number">6</span>： <span class="number">65</span></span><br><span class="line"><span class="number">7</span>：</span><br><span class="line"><span class="number">8</span>： <span class="number">81</span></span><br><span class="line"><span class="number">9</span>： <span class="number">98</span> <span class="number">99</span></span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接下来将这些数值串接起来，形成以下数值：<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">10 </span><span class="number">25</span> <span class="number">31</span> <span class="number">42</span> <span class="number">51</span> <span class="number">65</span> <span class="number">81</span> <span class="number">98</span> <span class="number">99</span></span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这时候排序已经完成；如果有三位数或这更高位数，则持续进行以上动作，直至最高位为止。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如何使用队列的思想进行排序呢？假设是0～99间的数进行比较，首先需要比较个位数，因为数值在0～99之间，只需对数进行<code>取余</code>,即可得到个位数，对数值除以10，向下取整可得到十位数。到这儿开始使用队列(<code>桶</code>)进行存值，需要是个队列分别存储0～9的值。如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  <span class="doctag">@param </span>nums 初始数组</span></span><br><span class="line"><span class="comment"> *  <span class="doctag">@param </span>queue 队列数组</span></span><br><span class="line"><span class="comment"> *  <span class="doctag">@param </span>n 几位数</span></span><br><span class="line"><span class="comment"> *  <span class="doctag">@param </span>digit 个位数或十位以上的数</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">distribute</span> (<span class="params">nums, queue, n, digit</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (digit === <span class="number">1</span>) &#123;</span><br><span class="line">            queue[nums[i] % <span class="number">10</span>].enqueue(nums[I]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            queue[<span class="built_in">Math</span>.floor(nums[i] / <span class="number">10</span>)].enqueue(nums[I]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基数排序后展示函数，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  <span class="doctag">@param </span>queues 队列数组</span></span><br><span class="line"><span class="comment"> *  <span class="doctag">@nums </span>nums 初始数组</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showAfterData</span> (<span class="params">queues, nums</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> digit = <span class="number">0</span>; digit &lt; <span class="number">10</span>; ++digit) &#123;</span><br><span class="line">        <span class="keyword">while</span> (!queues[digit].isEmpty()) &#123;</span><br><span class="line">            nums[i++] = queues[digit].dequeue();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;完成算法后，随机来点数实验下，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> queues = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">    queues[i] = <span class="keyword">new</span> Queue();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> nums = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">    nums[i] = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">101</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'个位数排序：'</span>);</span><br><span class="line">distribute(nums, queues, <span class="number">10</span>, <span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(collect(queues, nums));</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'十位数排序：'</span>);</span><br><span class="line">distribute(nums, queues, <span class="number">10</span>, <span class="number">10</span>);</span><br><span class="line"><span class="built_in">console</span>.log(collect(queues, nums));</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;结果如下：<br><img src="https://upload-images.jianshu.io/upload_images/12926544-66be795cfa8c3659.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="基数排序结果"></p>
+<h3 id="双向队列"><a href="#双向队列" class="headerlink" title="双向队列"></a>双向队列</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;双向队列即队列的首尾都能进能出，那么只需在单向队列中添加两个方法，队首添加一个元素方法(<code>fenqueue</code>)，队尾删除一个元素的方法(‘bdequeue’),即可.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;队列的构造函数添加两个方法，如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">Queue</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="keyword">this</span>.data = [];</span><br><span class="line">     <span class="keyword">this</span>.enqueue = enqueue;  <span class="comment">//队尾添加一个元素</span></span><br><span class="line">     <span class="keyword">this</span>.dequeue = dequeue;  <span class="comment">//队首删除一个元素</span></span><br><span class="line">     <span class="string">`this.fenqueue = fenqueue;  //队首添加一个元素`</span></span><br><span class="line">     <span class="string">`this.bdequeue = bdequeue;  //队尾删除一个元素`</span></span><br><span class="line">     <span class="keyword">this</span>.front = front;  <span class="comment">//读取队首元素</span></span><br><span class="line">     <span class="keyword">this</span>.back = back;  <span class="comment">//读取队尾元素</span></span><br><span class="line">     <span class="keyword">this</span>.toStringData = toStringData;  <span class="comment">//显示队内元素</span></span><br><span class="line">     <span class="keyword">this</span>.isEmpty = isEmpty;  <span class="comment">//判断队列是否为空</span></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fenqueue</span> (<span class="params">element</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.data.unshift(element);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bdequeue</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.data.pop();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在就完成了双向队列。双向队列能实现什么功能呢？如回文之类的使用双向队列能很方便的实现，思想如上一片文章中的栈，使用双向队列无论从前还是后插入数据，都一个原理。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+            
+
+          
+    </div>
+
+    
+
+    
+      
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/data-structure/" rel="tag"># data-structure</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/17/dataStructure/js-数据结构-栈/" rel="next" title="js-数据结构-栈">
+                <i class="fa fa-chevron-left"></i> js-数据结构-栈
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/13/css/flex-骰子布局/" rel="prev" title="flex-骰子布局">
+                flex-骰子布局 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80Mjc2My8xOTMxMA"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="Mr.Zhu">
+            
+              <p class="site-author-name" itemprop="name">Mr.Zhu</p>
+              <p class="site-description motion-element" itemprop="description" style="margin-bottom:0;">Nothing for nothing</p>
+
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="83" src="//music.163.com/outchain/player?type=2&id=38358214&auto=0&height=66"></iframe>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/chicAboo/monchic" title="GitHub &rarr; https://github.com/chicAboo/monchic" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/5973947560/profile?topnav=1&wvr=6" title="Weibo &rarr; https://weibo.com/5973947560/profile?topnav=1&wvr=6" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/50c37bf5608b" title="简书 &rarr; https://www.jianshu.com/u/50c37bf5608b" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://blog.csdn.net/qq_34474628" title="csdn &rarr; https://blog.csdn.net/qq_34474628" rel="noopener" target="_blank"><i class="fa fa-fw fa-crosshairs"></i>csdn</a>
+                </span>
+              
+            </div>
+          
+
+
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2019/03/11/jQuery/Pagination/" title="/2019/03/11/jQuery/Pagination/">jQuery_Pagination封装</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2019/03/01/jQuery/Dialog/" title="/2019/03/01/jQuery/Dialog/">jQuery_Dialog封装</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2019/02/13/css/flex-%E9%AA%B0%E5%AD%90%E5%B8%83%E5%B1%80/" title="/2019/02/13/css/flex-%E9%AA%B0%E5%AD%90%E5%B8%83%E5%B1%80/">Flex布局_骰子布局</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2018/11/27/react/style-component/" title="/2018/11/27/react/style-component/">css_in_js style-components</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列"><span class="nav-text">队列</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1、什么是队列？"><span class="nav-text">1、什么是队列？</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2、使用enqueue-方法，在队尾添加一个元素，如下："><span class="nav-text">2、使用enqueue()方法，在队尾添加一个元素，如下：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3、使用dequeue-方法，在队首删除一个元素，并返回删除的值，如下："><span class="nav-text">3、使用dequeue()方法，在队首删除一个元素，并返回删除的值，如下：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4、使用front-方法，返回队首元素，如下："><span class="nav-text">4、使用front()方法，返回队首元素，如下：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6、使用toStringData-方法，返回队列元素，如下："><span class="nav-text">6、使用toStringData()方法，返回队列元素，如下：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7、使用isEmpty-方法，判断队列是否为空，如下："><span class="nav-text">7、使用isEmpty()方法，判断队列是否为空，如下：</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-text">实例</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1、使用队列进行排序（基数排序）"><span class="nav-text">1、使用队列进行排序（基数排序）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双向队列"><span class="nav-text">双向队列</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Zhu</span>
+
+  
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数: <span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<span class="post-meta-divider">|</span>
+
+<div class="powered-by">
+<i class="fa fa-eye"></i>
+<span id="site-pv">
+  本站总访问量: <span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+
+<span class="post-meta-divider">|</span>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共 50.3k 字</span>
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2018/12/18/dataStructure/js-数据结构-队列/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+    <!-- 页面点击小红心 -->
+    <script type="text/javascript" src="/js/src/clickLove.js"></script>
+    <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+
+
+</body>
+</html>
+

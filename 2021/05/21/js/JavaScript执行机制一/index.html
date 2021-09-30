@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+
+
+  <meta name="description" content="JavaScript 的执行顺序对于人的直观感受而言，一串 JavaScript 的代码执行逻辑应该是一行一行的执行的，那么 JavaScript 的执行是否是一行一行的执行的呢？先看一个例子： 123456789function fn() &amp;#123;  console.log(&apos;fn1&apos;);&amp;#125;fn(); // fn2function fn() &amp;#123;  console.log(">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript执行机制一">
+<meta property="og:url" content="https://monchic.top/2021/05/21/js/JavaScript执行机制一/index.html">
+<meta property="og:site_name" content="Mr.Zhu">
+<meta property="og:description" content="JavaScript 的执行顺序对于人的直观感受而言，一串 JavaScript 的代码执行逻辑应该是一行一行的执行的，那么 JavaScript 的执行是否是一行一行的执行的呢？先看一个例子： 123456789function fn() &amp;#123;  console.log(&apos;fn1&apos;);&amp;#125;fn(); // fn2function fn() &amp;#123;  console.log(">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://monchic.top/images/js/JavaScript执行机制/execution_context1.jpg">
+<meta property="og:image" content="https://monchic.top/images/js/JavaScript执行机制/call_stack1.jpg">
+<meta property="og:image" content="https://monchic.top/images/js/JavaScript执行机制/call_stack2.jpg">
+<meta property="og:image" content="https://monchic.top/images/js/JavaScript执行机制/call_stack3.jpg">
+<meta property="og:image" content="https://monchic.top/images/js/JavaScript执行机制/call_stack4.jpg">
+<meta property="og:image" content="https://monchic.top/images/js/JavaScript执行机制/call_stack5.jpg">
+<meta property="og:image" content="https://monchic.top/images/js/JavaScript执行机制/block1.jpg">
+<meta property="og:image" content="https://monchic.top/images/js/JavaScript执行机制/block2.jpg">
+<meta property="og:image" content="https://monchic.top/images/js/JavaScript执行机制/block3.jpg">
+<meta property="og:image" content="https://monchic.top/images/js/JavaScript执行机制/block4.jpg">
+<meta property="og:updated_time" content="2021-05-24T09:29:01.188Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript执行机制一">
+<meta name="twitter:description" content="JavaScript 的执行顺序对于人的直观感受而言，一串 JavaScript 的代码执行逻辑应该是一行一行的执行的，那么 JavaScript 的执行是否是一行一行的执行的呢？先看一个例子： 123456789function fn() &amp;#123;  console.log(&apos;fn1&apos;);&amp;#125;fn(); // fn2function fn() &amp;#123;  console.log(">
+<meta name="twitter:image" content="https://monchic.top/images/js/JavaScript执行机制/execution_context1.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://monchic.top/2021/05/21/js/JavaScript执行机制一/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JavaScript执行机制一 | Mr.Zhu</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Mr.Zhu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">So beauty waiting to be discovered</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-music">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/music/" rel="section"><i class="menu-item-icon fa fa-fw fa-music"></i> <br>音乐</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-records">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/records/" rel="section"><i class="menu-item-icon fa fa-fw fa-pencil-square-o"></i> <br>随笔</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://monchic.top/2021/05/21/js/JavaScript执行机制一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.Zhu">
+      <meta itemprop="description" content="Nothing for nothing">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mr.Zhu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript执行机制一
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-05-21 10:05:19" itemprop="dateCreated datePublished" datetime="2021-05-21T10:05:19+08:00">2021-05-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-05-24 17:29:01" itemprop="dateModified" datetime="2021-05-24T17:29:01+08:00">2021-05-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="JavaScript-的执行顺序"><a href="#JavaScript-的执行顺序" class="headerlink" title="JavaScript 的执行顺序"></a>JavaScript 的执行顺序</h2><p>对于人的直观感受而言，一串 JavaScript 的代码执行逻辑应该是一行一行的执行的，那么 JavaScript 的执行是否是一行一行的执行的呢？先看一个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'fn1'</span>);</span><br><span class="line">&#125;</span><br><span class="line">fn(); <span class="comment">// fn2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'fn2'</span>);</span><br><span class="line">&#125;</span><br><span class="line">fn(); <span class="comment">// fn2</span></span><br></pre></td></tr></table></figure>
+<p>两次调用函数的结果都是 fn2，为什么是这样的？先不管为什么，再看一个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">showName();</span><br><span class="line"><span class="built_in">console</span>.log(myName); <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> myName = <span class="string">"Jackson"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"showName函数被执行"</span>); <span class="comment">// showName函数被执行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设 JavaScript 引擎执行的代码是一行一行的执行，那么执行到第一行代码就会报错，但是实际上却调用了 showName 函数。执行第二行代码，在前面并没有声明 myName 变量，但是打印出来的结果却是 undefined，说明 myName 是声明了，未定义。这说明 JavaScript 引擎执行代码并不是一行一行的执行的。<br>JavaScript 引擎是如何执行一段代码的呢？</p>
+<h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><p>在了解 JavaScript 代码是如何执行之前，需要先了解什么是变量提升。<br>首先看看 JavaScript 的声明和赋值。</p>
+<p>变量的声明和赋值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(myName);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> myName = <span class="string">"Jackson"</span>;</span><br></pre></td></tr></table></figure>
+<p>上面代码中变量可以拆解成 2 个部分，声明和复制，函数因为没有赋值操作，就是完整的声明，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myName = <span class="literal">undefined</span>; <span class="comment">// 声明</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(myName);</span><br><span class="line">&#125;</span><br><span class="line">myName = <span class="string">"Jackson"</span>; <span class="comment">// 赋值</span></span><br></pre></td></tr></table></figure>
+<p>到这里了解了声明和赋值后，再来看看变量提升。</p>
+<blockquote>
+<p>变量提升是指 JavaScript 在执行的过程中，JavaScript 引擎会把变量声明的部分和函数声明的部分提升到代码开头的行为，变量提升后会给默认值为 undefined。</p>
+</blockquote>
+<p>结合变量提升的概念，模拟一下下面的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">showName();</span><br><span class="line"><span class="built_in">console</span>.log(myname)</span><br><span class="line"><span class="keyword">var</span> myName = <span class="string">"Jackson"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"showName函数被执行"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  变量提升部分</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> myName = <span class="literal">undefined</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'showName函数被执行'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  可执行部分</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">showName();</span><br><span class="line"><span class="built_in">console</span>.log(myname)</span><br><span class="line">myName = <span class="string">'Jackson'</span>;</span><br></pre></td></tr></table></figure>
+<p>通过这段代码的模拟，我们知道<code>函数和变量在执行代码之前已经被提升到了代码开头</code>。变量的提升意味着从物理层面上把代码移到了最前面，正如上面模拟的一样，变量和函数在执行的过程中，并不会改变位置，而是在编译阶段被 JavaScript 引擎放入了内存中。故一段 JavaScript 的执行的大致流程如下：</p>
+<ol>
+<li>编译阶段：对变量和函数进行变量提升操作，如下：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  变量提升部分</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> myName = <span class="literal">undefined</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'showName函数被执行'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>执行代码阶段：一行一行的执行代码</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  可执行部分</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">showName();</span><br><span class="line"><span class="built_in">console</span>.log(myname)</span><br><span class="line">myName = <span class="string">'Jackson'</span>;</span><br></pre></td></tr></table></figure>
+<p>JavaScript 代码经过编译后会分为两个部分：<code>执行上下文和可执行代码</code>。执行上下文分为：全局执行上下文、函数执行上下文、eval 执行上下文；</p>
+<p>执行上下文是 JavaScript 执行一段代码时的运行环境。具体可以看下图：<br><img src="/images/js/JavaScript执行机制/execution_context1.jpg" alt="执行上下文"></p>
+<p>上图中执行上下文中存放一个<code>变量环境的对象（Viriable Environment）</code>，该对象中保存了变量提升的内容，如 myName 和 showName 函数，当然执行上下文还有其他的对象，如块级作用域中的变量存放在词法环境；每一个执行上下文都存放有一个外部引用 outer，存放于外部环境；以及每一个执行上下文中都存放有一个 this。这些后面会详细讲解，这儿就不多说了。</p>
+<p>变量环境中存放的对象可简单表示为如下结构：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ViriableEnvironment:</span><br><span class="line">  myName -&gt; <span class="literal">undefined</span>,</span><br><span class="line">  showName -&gt;<span class="function"><span class="keyword">function</span> : </span>&#123;<span class="built_in">console</span>.log(myname)</span><br></pre></td></tr></table></figure>
+<p>在执行阶段，JavaScript 引擎对可执行代码，按照顺序进行一行一行的执行。显示对声明的 myName 进行赋值操作，然后执行 showName 方法，变量环境如下所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ViriableEnvironment:</span><br><span class="line">  myName -&gt; <span class="string">'Jackson'</span>,</span><br><span class="line">  showName -&gt;<span class="function"><span class="keyword">function</span> : </span>&#123;<span class="built_in">console</span>.log(myname)</span><br></pre></td></tr></table></figure>
+<p>到这里已经明白了 JavaScript 执行代码的机制，首先 JavaScript 引擎会对代码进行编译，编译阶段会有变量提升的部分，存放于变量环境，然后是代码执行部分。那么如果有两个相同的变量和函数 JavaScript 会如何执行呢？结合本文的第一个例子，后面的代码会覆盖前面的代码。</p>
+<h2 id="调用栈"><a href="#调用栈" class="headerlink" title="调用栈"></a>调用栈</h2><p>上面提到过，一段代码经过编译并创建执行上下文，分为三种情况：</p>
+<blockquote>
+<ol>
+<li>全局执行上下文：在执行 JavaScript 全局代码的时候，会编译全局代码创建全局执行上下文，在整个页面的生存周期内，只有一份全局执行上下文；</li>
+<li>函数执行上下文：在调用一个函数时，会编译函数内部代码，并创建函数执行上下文，在函数执行结束后，创建的函数执行上下文会被销毁；</li>
+<li>当使用 eval 函数时，eval 代码会被编译，并创建 eval 执行上下文；</li>
+</ol>
+</blockquote>
+<p>明确了三种执行上下文的情况，在谈谈什么是调用栈，调用栈是一种<code>栈（后进先出）</code>的数据结构。调用栈是用来管理函数调用关系的数据结构。如下 JavaScript 代码，执行上下文是如何创建并存储的呢？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params">b, c</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">5</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(a);</span><br><span class="line">  <span class="keyword">return</span> a + b + c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params">b, c</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> d = <span class="number">10</span>;</span><br><span class="line">  res = fn1(b, c);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> res + d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn2(<span class="number">2</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<p>上面的代码声明了一个变量 a，函数 fn1、fn2，在全局范围内调用 fn2，fn2 中调用 fn1，在整个代码的执行过程中调用栈是如何执行的呢？下面会一步一步分析，调用栈的变化情况。</p>
+<ol>
+<li><p>创建全局上下文，并将其压入栈底，如图：<br><img src="/images/js/JavaScript执行机制/call_stack1.jpg" alt="执行上下文"><br>从图中可以看出来，变量 a，函数 fn1 和 fn2 都保存到了全局上下文的变量环境对象中。需要注意的是，函数调用伴随的值传递的过程。全局执行上下文压入栈后，JavaScript 开始执行全局代码，首先将执行 a = 2 的赋值操作。</p>
+</li>
+<li><p>调用 fn2 方法，JavaScript 引擎会编译该函数，创建执行上下文，并压入调用栈中，如下图所示<br><img src="/images/js/JavaScript执行机制/call_stack2.jpg" alt="执行上下文"><br>函数 fn2 执行上下文后，便开始执行函数 fn2 中的代码，将 fn2 中的 10 赋值给 d，即 d = 10；</p>
+</li>
+<li><p>调用 fn1 方法，JavaScript 引擎会编译该函数，创建执行上下文，并压入调用栈中，如下图所示<br><img src="/images/js/JavaScript执行机制/call_stack3.jpg" alt="执行上下文"><br>函数 fn1 执行上下文入栈后，便开始执行 fn1 中的代码，将 fn1 中的 5 赋值给 a，即 a = 5;并执行 a + b + c，返回给 fn2 函数中的调用 res 调用方。</p>
+</li>
+<li><p>fn1 执行完成后，fn1 执行上下文出栈，如图<br><img src="/images/js/JavaScript执行机制/call_stack4.jpg" alt="执行上下文"><br>fn1 执行完成后，会将返回值赋值给 fn2 中的 res，即 res = 10</p>
+</li>
+<li><p>fn2 执行完成后，fn2 执行上下文出栈，如图<br><img src="/images/js/JavaScript执行机制/call_stack5.jpg" alt="执行上下文"><br>fn2 执行完成后，将返回值 res + d 的结果返回，因全局环境没有变量接收，故函数 fn2 执行上下文出栈。到此，调用栈中只剩下全局执行上下文，将全局执行上下文的代码执行完成，结束。</p>
+</li>
+<li><p>栈溢出<br>调用栈是存在大小的，当栈的空间满后，就会存在栈溢出的情况，如下代码</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">stackOverflow</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> n * stackOverflow(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line">stackOverflow(<span class="number">50000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出： Uncaught RangeError: Maximum call stack size exceeded</span></span><br></pre></td></tr></table></figure>
+<p>上面函数是计算阶乘使用，当递归调用 5 万次，即每一次执行函数都会产生一个执行上下文，存入调用栈，我使用的时 chrome81 版本浏览器，调用栈的大小为<code>12540</code>，故超出调用栈的大小会出现栈溢出的情况。<br>那么如何解决呢？<br>这里有两种方法:</p>
+<blockquote>
+<ol>
+<li>将每次执行的结果存入宏任务队列中，借助 setTimeout；</li>
+<li>通过尾递归的方式处理，但是很多浏览器不兼容，尾递归方式无意义，不如直接循环；</li>
+</ol>
+</blockquote>
+<h2 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h2><p>由于 JavaScript 的变量提升，造成很多不符合直观感受的代码，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myName = <span class="string">"Jackson"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> myName = <span class="string">"Monchic"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(myName);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出： Monchic</span></span><br></pre></td></tr></table></figure>
+<p>正常的逻辑应该是输出<code>Jackson</code>的，但是因为变量提升的关系，输出的是<code>Monchic</code>，这不得不说是 JavaScript 的设计缺陷，在 es6 中提出了块级作用域，解决了因变量提升造成很多直觉不一致的代码。</p>
+<p>块级作用域是使用大括号包裹的一段代码，比如函数、判断语句、循环语句、单独块等，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//if块</span></span><br><span class="line"><span class="keyword">if</span> (<span class="number">1</span>) &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//while块</span></span><br><span class="line"><span class="keyword">while</span> (<span class="number">1</span>) &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//函数块</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//for循环块</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//单独一个块</span></span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>了解块级作用域，通过 let 改写下代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myName = <span class="string">"Jackson"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> myName = <span class="string">"Monchic"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(myName);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出： Jackson</span></span><br></pre></td></tr></table></figure>
+<p>结果即是我们预期的结果。<br>我们知道，通过 var 声明的变量是存放到执行上下文中的变量环境中的，那么通过 let 和 const 声明的变量存放到哪里呢？</p>
+<h2 id="JavaScript-引擎如何支持块级作用域？"><a href="#JavaScript-引擎如何支持块级作用域？" class="headerlink" title="JavaScript 引擎如何支持块级作用域？"></a>JavaScript 引擎如何支持块级作用域？</h2><p>我们可以通过 let 和 const 声明块级作用域，在一段代码中，使用的有 let、const 和 var，JavaScript 引擎能同时支持变量提升和块级作用域，那么 JavaScript 引擎是如何同时支持的呢？<br>首先看一段代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">let</span> b = <span class="number">2</span>;</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">let</span> b = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">var</span> c = <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">let</span> d = <span class="number">5</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(a);</span><br><span class="line">    <span class="built_in">console</span>.log(b);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(b);</span><br><span class="line">  <span class="built_in">console</span>.log(c);</span><br><span class="line">  <span class="built_in">console</span>.log(d);</span><br><span class="line">&#125;</span><br><span class="line">fn();</span><br></pre></td></tr></table></figure>
+<p>结合前面将的执行上下文的思路，执行上下文的思想来分析内存中的存储情况，<code>块级作用域是存放在执行上下文中的词法环境中</code>，它是一个小型的栈结构。</p>
+<ol>
+<li><p>编译并创建执行上下文，如图<br><img src="/images/js/JavaScript执行机制/block1.jpg" alt="执行上下文"><br>分析上图：</p>
+<blockquote>
+<ul>
+<li>通过 var 声明的变量 a 和 c 存放到执行上下文中的变量环境中</li>
+<li>通过 let 声明的变量 b 存放到执行上下文中的词法环境中</li>
+</ul>
+</blockquote>
+</li>
+<li><p>编译块级作用域代码<br>当执行块级作用域中代码时，变量环境中的 a 的值被设置成 1，词法环境中的变量 b 被设置成 2，同时对块级作用域中的代码进行编译，如图所示<br><img src="/images/js/JavaScript执行机制/block2.jpg" alt="执行上下文"></p>
+<p>分析上图：</p>
+<blockquote>
+<ul>
+<li>块级内部通过 let 声明了变量 b，这个区域的变量 b 并不会影响外部的变量 b，在词法环境入栈，当执行完成后再出栈；</li>
+<li>块级内部通过 var 声明了变量 c，编译时会对 c 变量提升，在变量环境中存放 c = undefined，当执行代码的时候变量 c 会被设置成 4；</li>
+<li>块级内部通过 let 声明了变量 d，编译变量 d 时，编译后的在赐福环境入栈，然执行时，变量 c 会被设置成 5；</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<p><img src="/images/js/JavaScript执行机制/block3.jpg" alt="执行上下文"><br>在词法环境中，会维护一个小型的栈结构，栈底是最外层通过 let 或 const 声明的变量，进入一个作用域后，会把该作用域内部通过 let 或 const 声明的变量存入栈顶，当作用域执行完成会从栈顶弹出。<br>当执行到 console.log(a)时，JavaScript 引擎会先从词法环境中查找变量，如果找到就返回给 JavaScript 引擎，如果没找到会到变量环境中继续查找。如下图所示<br><img src="/images/js/JavaScript执行机制/block4.jpg" alt="执行上下文"></p>
+<p>块级作用域就是通过词法环境的栈结构来实现的，而变量提升是通过变量环境来实现，通过这两者的结合，JavaScript 引擎也就同时支持了变量提升和块级作用域了。</p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><blockquote>
+<ol>
+<li>JavaScript 代码在执行的过程中，需要先做变量提升，之所以如此，是因为 JavaScript 代码再执行前需要进行<code>编译</code>；</li>
+<li>在编译阶段，变量和函数会被存放到<code>变量环境</code>中，变量的默认值为 undefined；块级作用域会被存放到<code>词法环境</code>中；</li>
+<li>在编译阶段，存在两个相同的函数，后面的会覆盖前面的函数；</li>
+<li>调用函数时，JavaScript 引擎维护了一个栈的数据结构（调用栈），每次调用函数都会将函数的执行上下文压入调用栈，然后 JavaScript 引擎开始执行函数代码；</li>
+<li>当函数执行完毕后，JavaScript 引擎会将该函数的执行上下文弹出栈；</li>
+<li>当分配的栈控件被占满时，会引发<code>栈溢出</code>的情况；</li>
+</ol>
+</blockquote>
+<p>在最后一个例子中，我们在查找变量时，先从词法环境中查找，找不到会到变量环境中查找，直到找了为止，这个查找的逻辑底层是怎么实现的呢？this 是怎么定义的？闭包产生的原因？等等问题，JavaScript 引擎是工作的，请关注下一节《JavaScript 运行机制二》</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+            
+
+          
+    </div>
+
+    
+
+    
+      
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/05/15/js/你想知道的promise都在这里/" rel="next" title="你想知道的Promise都在这里">
+                <i class="fa fa-chevron-left"></i> 你想知道的Promise都在这里
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/09/29/微前端/基于qiankun的微前端/" rel="prev" title="基于qiankun的微前端">
+                基于qiankun的微前端 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80Mjc2My8xOTMxMA"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/logo.png" alt="Mr.Zhu">
+            
+              <p class="site-author-name" itemprop="name">Mr.Zhu</p>
+              <p class="site-description motion-element" itemprop="description" style="margin-bottom:0;">Nothing for nothing</p>
+
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="83" src="//music.163.com/outchain/player?type=2&id=38358214&auto=0&height=66"></iframe>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/chicAboo/monchic" title="GitHub &rarr; https://github.com/chicAboo/monchic" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/5973947560/profile?topnav=1&wvr=6" title="Weibo &rarr; https://weibo.com/5973947560/profile?topnav=1&wvr=6" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/50c37bf5608b" title="简书 &rarr; https://www.jianshu.com/u/50c37bf5608b" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://blog.csdn.net/qq_34474628" title="csdn &rarr; https://blog.csdn.net/qq_34474628" rel="noopener" target="_blank"><i class="fa fa-fw fa-crosshairs"></i>csdn</a>
+                </span>
+              
+            </div>
+          
+
+
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                推荐阅读
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2019/03/11/jQuery/Pagination/" title="/2019/03/11/jQuery/Pagination/">jQuery_Pagination封装</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2019/03/01/jQuery/Dialog/" title="/2019/03/01/jQuery/Dialog/">jQuery_Dialog封装</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2019/02/13/css/flex-%E9%AA%B0%E5%AD%90%E5%B8%83%E5%B1%80/" title="/2019/02/13/css/flex-%E9%AA%B0%E5%AD%90%E5%B8%83%E5%B1%80/">Flex布局_骰子布局</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2018/11/27/react/style-component/" title="/2018/11/27/react/style-component/">css_in_js style-components</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-的执行顺序"><span class="nav-text">JavaScript 的执行顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量提升"><span class="nav-text">变量提升</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用栈"><span class="nav-text">调用栈</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#块级作用域"><span class="nav-text">块级作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-引擎如何支持块级作用域？"><span class="nav-text">JavaScript 引擎如何支持块级作用域？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结："><span class="nav-text">总结：</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.Zhu</span>
+
+  
+
+  
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数: <span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<span class="post-meta-divider">|</span>
+
+<div class="powered-by">
+<i class="fa fa-eye"></i>
+<span id="site-pv">
+  本站总访问量: <span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+
+<span class="post-meta-divider">|</span>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共 50.3k 字</span>
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.5" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.0"></script>
+
+  <script src="/js/src/motion.js?v=7.0.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=7.0.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=7.0.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.0"></script>
+<script src="/js/src/post-details.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=7.0.0"></script>
+
+
+
+  
+
+
+  
+    <script>
+  window.livereOptions = {
+    refer: '2021/05/21/js/JavaScript执行机制一/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+    <!-- 页面点击小红心 -->
+    <script type="text/javascript" src="/js/src/clickLove.js"></script>
+    <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
+
+
+</body>
+</html>
+
